@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BHUVIA | Earth's Purity, Delivered.</title>
+<title>BHUVIA | Earth's Purity, Delivered</title>
 
 <style>
 *{
@@ -20,7 +20,8 @@ html{
 
 body{
     background:#fff;
-    color:#163c37;
+    color:#202035;
+    line-height:1.6;
 }
 
 a{
@@ -29,7 +30,7 @@ a{
 }
 
 button{
-    font-family:inherit;
+    cursor:pointer;
 }
 
 /* HEADER */
@@ -38,134 +39,99 @@ header{
     top:0;
     z-index:1000;
     background:#fff;
-    border-bottom:1px solid #e8eeee;
-    box-shadow:0 2px 12px rgba(0,0,0,.04);
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
 }
 
 .navbar{
     max-width:1250px;
-    height:76px;
     margin:auto;
-    padding:0 20px;
+    min-height:78px;
+    padding:10px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-}
-
-.logo-area{
-    display:flex;
-    align-items:center;
-    gap:12px;
+    gap:25px;
 }
 
 .logo{
-    width:52px;
-    height:52px;
+    width:170px;
+    max-height:62px;
     object-fit:contain;
-}
-
-.logo-fallback{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background:#009b78;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    font-size:18px;
-}
-
-.brand{
-    font-size:25px;
-    font-weight:800;
-    letter-spacing:-.5px;
-}
-
-.brand span{
-    color:#009b78;
+    display:block;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
     gap:28px;
-}
-
-.nav-links a{
-    font-size:15px;
     font-weight:600;
-    color:#24413d;
 }
 
 .nav-links a:hover{
-    color:#009b78;
+    color:#5521b5;
 }
 
-.cart-btn{
-    background:#009b78;
+.nav-btn{
+    background:linear-gradient(135deg,#5521b5,#ef6c00);
     color:#fff !important;
-    padding:11px 18px;
+    padding:11px 20px;
     border-radius:25px;
 }
 
-.mobile-menu{
+.menu{
     display:none;
     font-size:28px;
-    cursor:pointer;
+    border:0;
+    background:none;
 }
 
 /* HERO */
 .hero{
-    background:linear-gradient(135deg,#effff9,#fff 55%,#e5faf3);
+    background:linear-gradient(135deg,#fff 50%,#f2eaff);
 }
 
 .hero-container{
     max-width:1250px;
-    min-height:600px;
+    min-height:650px;
     margin:auto;
-    padding:75px 20px;
+    padding:70px 20px;
     display:grid;
-    grid-template-columns:1.05fr .95fr;
+    grid-template-columns:1fr 1fr;
     gap:50px;
     align-items:center;
 }
 
 .badge{
     display:inline-block;
-    background:#d9f8ef;
-    color:#008565;
-    padding:9px 17px;
+    background:#f0e8ff;
+    color:#5521b5;
+    padding:8px 16px;
     border-radius:30px;
-    font-size:13px;
     font-weight:bold;
-    letter-spacing:.5px;
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .hero h1{
     font-size:58px;
-    line-height:1.05;
-    color:#123e38;
+    line-height:1.1;
     margin-bottom:20px;
+    color:#24103f;
 }
 
 .hero h1 span{
-    color:#009b78;
+    color:#ef6500;
 }
 
 .hero p{
-    max-width:560px;
-    color:#657672;
-    font-size:18px;
-    line-height:1.7;
+    font-size:19px;
+    color:#555;
+    max-width:570px;
     margin-bottom:30px;
 }
 
-.hero-buttons{
+.buttons{
     display:flex;
-    gap:14px;
+    gap:15px;
     flex-wrap:wrap;
 }
 
@@ -174,213 +140,186 @@ header{
     padding:14px 25px;
     border-radius:30px;
     font-weight:bold;
-    border:none;
-    cursor:pointer;
-    transition:.2s;
+    border:2px solid #5521b5;
 }
 
 .btn-primary{
-    background:#009b78;
+    background:linear-gradient(135deg,#5521b5,#ef6500);
     color:#fff;
+    border:none;
 }
 
-.btn-primary:hover{
-    background:#007d62;
-    transform:translateY(-2px);
-}
-
-.btn-outline{
-    border:2px solid #009b78;
-    color:#008565;
+.btn-secondary{
+    color:#5521b5;
     background:#fff;
 }
 
 .hero-product{
-    min-height:470px;
-    background:#fff;
-    border-radius:35px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 25px 70px rgba(0,120,90,.12);
-    padding:30px;
+    text-align:center;
 }
 
-.product-showcase{
-    width:370px;
-    height:370px;
-    border-radius:50%;
-    background:linear-gradient(145deg,#d5fff3,#94e5d1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.product-showcase img{
-    max-width:80%;
-    max-height:82%;
+.hero-product img{
+    width:100%;
+    max-width:520px;
+    max-height:550px;
     object-fit:contain;
+    filter:drop-shadow(0 20px 25px rgba(0,0,0,.18));
 }
 
-/* TRUST BAR */
-.trust{
-    background:#073f37;
-    color:#fff;
+/* COMMON */
+section{
+    padding:80px 20px;
 }
 
-.trust-container{
-    max-width:1200px;
+.container{
+    max-width:1150px;
     margin:auto;
-    padding:22px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:38px;
+    color:#291044;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#666;
+}
+
+/* FEATURES */
+.features{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:20px;
+}
+
+.feature{
+    padding:30px 20px;
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
     text-align:center;
 }
 
-.trust-item strong{
-    display:block;
-    font-size:17px;
-    margin-bottom:3px;
-}
-
-.trust-item span{
-    font-size:13px;
-    color:#c8dfda;
-}
-
-/* GENERAL SECTION */
-.section{
-    max-width:1200px;
-    margin:auto;
-    padding:90px 20px;
-}
-
-.heading{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.heading small{
-    color:#009b78;
-    font-weight:bold;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
-
-.heading h2{
+.feature-icon{
     font-size:40px;
-    color:#173d38;
-    margin:8px 0;
+    margin-bottom:12px;
 }
 
-.heading p{
-    color:#71817f;
+.feature h3{
+    color:#35115e;
+    margin-bottom:8px;
+}
+
+.feature p{
+    color:#666;
+    font-size:14px;
 }
 
 /* PRODUCT */
-.products{
-    background:#f5fcfa;
-}
-
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+.product-section{
+    background:#faf8ff;
 }
 
 .product-card{
+    max-width:1000px;
+    margin:auto;
     background:#fff;
-    border:1px solid #e5eeee;
     border-radius:25px;
-    overflow:hidden;
-    transition:.3s;
-}
-
-.product-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 45px rgba(0,100,80,.12);
-}
-
-.product-image{
-    height:300px;
-    background:linear-gradient(145deg,#eafff8,#c9f4e8);
-    display:flex;
+    padding:35px;
+    box-shadow:0 10px 35px rgba(0,0,0,.10);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
     align-items:center;
-    justify-content:center;
-    padding:25px;
 }
 
-.product-image img{
-    max-width:90%;
-    max-height:260px;
+.product-card img{
+    width:100%;
+    max-height:520px;
     object-fit:contain;
 }
 
-.product-info{
-    padding:25px;
+.product-info h2{
+    font-size:40px;
+    color:#35115e;
+    margin-bottom:12px;
 }
 
 .product-info h3{
-    font-size:22px;
-    margin-bottom:8px;
-    color:#173d38;
-}
-
-.product-info p{
-    color:#71817f;
-    font-size:14px;
-    line-height:1.6;
-}
-
-.rating{
-    color:#f5a623;
-    margin:12px 0;
-    font-size:14px;
-}
-
-.price-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
+    font-size:28px;
+    color:#ef6500;
     margin:15px 0;
 }
 
-.old-price{
-    text-decoration:line-through;
-    color:#999;
-    font-size:14px;
+.product-info ul{
+    list-style:none;
+    margin:20px 0;
+}
+
+.product-info li{
+    padding:8px 0;
+    border-bottom:1px solid #eee;
+}
+
+.product-info li::before{
+    content:"✓";
+    color:#5521b5;
+    font-weight:bold;
+    margin-right:10px;
 }
 
 .price{
-    color:#009b78;
-    font-size:25px;
-    font-weight:800;
-}
-
-.offer{
-    display:inline-block;
-    background:#e0f8ef;
-    color:#008565;
-    padding:5px 9px;
-    border-radius:6px;
-    font-size:12px;
+    font-size:30px;
     font-weight:bold;
+    color:#5521b5;
 }
 
-.product-buttons{
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:18px;
+    margin-left:8px;
+}
+
+/* ABOUT */
+.about{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:50px;
+    align-items:center;
 }
 
-.product-buttons .btn{
-    text-align:center;
-    padding:12px 8px;
-    font-size:14px;
+.about h2{
+    font-size:38px;
+    color:#35115e;
+    margin-bottom:18px;
 }
 
-/* WHY BHUVIA */
+.about p{
+    color:#555;
+    margin-bottom:15px;
+}
+
+/* WHY */
+.why{
+    background:linear-gradient(135deg,#35115e,#5521b5);
+    color:#fff;
+}
+
+.why .section-title h2{
+    color:#fff;
+}
+
+.why .section-title p{
+    color:#ddd;
+}
+
 .why-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -388,177 +327,89 @@ header{
 }
 
 .why-card{
-    border:1px solid #e6eeee;
-    border-radius:22px;
     padding:30px;
-    text-align:center;
-}
-
-.why-icon{
-    width:65px;
-    height:65px;
-    margin:0 auto 18px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.08);
     border-radius:18px;
-    background:#e1f9f1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:29px;
 }
 
 .why-card h3{
-    margin-bottom:9px;
+    margin-bottom:10px;
 }
 
-.why-card p{
-    color:#71817f;
-    line-height:1.6;
-    font-size:14px;
+/* CONTACT */
+.contact{
+    background:#fafafa;
 }
 
-/* ABOUT */
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    align-items:center;
-}
-
-.about-box{
-    background:#eafff8;
-    border-radius:30px;
-    min-height:330px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:30px;
-    text-align:center;
-}
-
-.about-box img{
-    max-width:85%;
-    max-height:240px;
-    object-fit:contain;
-}
-
-.about-text small{
-    color:#009b78;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-.about-text h2{
-    font-size:40px;
-    margin:10px 0 20px;
-}
-
-.about-text p{
-    color:#667572;
-    line-height:1.8;
-    margin-bottom:15px;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:25px;
-}
-
-.feature{
-    background:#f5faf9;
-    padding:14px;
-    border-radius:12px;
-    font-weight:bold;
-}
-
-/* CART */
-.cart-section{
-    background:#f5fcfa;
-}
-
-.cart-box{
-    max-width:850px;
+.contact-box{
+    max-width:900px;
     margin:auto;
     background:#fff;
-    border:1px solid #e6eeee;
-    border-radius:22px;
-    padding:30px;
-}
-
-.cart-empty{
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
     text-align:center;
-    color:#71817f;
-    padding:20px;
 }
 
-.cart-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 0;
-    border-bottom:1px solid #eee;
-}
-
-.cart-total{
-    display:flex;
-    justify-content:space-between;
-    margin-top:20px;
-    font-size:22px;
-    font-weight:bold;
-}
-
-/* CTA */
-.cta{
-    background:#073f37;
-    color:#fff;
-}
-
-.cta-container{
-    max-width:1000px;
-    margin:auto;
-    text-align:center;
-    padding:85px 20px;
-}
-
-.cta h2{
-    font-size:42px;
+.contact-box h2{
+    color:#35115e;
     margin-bottom:15px;
 }
 
-.cta p{
-    color:#c6ddd8;
-    margin-bottom:28px;
+.contact-info{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin:25px 0;
+}
+
+.contact-item{
+    padding:12px 20px;
+    background:#f4efff;
+    border-radius:30px;
 }
 
 /* FOOTER */
 footer{
-    background:#042b26;
-    color:#aac4bf;
-    padding:35px 20px;
-}
-
-.footer-container{
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.footer-brand{
+    background:#21102f;
     color:#fff;
-    font-size:22px;
-    font-weight:bold;
+    padding:45px 20px 20px;
 }
 
-.footer-bottom{
+.footer-content{
+    max-width:1150px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-logo{
+    width:180px;
+    background:#fff;
+    padding:5px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer a{
+    display:block;
+    color:#ddd;
+    margin:7px 0;
+}
+
+.copyright{
     text-align:center;
-    margin-top:25px;
+    border-top:1px solid rgba(255,255,255,.15);
+    margin-top:35px;
     padding-top:20px;
-    border-top:1px solid rgba(255,255,255,.1);
-    font-size:13px;
+    color:#bbb;
 }
 
 /* MOBILE */
@@ -566,16 +417,28 @@ footer{
 
     .nav-links{
         display:none;
+        position:absolute;
+        top:78px;
+        left:0;
+        width:100%;
+        background:#fff;
+        padding:20px;
+        flex-direction:column;
+        box-shadow:0 10px 20px rgba(0,0,0,.08);
     }
 
-    .mobile-menu{
+    .nav-links.active{
+        display:flex;
+    }
+
+    .menu{
         display:block;
     }
 
     .hero-container{
         grid-template-columns:1fr;
         text-align:center;
-        padding:55px 20px;
+        padding-top:45px;
     }
 
     .hero p{
@@ -583,16 +446,19 @@ footer{
         margin-right:auto;
     }
 
-    .hero-buttons{
+    .buttons{
         justify-content:center;
     }
 
     .hero h1{
-        font-size:43px;
+        font-size:42px;
     }
 
-    .product-grid,
-    .why-grid{
+    .features{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .product-card{
         grid-template-columns:1fr;
     }
 
@@ -600,13 +466,46 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .trust-container{
+    .why-grid{
         grid-template-columns:1fr;
     }
 
-    .heading h2,
-    .about-text h2{
-        font-size:32px;
+    .footer-content{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .footer-logo{
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+@media(max-width:500px){
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .section-title h2,
+    .about h2{
+        font-size:30px;
+    }
+
+    .product-info h2{
+        font-size:30px;
+    }
+
+    .navbar{
+        padding:8px 15px;
+    }
+
+    .logo{
+        width:145px;
     }
 }
 </style>
@@ -618,36 +517,19 @@ footer{
 <header>
 <nav class="navbar">
 
-    <div class="logo-area">
+    <a href="#home">
+        <img src="bhuvia-logo.jpg" class="logo" alt="Bhuvia Logo">
+    </a>
 
-        <img
-            src="images/bhuvia-logo.png"
-            class="logo"
-            alt="Bhuvia Logo"
-            onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"
-        >
+    <button class="menu" onclick="toggleMenu()">☰</button>
 
-        <div id="logoFallback" class="logo-fallback" style="display:none;">
-            B
-        </div>
-
-        <div class="brand">
-            BHU<span>VIA</span>
-        </div>
-
-    </div>
-
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
         <a href="#home">Home</a>
-        <a href="#products">Products</a>
-        <a href="#why">Why Bhuvia</a>
+        <a href="#product">RO Purifier</a>
         <a href="#about">About</a>
-        <a href="#cart" class="cart-btn">
-            🛒 Cart <span id="cartCount">0</span>
-        </a>
+        <a href="#why">Why Bhuvia</a>
+        <a href="#contact" class="nav-btn">Contact Us</a>
     </div>
-
-    <div class="mobile-menu">☰</div>
 
 </nav>
 </header>
@@ -659,48 +541,32 @@ footer{
 <div class="hero-container">
 
     <div>
-
-        <div class="badge">
-            PURE WATER • BETTER LIFE
-        </div>
+        <span class="badge">Pure Water • Healthy Life</span>
 
         <h1>
-            Earth's Purity,<br>
-            <span>Delivered.</span>
+            Pure Water.<br>
+            <span>Better Life.</span>
         </h1>
 
         <p>
-            Discover reliable water purification solutions
-            designed for healthier homes and better living.
+            Experience advanced water purification with BHUVIA.
+            Smart RO technology designed to deliver clean, safe
+            and refreshing drinking water for your family.
         </p>
 
-        <div class="hero-buttons">
-
-            <a href="#products" class="btn btn-primary">
-                Shop Now
+        <div class="buttons">
+            <a href="#product" class="btn btn-primary">
+                View Product
             </a>
 
-            <a href="#about" class="btn btn-outline">
-                Discover Bhuvia
+            <a href="#contact" class="btn btn-secondary">
+                Enquire Now
             </a>
-
         </div>
-
     </div>
-
 
     <div class="hero-product">
-
-        <div class="product-showcase">
-
-            <img
-                src="images/bhuvia-ro.png"
-                alt="Bhuvia RO"
-                onerror="this.src='';this.alt='BHUVIA RO';this.style.display='none';"
-            >
-
-        </div>
-
+        <img src="ro product.png" alt="Bhuvia RO Water Purifier">
     </div>
 
 </div>
@@ -708,183 +574,142 @@ footer{
 </section>
 
 
-<!-- TRUST -->
-<section class="trust">
+<!-- FEATURES -->
+<section>
 
-<div class="trust-container">
+<div class="container">
 
-    <div class="trust-item">
-        <strong>✓ Quality Focused</strong>
-        <span>Designed around quality</span>
+<div class="section-title">
+    <h2>Advanced Water Protection</h2>
+    <p>Technology designed for pure and safe drinking water.</p>
+</div>
+
+<div class="features">
+
+    <div class="feature">
+        <div class="feature-icon">💧</div>
+        <h3>RO Purification</h3>
+        <p>Advanced Reverse Osmosis purification for cleaner water.</p>
     </div>
 
-    <div class="trust-item">
-        <strong>✓ Customer First</strong>
-        <span>Service built around you</span>
+    <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <h3>Safe & Hygienic</h3>
+        <p>Multiple purification stages for everyday protection.</p>
     </div>
 
-    <div class="trust-item">
-        <strong>✓ Reliable Solutions</strong>
-        <span>Water solutions you can trust</span>
+    <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Smart Technology</h3>
+        <p>Modern purification technology for reliable performance.</p>
     </div>
+
+    <div class="feature">
+        <div class="feature-icon">🔧</div>
+        <h3>Easy Service</h3>
+        <p>Simple maintenance and convenient service support.</p>
+    </div>
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- PRODUCTS -->
-<section class="products" id="products">
+<!-- PRODUCT -->
+<section class="product-section" id="product">
 
-<div class="section">
+<div class="container">
 
-<div class="heading">
-
-    <small>Our Product</small>
-
-    <h2>Bhuvia RO</h2>
-
-    <p>
-        Advanced water purification for your home.
-    </p>
-
+<div class="section-title">
+    <h2>BHUVIA Water Purifier</h2>
+    <p>Advanced purification for your home.</p>
 </div>
-
-
-<div class="product-grid">
 
 <div class="product-card">
 
-    <div class="product-image">
+    <div>
+        <img src="ro product.png" alt="BHUVIA RO Water Purifier">
+    </div>
 
+    <div class="product-info">
+
+        <h2>BHUVIA RO</h2>
+
+        <p>
+            A modern water purifier combining powerful purification
+            technology with a practical design for Indian homes.
+        </p>
+
+        <h3>Key Features</h3>
+
+        <ul>
+            <li>RO Purification</li>
+            <li>UV Sterilization</li>
+            <li>UF Filtration</li>
+            <li>TDS Control</li>
+            <li>Fresh & Hygienic Water</li>
+            <li>Easy Service & Maintenance</li>
+        </ul>
+
+        <div class="price">
+            ₹4,999
+            <span class="old-price">₹5,999</span>
+        </div>
+
+        <br>
+
+        <a href="#contact" class="btn btn-primary">
+            Buy / Enquire Now
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+
+<div class="container">
+
+<div class="about">
+
+    <div>
+        <span class="badge">About BHUVIA</span>
+
+        <h2>
+            Earth's Purity,<br>
+            Delivered.
+        </h2>
+
+        <p>
+            BHUVIA is focused on bringing reliable and affordable
+            water purification solutions to Indian households.
+        </p>
+
+        <p>
+            Our goal is simple — make access to clean and safe
+            drinking water easier for every family.
+        </p>
+
+        <a href="#contact" class="btn btn-primary">
+            Know More
+        </a>
+    </div>
+
+    <div>
         <img
-            src="images/bhuvia-ro.png"
-            alt="Bhuvia RO Water Purifier"
+            src="ro product.png"
+            alt="BHUVIA Water Purifier"
+            style="width:100%;max-height:500px;object-fit:contain;"
         >
-
     </div>
-
-
-    <div class="product-info">
-
-        <span class="offer">
-            SPECIAL OFFER
-        </span>
-
-        <h3>Bhuvia RO Water Purifier</h3>
-
-        <div class="rating">
-            ★★★★★
-            <span style="color:#777;"> 5.0</span>
-        </div>
-
-        <p>
-            Reliable RO purification system for
-            clean and safe drinking water at home.
-        </p>
-
-        <div class="price-row">
-
-            <span class="old-price">
-                MRP ₹5,999
-            </span>
-
-            <span class="price">
-                ₹4,999
-            </span>
-
-        </div>
-
-        <div class="product-buttons">
-
-            <button
-                class="btn btn-outline"
-                onclick="addToCart()">
-                Add to Cart
-            </button>
-
-            <button
-                class="btn btn-primary"
-                onclick="buyNow()">
-                Buy Now
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- FUTURE PRODUCT -->
-<div class="product-card">
-
-    <div class="product-image">
-
-        <div style="
-            text-align:center;
-            color:#009b78;
-            font-weight:bold;
-            font-size:18px;">
-            BHUVIA<br>
-            <span style="font-size:13px;color:#71817f;">
-                Coming Soon
-            </span>
-        </div>
-
-    </div>
-
-    <div class="product-info">
-
-        <span class="offer">
-            COMING SOON
-        </span>
-
-        <h3>New Bhuvia Product</h3>
-
-        <p>
-            More Bhuvia water solutions will be
-            available soon.
-        </p>
-
-    </div>
-
-</div>
-
-
-<div class="product-card">
-
-    <div class="product-image">
-
-        <div style="
-            text-align:center;
-            color:#009b78;
-            font-weight:bold;
-            font-size:18px;">
-            BHUVIA<br>
-            <span style="font-size:13px;color:#71817f;">
-                Coming Soon
-            </span>
-        </div>
-
-    </div>
-
-    <div class="product-info">
-
-        <span class="offer">
-            COMING SOON
-        </span>
-
-        <h3>More Products</h3>
-
-        <p>
-            Explore upcoming products from
-            Bhuvia.
-        </p>
-
-    </div>
-
-</div>
 
 </div>
 
@@ -894,177 +719,83 @@ footer{
 
 
 <!-- WHY BHUVIA -->
-<section class="section" id="why">
+<section class="why" id="why">
 
-<div class="heading">
+<div class="container">
 
-    <small>Why Bhuvia</small>
-
-    <h2>Made For Better Living</h2>
-
-    <p>
-        Our focus is simple — quality water and
-        better customer experience.
-    </p>
-
+<div class="section-title">
+    <h2>Why Choose BHUVIA?</h2>
+    <p>Designed around purity, reliability and value.</p>
 </div>
-
 
 <div class="why-grid">
 
     <div class="why-card">
-
-        <div class="why-icon">💧</div>
-
-        <h3>Pure Water</h3>
-
+        <h3>💧 Pure Water</h3>
         <p>
-            Advanced purification designed to
-            provide clean drinking water.
+            Multi-stage purification helps provide cleaner
+            and safer drinking water.
         </p>
-
     </div>
-
 
     <div class="why-card">
-
-        <div class="why-icon">✓</div>
-
-        <h3>Quality Focus</h3>
-
+        <h3>💰 Affordable</h3>
         <p>
-            Products are designed with quality
-            and reliability in mind.
+            Quality purification solutions designed with
+            your budget in mind.
         </p>
-
     </div>
-
 
     <div class="why-card">
-
-        <div class="why-icon">♥</div>
-
-        <h3>Customer First</h3>
-
+        <h3>🔧 Service Support</h3>
         <p>
-            We believe in creating a simple,
-            transparent buying experience.
+            Convenient service and maintenance support
+            for your purifier.
         </p>
-
     </div>
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- ABOUT -->
-<section class="section" id="about">
+<!-- CONTACT -->
+<section class="contact" id="contact">
 
-<div class="about">
+<div class="container">
 
-    <div class="about-box">
+<div class="contact-box">
 
-        <img
-            src="images/bhuvia-logo.png"
-            alt="Bhuvia"
-        >
+    <h2>Get in Touch with BHUVIA</h2>
 
-    </div>
+    <p>
+        Interested in our RO purifier? Contact us for
+        product details, installation and enquiry.
+    </p>
 
+    <div class="contact-info">
 
-    <div class="about-text">
+        <div class="contact-item">
+            📞 Call / WhatsApp
+        </div>
 
-        <small>ABOUT BHUVIA</small>
+        <div class="contact-item">
+            📧 Email
+        </div>
 
-        <h2>
-            Water You Can Trust
-        </h2>
-
-        <p>
-            Bhuvia is focused on delivering
-            affordable, reliable and quality
-            water solutions.
-        </p>
-
-        <p>
-            Our vision is to make better water
-            solutions accessible to families
-            and customers across India.
-        </p>
-
-
-        <div class="features">
-
-            <div class="feature">
-                ✓ Quality Focused
-            </div>
-
-            <div class="feature">
-                ✓ Affordable
-            </div>
-
-            <div class="feature">
-                ✓ Reliable
-            </div>
-
-            <div class="feature">
-                ✓ Customer First
-            </div>
-
+        <div class="contact-item">
+            📍 Bihar, India
         </div>
 
     </div>
 
-</div>
-
-</section>
-
-
-<!-- CART -->
-<section class="cart-section" id="cart">
-
-<div class="section">
-
-<div class="heading">
-
-    <small>Your Shopping Cart</small>
-
-    <h2>Cart</h2>
-
-</div>
-
-
-<div class="cart-box">
-
-    <div id="cartContent" class="cart-empty">
-        Your cart is empty.
-    </div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CTA -->
-<section class="cta">
-
-<div class="cta-container">
-
-    <h2>
-        Ready for Better Water?
-    </h2>
-
-    <p>
-        Explore Bhuvia products and choose
-        the right solution for your home.
-    </p>
-
-    <a href="#products" class="btn btn-primary">
-        Shop Bhuvia
+    <a href="https://wa.me/" class="btn btn-primary">
+        WhatsApp Us
     </a>
+
+</div>
 
 </div>
 
@@ -1074,30 +805,45 @@ footer{
 <!-- FOOTER -->
 <footer>
 
-<div class="footer-container">
+<div class="footer-content">
 
     <div>
-        <div class="footer-brand">
-            BHUVIA
-        </div>
+        <img
+            src="bhuvia-logo.jpg"
+            class="footer-logo"
+            alt="BHUVIA Logo"
+        >
 
         <p>
             Earth's Purity, Delivered.
         </p>
+
+        <p>
+            Pure Water. Healthy Life.
+        </p>
     </div>
 
+    <div>
+        <h3>Quick Links</h3>
+
+        <a href="#home">Home</a>
+        <a href="#product">RO Purifier</a>
+        <a href="#about">About</a>
+        <a href="#why">Why Bhuvia</a>
+    </div>
 
     <div>
-        <strong>Product by: Apka Budget</strong>
+        <h3>Products</h3>
+
+        <a href="#product">BHUVIA RO</a>
+        <a href="#contact">Enquiry</a>
+        <a href="#contact">Service</a>
     </div>
 
 </div>
 
-
-<div class="footer-bottom">
-
+<div class="copyright">
     © 2026 BHUVIA. All Rights Reserved.
-
 </div>
 
 </footer>
@@ -1105,123 +851,23 @@ footer{
 
 <script>
 
-let cart = [];
+function toggleMenu(){
 
-function addToCart(){
+    const menu = document.getElementById("navLinks");
 
-    cart.push({
-        name:"Bhuvia RO Water Purifier",
-        price:4999
-    });
-
-    updateCart();
-
-    alert("Bhuvia RO added to cart.");
+    menu.classList.toggle("active");
 
 }
 
-function buyNow(){
+document.querySelectorAll(".nav-links a").forEach(function(link){
 
-    cart = [{
-        name:"Bhuvia RO Water Purifier",
-        price:4999
-    }];
+    link.addEventListener("click", function(){
 
-    updateCart();
-
-    document
-        .getElementById("cart")
-        .scrollIntoView();
-
-}
-
-function updateCart(){
-
-    document.getElementById("cartCount").innerText =
-        cart.length;
-
-    const content =
-        document.getElementById("cartContent");
-
-    if(cart.length === 0){
-
-        content.innerHTML =
-            "Your cart is empty.";
-
-        return;
-
-    }
-
-    let total = 0;
-
-    let html = "";
-
-    cart.forEach((item,index)=>{
-
-        total += item.price;
-
-        html += `
-        <div class="cart-item">
-
-            <div>
-                <strong>${item.name}</strong>
-                <br>
-                <span>₹${item.price}</span>
-            </div>
-
-            <button
-                class="btn btn-outline"
-                onclick="removeItem(${index})">
-                Remove
-            </button>
-
-        </div>
-        `;
+        document.getElementById("navLinks").classList.remove("active");
 
     });
 
-
-    html += `
-        <div class="cart-total">
-
-            <span>Total</span>
-
-            <span>₹${total}</span>
-
-        </div>
-
-        <div style="text-align:center;margin-top:25px;">
-
-            <button
-                class="btn btn-primary"
-                onclick="checkout()">
-                Proceed to Checkout
-            </button>
-
-        </div>
-    `;
-
-    content.innerHTML = html;
-
-}
-
-
-function removeItem(index){
-
-    cart.splice(index,1);
-
-    updateCart();
-
-}
-
-
-function checkout(){
-
-    alert(
-        "Checkout system will be connected next with customer details, address, COD and online payment."
-    );
-
-}
+});
 
 </script>
 
