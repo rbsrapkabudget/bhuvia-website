@@ -1,338 +1,2308 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhuvia — Pure Water. Smart Living.</title>
-<meta name="description" content="Bhuvia premium water purification and drinking water products.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<title>Bhuvia | Pure Water. Smart Living.</title>
+
+<meta name="description" content="Bhuvia RO Water Purifier, Packaged Drinking Water and 20L Home Water Delivery.">
+
 <style>
 :root{
-  --green:#087f68;--green2:#10a982;--dark:#10201d;--muted:#687875;--line:#e4eeeb;
-  --soft:#effaf7;--white:#fff;--shadow:0 18px 50px rgba(15,64,55,.10);
-  --radius:20px;
+    --purple:#4b168f;
+    --purple2:#6b21a8;
+    --orange:#ff5a00;
+    --blue:#0759b8;
+    --green:#087f68;
+    --dark:#17131f;
+    --muted:#6b6674;
+    --light:#f7f8fc;
+    --white:#fff;
+    --border:#e8e5ed;
+    --shadow:0 15px 45px rgba(50,20,90,.10);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,Arial,sans-serif;color:var(--dark);background:#fff;line-height:1.55}
-button,input{font:inherit}
-button{cursor:pointer;border:0}
-a{text-decoration:none;color:inherit}
-.container{width:min(1200px,92%);margin:auto}
-.topbar{background:var(--dark);color:#fff;font-size:12px;text-align:center;padding:8px}
-.nav{height:76px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
-.nav-inner{height:100%;display:flex;align-items:center;gap:24px}
-.logo{height:50px;width:auto;object-fit:contain}
-.search{flex:1;max-width:520px;position:relative}
-.search input{width:100%;border:1px solid var(--line);background:#f7faf9;border-radius:30px;padding:13px 48px 13px 18px;outline:none}
-.search input:focus{border-color:var(--green)}
-.search span{position:absolute;right:17px;top:10px;font-size:20px}
-.navlinks{display:flex;gap:22px;font-size:14px;font-weight:600;white-space:nowrap}
-.nav-actions{display:flex;gap:10px}
-.icon-btn{width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:50%;display:grid;place-items:center;position:relative}
-.badge-count{position:absolute;right:-2px;top:-3px;background:var(--green);color:#fff;border-radius:50%;min-width:18px;height:18px;font-size:10px;display:grid;place-items:center}
-.hero{background:linear-gradient(120deg,#effaf7 0%,#fff 55%,#e8f8f4 100%);overflow:hidden}
-.hero-inner{min-height:590px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding:70px 0}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--green);background:#dff7f0;padding:8px 13px;border-radius:30px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.hero h1{font-family:"Playfair Display",serif;font-size:clamp(44px,5.5vw,72px);line-height:1.02;margin:20px 0}
-.hero h1 span{color:var(--green)}
-.hero p{color:var(--muted);font-size:17px;max-width:570px}
-.hero-buttons{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
-.btn{padding:13px 22px;border-radius:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px}
-.btn-primary{background:var(--green);color:#fff;box-shadow:0 10px 25px rgba(8,127,104,.20)}
-.btn-primary:hover{background:#056b58}
-.btn-outline{border:1px solid #bcd8d1;background:#fff;color:var(--green)}
-.hero-points{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap}
-.hero-points b{display:block;font-size:14px}.hero-points small{color:var(--muted)}
-.hero-product{background:#fff;border-radius:30px;min-height:470px;display:grid;place-items:center;box-shadow:var(--shadow);padding:30px;position:relative}
-.hero-product:before{content:"";position:absolute;width:300px;height:300px;background:#e0f6f0;border-radius:50%;z-index:0}
-.hero-product img{position:relative;z-index:1;max-width:82%;max-height:430px;object-fit:contain;filter:drop-shadow(0 25px 22px rgba(0,0,0,.13))}
-.price-pill{position:absolute;right:24px;bottom:24px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);padding:12px 16px;border-radius:14px;z-index:2}
-.price-pill strong{color:var(--green);font-size:22px}
-.trust{border-bottom:1px solid var(--line);padding:22px 0}
-.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.trust-item{display:flex;gap:12px;align-items:center}.trust-icon{width:44px;height:44px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:20px}
-.trust-item strong{font-size:13px}.trust-item small{display:block;color:var(--muted);font-size:11px}
-.section{padding:75px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px;gap:20px}
-.kicker{font-size:12px;color:var(--green);font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-.section h2{font-family:"Playfair Display",serif;font-size:38px;line-height:1.1;margin-top:7px}
-.section-head p{color:var(--muted);max-width:500px;font-size:14px}
-.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
-.cat{padding:25px 15px;text-align:center;border:1px solid var(--line);border-radius:18px;background:#fff;transition:.2s}
-.cat:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#c8e5de}
-.cat-icon{font-size:34px;margin-bottom:10px}.cat strong{font-size:14px}.cat small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
-.products-section{background:#f8fcfb}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
-.filter{padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:30px;font-size:12px;font-weight:700}
-.filter.active,.filter:hover{background:var(--green);color:#fff;border-color:var(--green)}
-.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative;transition:.2s}
-.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.card-img{height:245px;background:linear-gradient(145deg,#f0faf7,#fff);display:grid;place-items:center;padding:20px;position:relative}
-.card-img img{max-width:90%;max-height:215px;object-fit:contain}
-.wish{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center}
-.tag{position:absolute;left:12px;top:12px;background:#dff7f0;color:var(--green);font-size:10px;font-weight:800;padding:6px 8px;border-radius:7px}
-.card-body{padding:17px}.stars{color:#f0a800;font-size:12px;margin-bottom:5px}.card h3{font-size:15px}.card p{font-size:12px;color:var(--muted);min-height:38px;margin-top:4px}
-.price{display:flex;align-items:center;gap:8px;margin:12px 0}.price strong{font-size:20px}.old{text-decoration:line-through;color:#9aa9a5;font-size:12px}.off{color:var(--green);font-size:11px;font-weight:800}
-.card-bottom{display:flex;gap:8px}.card-bottom .btn{flex:1;padding:10px;font-size:12px}.quick{background:#f2f7f5;color:var(--dark)}
-.banner{background:linear-gradient(105deg,#0b7e67,#063f35);color:#fff;border-radius:28px;padding:45px 50px;display:flex;align-items:center;justify-content:space-between;gap:30px;overflow:hidden;position:relative}
-.banner:after{content:"";position:absolute;width:300px;height:300px;border:1px solid rgba(255,255,255,.15);border-radius:50%;right:-80px;top:-130px}
-.banner h2{font-family:"Playfair Display",serif;font-size:38px}.banner p{opacity:.8;margin-top:8px;max-width:620px}.banner .btn{background:#fff;color:var(--green);position:relative;z-index:1}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.feature{padding:28px;border:1px solid var(--line);border-radius:20px;background:#fff}.feature .big{font-size:30px}.feature h3{font-size:16px;margin:10px 0 5px}.feature p{font-size:13px;color:var(--muted)}
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.review{border:1px solid var(--line);border-radius:20px;padding:25px;background:#fff}.review p{font-size:14px;color:#536460;margin:12px 0}.review strong{font-size:13px}.review small{color:var(--muted)}
-.newsletter{background:#eef9f6;padding:60px 0;text-align:center}.newsletter h2{font-family:"Playfair Display",serif;font-size:34px}.newsletter p{color:var(--muted);margin:8px auto 22px}.newsletter-form{display:flex;max-width:500px;margin:auto;gap:8px}.newsletter-form input{flex:1;border:1px solid var(--line);padding:13px 16px;border-radius:12px;outline:none}
-footer{background:#0c211d;color:#dce8e5;padding:55px 0 25px}.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}.footer-brand img{height:52px;filter:brightness(0) invert(1);opacity:.95}.footer-brand p{font-size:12px;color:#9fb2ad;max-width:320px;margin-top:15px}.footer h4{color:#fff;margin-bottom:14px;font-size:13px}.footer a{display:block;color:#9fb2ad;font-size:12px;margin:8px 0}.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:35px;padding-top:18px;color:#78908a;font-size:11px;display:flex;justify-content:space-between}
-.cart-drawer{position:fixed;right:-440px;top:0;width:min(430px,100%);height:100vh;background:#fff;z-index:100;box-shadow:-20px 0 60px rgba(0,0,0,.15);transition:.3s;display:flex;flex-direction:column}
-.cart-drawer.open{right:0}.cart-head{padding:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.cart-items{flex:1;overflow:auto;padding:15px}.cart-item{display:grid;grid-template-columns:70px 1fr auto;gap:12px;padding:15px 0;border-bottom:1px solid var(--line)}.cart-item img{width:70px;height:70px;object-fit:contain;background:#f4faf8;border-radius:12px}.cart-item h4{font-size:13px}.cart-item small{color:var(--muted)}.qty{display:flex;gap:8px;align-items:center;margin-top:8px}.qty button{width:25px;height:25px;border:1px solid var(--line);background:#fff;border-radius:6px}.cart-foot{padding:20px;border-top:1px solid var(--line)}.total{display:flex;justify-content:space-between;font-weight:800;margin-bottom:14px}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:90;display:none}.overlay.show{display:block}
-.modal{position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-45%);width:min(850px,94%);background:#fff;z-index:110;border-radius:24px;display:none;box-shadow:0 30px 80px rgba(0,0,0,.25);overflow:hidden}.modal.show{display:block}.modal-inner{display:grid;grid-template-columns:1fr 1fr}.modal-img{background:#f3faf8;min-height:480px;display:grid;place-items:center;padding:35px}.modal-img img{max-width:90%;max-height:420px;object-fit:contain}.modal-info{padding:38px}.close{width:38px;height:38px;border-radius:50%;background:#f2f6f4;float:right}.modal-info h2{font-family:"Playfair Display",serif;font-size:32px;clear:both;padding-top:30px}.modal-info p{color:var(--muted);font-size:14px;margin:10px 0}.modal-price{font-size:28px;color:var(--green);font-weight:800;margin:18px 0}.specs{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:18px 0}.specs div{display:flex;justify-content:space-between;font-size:12px;padding:5px 0}.specs span{color:var(--muted)}
-.mobile-menu{display:none}
-.empty{text-align:center;padding:60px;color:var(--muted)}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--dark);
+    background:#fff;
+}
+
+button,input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+/* TOP BAR */
+
+.topbar{
+    background:linear-gradient(90deg,var(--purple),var(--orange));
+    color:#fff;
+    text-align:center;
+    padding:9px;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+}
+
+.nav{
+    min-height:78px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.logo{
+    width:145px;
+    height:60px;
+    object-fit:contain;
+}
+
+.search{
+    flex:1;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    height:45px;
+    border:2px solid #ddd;
+    border-radius:25px;
+    padding:0 50px 0 20px;
+    outline:none;
+    font-size:14px;
+}
+
+.search input:focus{
+    border-color:var(--purple);
+}
+
+.search-icon{
+    position:absolute;
+    right:18px;
+    top:11px;
+    font-size:20px;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+    font-size:14px;
+    font-weight:700;
+}
+
+.nav-links a:hover{
+    color:var(--purple);
+}
+
+.nav-actions{
+    display:flex;
+    gap:10px;
+}
+
+.icon-btn{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:#fff;
+    position:relative;
+    font-size:18px;
+}
+
+.cart-count{
+    position:absolute;
+    right:-4px;
+    top:-5px;
+    background:var(--orange);
+    color:#fff;
+    width:19px;
+    height:19px;
+    border-radius:50%;
+    font-size:10px;
+    display:grid;
+    place-items:center;
+}
+
+/* HERO */
+
+.hero{
+    background:
+    radial-gradient(circle at 80% 40%,#eee5ff 0,transparent 30%),
+    linear-gradient(120deg,#faf7ff,#fff8f3);
+}
+
+.hero-grid{
+    min-height:600px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:50px;
+    padding:65px 0;
+}
+
+.badge{
+    display:inline-block;
+    background:#eee5ff;
+    color:var(--purple);
+    padding:9px 16px;
+    border-radius:25px;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:clamp(42px,5vw,70px);
+    line-height:1.02;
+    margin-bottom:20px;
+}
+
+.gradient{
+    background:linear-gradient(90deg,var(--purple),var(--orange));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+    max-width:580px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:28px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    padding:13px 21px;
+    border-radius:10px;
+    font-weight:800;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.btn-primary{
+    background:linear-gradient(90deg,var(--purple),var(--purple2));
+    color:#fff;
+}
+
+.btn-orange{
+    background:var(--orange);
+    color:#fff;
+}
+
+.btn-light{
+    background:#fff;
+    border:1px solid #ddd;
+    color:var(--purple);
+}
+
+.hero-points{
+    display:flex;
+    gap:30px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.hero-points strong{
+    display:block;
+    font-size:14px;
+}
+
+.hero-points small{
+    color:var(--muted);
+}
+
+.hero-product{
+    min-height:500px;
+    border-radius:30px;
+    background:#fff;
+    box-shadow:var(--shadow);
+    display:grid;
+    place-items:center;
+    padding:35px;
+    position:relative;
+}
+
+.hero-product:before{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:#f0e8ff;
+}
+
+.hero-product img{
+    max-width:90%;
+    max-height:440px;
+    object-fit:contain;
+    position:relative;
+    z-index:2;
+}
+
+.hero-price{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    background:#fff;
+    padding:12px 17px;
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    z-index:5;
+}
+
+.hero-price small{
+    display:block;
+    color:var(--muted);
+}
+
+.hero-price strong{
+    color:var(--purple);
+    font-size:23px;
+}
+
+/* TRUST */
+
+.trust{
+    border-bottom:1px solid var(--border);
+    padding:22px 0;
+}
+
+.trust-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.trust-box{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.trust-icon{
+    width:45px;
+    height:45px;
+    background:#f3edff;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    font-size:21px;
+}
+
+.trust-box strong{
+    font-size:13px;
+}
+
+.trust-box small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:75px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title span{
+    color:var(--orange);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin:8px 0;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:16px;
+}
+
+.category{
+    border:1px solid var(--border);
+    padding:25px 15px;
+    text-align:center;
+    border-radius:18px;
+    transition:.2s;
+    background:#fff;
+}
+
+.category:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.category-icon{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.category strong{
+    display:block;
+    font-size:14px;
+}
+
+.category small{
+    color:var(--muted);
+}
+
+/* PRODUCTS */
+
+.products{
+    background:#f8f8fc;
+}
+
+.filters{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.filter{
+    border:1px solid var(--border);
+    background:#fff;
+    padding:9px 17px;
+    border-radius:25px;
+    font-weight:700;
+}
+
+.filter.active,
+.filter:hover{
+    background:var(--purple);
+    color:#fff;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.product-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.2s;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.product-image{
+    height:260px;
+    background:linear-gradient(145deg,#faf9ff,#f5f9ff);
+    display:grid;
+    place-items:center;
+    position:relative;
+    padding:20px;
+}
+
+.product-image img{
+    max-width:92%;
+    max-height:230px;
+    object-fit:contain;
+}
+
+.product-tag{
+    position:absolute;
+    left:12px;
+    top:12px;
+    background:#eee5ff;
+    color:var(--purple);
+    padding:6px 9px;
+    border-radius:6px;
+    font-size:10px;
+    font-weight:800;
+}
+
+.product-info{
+    padding:17px;
+}
+
+.stars{
+    color:#f4a900;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.product-info h3{
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.product-info p{
+    color:var(--muted);
+    font-size:12px;
+    min-height:40px;
+}
+
+.price-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:12px 0;
+}
+
+.price-row strong{
+    font-size:21px;
+}
+
+.old-price{
+    text-decoration:line-through;
+    color:#999;
+    font-size:12px;
+}
+
+.discount{
+    color:var(--green);
+    font-size:11px;
+    font-weight:800;
+}
+
+.product-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.product-buttons button{
+    padding:10px;
+    border-radius:9px;
+    font-weight:800;
+    border:1px solid var(--border);
+}
+
+.view-btn{
+    background:#f7f5fb;
+}
+
+.add-btn{
+    background:var(--purple);
+    color:#fff;
+}
+
+/* SPECIAL 20L */
+
+.jar-banner{
+    margin-top:25px;
+    background:linear-gradient(110deg,#35106d,#691ba1);
+    border-radius:25px;
+    padding:35px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.jar-banner h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.jar-banner p{
+    opacity:.85;
+}
+
+.jar-prices{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.jar-price{
+    background:#fff;
+    color:var(--purple);
+    padding:15px 20px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.jar-price small{
+    display:block;
+    color:#777;
+}
+
+.jar-price strong{
+    font-size:22px;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.feature{
+    padding:28px;
+    border:1px solid var(--border);
+    border-radius:20px;
+}
+
+.feature-icon{
+    font-size:32px;
+}
+
+.feature h3{
+    margin:10px 0 6px;
+}
+
+.feature p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* BANNER */
+
+.offer-banner{
+    background:linear-gradient(110deg,var(--purple),var(--orange));
+    color:#fff;
+    border-radius:25px;
+    padding:45px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
+
+.offer-banner h2{
+    font-size:35px;
+    margin-bottom:8px;
+}
+
+.offer-banner p{
+    opacity:.9;
+}
+
+.offer-banner .btn{
+    background:#fff;
+    color:var(--purple);
+}
+
+/* REVIEWS */
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.review{
+    padding:25px;
+    border:1px solid var(--border);
+    border-radius:20px;
+}
+
+.review p{
+    color:var(--muted);
+    font-size:14px;
+    margin:12px 0;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+    background:#f4efff;
+    text-align:center;
+    padding:60px 0;
+}
+
+.newsletter h2{
+    font-size:34px;
+}
+
+.newsletter p{
+    color:var(--muted);
+    margin:8px 0 20px;
+}
+
+.newsletter-form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    gap:8px;
+}
+
+.newsletter-form input{
+    flex:1;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:10px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#151020;
+    color:#fff;
+    padding:55px 0 20px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-logo{
+    width:150px;
+    filter:brightness(0) invert(1);
+}
+
+.footer p,
+.footer a{
+    color:#aaa4b5;
+    font-size:12px;
+}
+
+.footer p{
+    margin-top:15px;
+    max-width:320px;
+    line-height:1.7;
+}
+
+.footer h4{
+    margin-bottom:15px;
+}
+
+.footer a{
+    display:block;
+    margin:9px 0;
+}
+
+.copyright{
+    border-top:1px solid #302b39;
+    margin-top:35px;
+    padding-top:18px;
+    color:#777;
+    font-size:11px;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* CART */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:150;
+    display:none;
+}
+
+.overlay.show{
+    display:block;
+}
+
+.cart{
+    position:fixed;
+    right:-450px;
+    top:0;
+    height:100vh;
+    width:min(430px,100%);
+    background:#fff;
+    z-index:200;
+    transition:.3s;
+    box-shadow:-20px 0 60px rgba(0,0,0,.2);
+    display:flex;
+    flex-direction:column;
+}
+
+.cart.open{
+    right:0;
+}
+
+.cart-head{
+    padding:20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+}
+
+.close{
+    border:none;
+    background:#f2f0f5;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+}
+
+.cart-items{
+    flex:1;
+    overflow:auto;
+    padding:15px;
+}
+
+.cart-item{
+    display:grid;
+    grid-template-columns:65px 1fr auto;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-item img{
+    width:65px;
+    height:65px;
+    object-fit:contain;
+    background:#f7f7fa;
+    border-radius:10px;
+}
+
+.cart-item h4{
+    font-size:13px;
+}
+
+.cart-item small{
+    color:var(--muted);
+}
+
+.qty{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:7px;
+}
+
+.qty button{
+    width:25px;
+    height:25px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:5px;
+}
+
+.cart-footer{
+    padding:20px;
+    border-top:1px solid var(--border);
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    z-index:250;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:min(850px,94%);
+    background:#fff;
+    border-radius:25px;
+    overflow:hidden;
+    display:none;
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.modal.show{
+    display:block;
+}
+
+.modal-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.modal-image{
+    min-height:450px;
+    background:#f7f5fc;
+    display:grid;
+    place-items:center;
+    padding:30px;
+}
+
+.modal-image img{
+    max-width:90%;
+    max-height:410px;
+    object-fit:contain;
+}
+
+.modal-content{
+    padding:35px;
+}
+
+.modal-content h2{
+    font-size:30px;
+    margin:20px 0 10px;
+}
+
+.modal-content p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.modal-price{
+    font-size:28px;
+    font-weight:800;
+    color:var(--purple);
+    margin:20px 0;
+}
+
+.specs{
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:15px 0;
+    margin-bottom:20px;
+}
+
+.spec{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    padding:5px 0;
+}
+
+/* MOBILE */
+
 @media(max-width:1000px){
-  .navlinks{display:none}.product-grid{grid-template-columns:repeat(3,1fr)}.categories{grid-template-columns:repeat(3,1fr)}
+
+    .nav-links{
+        display:none;
+    }
+
+    .product-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .categories{
+        grid-template-columns:repeat(3,1fr);
+    }
+
 }
+
 @media(max-width:760px){
-  .nav{height:68px}.logo{height:43px}.search{display:none}.nav-inner{justify-content:space-between}.mobile-menu{display:grid}.hero-inner{grid-template-columns:1fr;padding:45px 0}.hero-product{min-height:370px}.trust-grid{grid-template-columns:repeat(2,1fr)}.product-grid{grid-template-columns:repeat(2,1fr);gap:12px}.categories{grid-template-columns:repeat(2,1fr)}.features,.reviews{grid-template-columns:1fr}.section{padding:55px 0}.section h2{font-size:31px}.banner{padding:32px 24px;display:block}.banner h2{font-size:30px}.banner .btn{margin-top:20px}.footer-grid{grid-template-columns:1fr 1fr}.copyright{display:block}.copyright span{display:block;margin-top:7px}.modal-inner{grid-template-columns:1fr}.modal-img{min-height:270px}.modal-info{padding:24px}.modal-info h2{font-size:26px}.hero h1{font-size:46px}
+
+    .nav{
+        min-height:68px;
+    }
+
+    .logo{
+        width:110px;
+    }
+
+    .search{
+        display:none;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        padding:45px 0;
+    }
+
+    .hero-product{
+        min-height:400px;
+    }
+
+    .trust-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .categories{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .features,
+    .reviews{
+        grid-template-columns:1fr;
+    }
+
+    .jar-banner,
+    .offer-banner{
+        display:block;
+    }
+
+    .jar-prices{
+        margin-top:20px;
+    }
+
+    .offer-banner .btn{
+        margin-top:20px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .modal-grid{
+        grid-template-columns:1fr;
+    }
+
+    .modal-image{
+        min-height:260px;
+    }
+
 }
+
 @media(max-width:480px){
-  .nav-actions .icon-btn:first-child{display:none}.hero-points{gap:12px}.trust-grid{gap:10px}.trust-item{align-items:flex-start}.product-grid{grid-template-columns:1fr 1fr}.card-img{height:190px}.card-img img{max-height:165px}.card-body{padding:12px}.card h3{font-size:13px}.card p{font-size:10px}.card-bottom{display:block}.card-bottom .btn{width:100%;margin-top:5px}.newsletter-form{display:block}.newsletter-form .btn{width:100%;margin-top:8px}.footer-grid{grid-template-columns:1fr}.hero-buttons .btn{width:100%}
+
+    .topbar{
+        font-size:10px;
+    }
+
+    .hero h1{
+        font-size:43px;
+    }
+
+    .hero-points{
+        gap:15px;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .product-image{
+        height:180px;
+    }
+
+    .product-image img{
+        max-height:160px;
+    }
+
+    .product-info{
+        padding:12px;
+    }
+
+    .product-info h3{
+        font-size:13px;
+    }
+
+    .product-info p{
+        font-size:10px;
+    }
+
+    .product-buttons{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .copyright{
+        display:block;
+    }
+
+    .copyright span{
+        display:block;
+        margin-top:5px;
+    }
+
+    .newsletter-form{
+        display:block;
+    }
+
+    .newsletter-form button{
+        width:100%;
+        margin-top:8px;
+    }
+
 }
 </style>
 </head>
+
 <body>
 
-<div class="topbar">🚚 Free delivery on selected orders • Genuine Bhuvia products • Customer support available</div>
+<!-- TOP BAR -->
 
-<header class="nav">
-  <div class="container nav-inner">
-    <button class="icon-btn mobile-menu" onclick="scrollToId('products')">☰</button>
-    <a href="#home"><img src="bhuvia-logo.jpg" class="logo" alt="Bhuvia"></a>
-    <div class="search">
-      <input id="searchInput" type="search" placeholder="Search RO, water bottles, 20L jar..." oninput="searchProducts(this.value)">
-      <span>⌕</span>
-    </div>
-    <nav class="navlinks">
-      <a href="#home">Home</a><a href="#products">Shop</a><a href="#why">Why Bhuvia</a><a href="#reviews">Reviews</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="icon-btn" title="Search" onclick="document.getElementById('searchInput').focus()">⌕</button>
-      <button class="icon-btn" title="Cart" onclick="openCart()">🛒<span class="badge-count" id="cartCount">0</span></button>
-    </div>
-  </div>
+<div class="topbar">
+🚚 Bhuvia Home Delivery • Pure Drinking Water • RO Solutions • Budget Friendly
+</div>
+
+<!-- HEADER -->
+
+<header>
+<div class="container nav">
+
+<a href="#home">
+<img src="bhuvia-logo.jpg" class="logo" alt="Bhuvia Logo">
+</a>
+
+<div class="search">
+<input
+id="searchInput"
+type="search"
+placeholder="Search RO, 500ml, 1L, 2L, 20L Jar..."
+oninput="searchProducts(this.value)"
+>
+<span class="search-icon">⌕</span>
+</div>
+
+<nav class="nav-links">
+<a href="#home">Home</a>
+<a href="#products">Shop</a>
+<a href="#categories">Categories</a>
+<a href="#why">Why Bhuvia</a>
+<a href="#reviews">Reviews</a>
+</nav>
+
+<div class="nav-actions">
+
+<button class="icon-btn" onclick="document.getElementById('searchInput').focus()">
+⌕
+</button>
+
+<button class="icon-btn" onclick="openCart()">
+🛒
+<span class="cart-count" id="cartCount">0</span>
+</button>
+
+</div>
+
+</div>
 </header>
 
-<main id="home">
-<section class="hero">
-  <div class="container hero-inner">
-    <div>
-      <div class="eyebrow">💧 Pure water. Better living.</div>
-      <h1>Pure water,<br><span>smartly delivered.</span></h1>
-      <p>Discover Bhuvia water purification solutions and everyday drinking water products designed for modern Indian homes and businesses.</p>
-      <div class="hero-buttons">
-        <a class="btn btn-primary" href="#products">Shop Bhuvia →</a>
-        <a class="btn btn-outline" href="#why">Why choose us</a>
-      </div>
-      <div class="hero-points">
-        <div><b>RO • UV • UF</b><small>Advanced purification</small></div>
-        <div><b>Easy service</b><small>Support when you need it</small></div>
-        <div><b>Budget friendly</b><small>Made for India</small></div>
-      </div>
-    </div>
-    <div class="hero-product">
-      <img src="ro product.png" alt="Bhuvia Water Purifier">
-      <div class="price-pill">Starting from<br><strong>₹4,999</strong></div>
-    </div>
-  </div>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+💧 BHUVIA WATER SOLUTIONS
+</div>
+
+<h1>
+Pure Water.<br>
+<span>Smart Living.</span>
+</h1>
+
+<p>
+Bhuvia brings premium RO water purifiers,
+packaged drinking water and convenient
+20L home water delivery — all designed
+around your everyday needs.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#products" class="btn btn-primary">
+Shop Bhuvia →
+</a>
+
+<a href="#why" class="btn btn-light">
+Why Bhuvia
+</a>
+
+</div>
+
+<div class="hero-points">
+
+<div>
+<strong>RO • UV • UF</strong>
+<small>Advanced purification</small>
+</div>
+
+<div>
+<strong>Home Delivery</strong>
+<small>20L water service</small>
+</div>
+
+<div>
+<strong>Budget Friendly</strong>
+<small>Made for India</small>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="hero-product">
+
+<img src="ro product.png" alt="Bhuvia RO Water Purifier">
+
+<div class="hero-price">
+<small>RO starting from</small>
+<strong>₹4,999</strong>
+</div>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- TRUST -->
 
 <section class="trust">
- <div class="container trust-grid">
-  <div class="trust-item"><div class="trust-icon">🛡️</div><div><strong>Quality focused</strong><small>Reliable products</small></div></div>
-  <div class="trust-item"><div class="trust-icon">🚚</div><div><strong>Fast delivery</strong><small>Selected locations</small></div></div>
-  <div class="trust-item"><div class="trust-icon">🔧</div><div><strong>Service support</strong><small>Installation & repair</small></div></div>
-  <div class="trust-item"><div class="trust-icon">💚</div><div><strong>Customer first</strong><small>Transparent pricing</small></div></div>
- </div>
+
+<div class="container trust-grid">
+
+<div class="trust-box">
+<div class="trust-icon">🛡️</div>
+<div>
+<strong>Quality Products</strong>
+<small>Reliable water solutions</small>
+</div>
+</div>
+
+<div class="trust-box">
+<div class="trust-icon">🚚</div>
+<div>
+<strong>Home Delivery</strong>
+<small>Selected locations</small>
+</div>
+</div>
+
+<div class="trust-box">
+<div class="trust-icon">🔧</div>
+<div>
+<strong>Service Support</strong>
+<small>Installation & care</small>
+</div>
+</div>
+
+<div class="trust-box">
+<div class="trust-icon">💰</div>
+<div>
+<strong>Budget Pricing</strong>
+<small>Transparent pricing</small>
+</div>
+</div>
+
+</div>
+
 </section>
+
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+<div class="container">
+
+<div class="section-title">
+<span>EXPLORE BHUVIA</span>
+<h2>Shop By Category</h2>
+<p>Choose the right water solution for your home or business.</p>
+</div>
+
+<div class="categories">
+
+<a class="category" href="#products" onclick="filterProducts('RO')">
+<div class="category-icon">💧</div>
+<strong>RO Purifiers</strong>
+<small>RO • UV • UF</small>
+</a>
+
+<a class="category" href="#products" onclick="filterProducts('Bottle')">
+<div class="category-icon">🧴</div>
+<strong>Drinking Water</strong>
+<small>500ml • 1L • 2L</small>
+</a>
+
+<a class="category" href="#products" onclick="filterProducts('20L')">
+<div class="category-icon">🪣</div>
+<strong>20L Jar</strong>
+<small>Home Delivery</small>
+</a>
+
+<a class="category" href="#products" onclick="filterProducts('Accessories')">
+<div class="category-icon">⚙️</div>
+<strong>Accessories</strong>
+<small>Water Essentials</small>
+</a>
+
+<a class="category" href="#products" onclick="filterProducts('Service')">
+<div class="category-icon">🔧</div>
+<strong>RO Service</strong>
+<small>Installation & Repair</small>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="section products" id="products">
+
+<div class="container">
+
+<div class="section-title">
+<span>BHUVIА STORE</span>
+<h2>Featured Products</h2>
+<p>Premium water products at practical prices.</p>
+</div>
+
+<div class="filters">
+
+<button class="filter active" onclick="filterProducts('all',this)">
+All
+</button>
+
+<button class="filter" onclick="filterProducts('RO',this)">
+RO Purifiers
+</button>
+
+<button class="filter" onclick="filterProducts('Bottle',this)">
+Bottled Water
+</button>
+
+<button class="filter" onclick="filterProducts('20L',this)">
+20L Jar
+</button>
+
+<button class="filter" onclick="filterProducts('Service',this)">
+Service
+</button>
+
+</div>
+
+<div class="product-grid" id="productGrid"></div>
+
+
+<!-- 20L SPECIAL -->
+
+<div class="jar-banner">
+
+<div>
+
+<h2>20L Bhuvia Home Water Service</h2>
+
+<p>
+New customer connection and regular home refill service.
+</p>
+
+</div>
+
+<div class="jar-prices">
+
+<div class="jar-price">
+<small>New Connection</small>
+<strong>₹180</strong>
+</div>
+
+<div class="jar-price">
+<small>Home Refill</small>
+<strong>₹15</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OFFER -->
 
 <section class="section">
- <div class="container">
-  <div class="section-head">
-   <div><div class="kicker">Explore Bhuvia</div><h2>Shop by category</h2></div>
-   <p>Everything you need for cleaner, better-tasting water — from home purification to daily drinking water.</p>
-  </div>
-  <div class="categories">
-   <a class="cat" href="#products" onclick="filterProducts('RO')"><div class="cat-icon">💧</div><strong>Water Purifiers</strong><small>RO / UV / UF</small></a>
-   <a class="cat" href="#products" onclick="filterProducts('Bottle')"><div class="cat-icon">🧴</div><strong>Drinking Water</strong><small>500ml to 2L</small></a>
-   <a class="cat" href="#products" onclick="filterProducts('20L')"><div class="cat-icon">🪣</div><strong>20L Jar</strong><small>Home & office</small></a>
-   <a class="cat" href="#products" onclick="filterProducts('Accessories')"><div class="cat-icon">⚙️</div><strong>Accessories</strong><small>Water essentials</small></a>
-   <a class="cat" href="#products" onclick="filterProducts('Service')"><div class="cat-icon">🔧</div><strong>Service</strong><small>Installation & care</small></a>
-  </div>
- </div>
+
+<div class="container">
+
+<div class="offer-banner">
+
+<div>
+
+<h2>Pure Water Within Your Budget.</h2>
+
+<p>
+Bhuvia — smart water solutions for modern Indian homes.
+</p>
+
+</div>
+
+<a href="#products" class="btn">
+Explore Products →
+</a>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section products-section" id="products">
- <div class="container">
-  <div class="section-head">
-   <div><div class="kicker">Bhuvia store</div><h2>Featured products</h2></div>
-   <p>Premium-looking products at practical prices. Add products to your cart and continue to checkout.</p>
-  </div>
-  <div class="toolbar">
-   <button class="filter active" onclick="filterProducts('all',this)">All</button>
-   <button class="filter" onclick="filterProducts('RO',this)">RO Purifiers</button>
-   <button class="filter" onclick="filterProducts('Bottle',this)">Bottled Water</button>
-   <button class="filter" onclick="filterProducts('20L',this)">20L Jar</button>
-  </div>
-  <div class="product-grid" id="productGrid"></div>
- </div>
-</section>
 
-<section class="section">
- <div class="container">
-  <div class="banner">
-   <div><div class="kicker" style="color:#9fe5d2">BHUVIА SPECIAL</div><h2>Upgrade your water experience.</h2><p>Bring home smart purification with a Bhuvia RO solution built around everyday Indian needs.</p></div>
-   <a class="btn" href="#products">Explore products →</a>
-  </div>
- </div>
-</section>
+<!-- WHY BHUVIA -->
 
 <section class="section" id="why">
- <div class="container">
-  <div class="section-head"><div><div class="kicker">Why Bhuvia</div><h2>Designed around your everyday life.</h2></div></div>
-  <div class="features">
-   <div class="feature"><div class="big">💧</div><h3>Purity you can trust</h3><p>Thoughtful purification technology and a product-first approach for everyday drinking water.</p></div>
-   <div class="feature"><div class="big">💰</div><h3>Made for your budget</h3><p>We focus on practical pricing so modern water solutions are easier to access.</p></div>
-   <div class="feature"><div class="big">🔧</div><h3>Support beyond purchase</h3><p>Installation, maintenance and service support are part of the Bhuvia experience.</p></div>
-  </div>
- </div>
+
+<div class="container">
+
+<div class="section-title">
+<span>WHY BHUVIA</span>
+<h2>Made For Everyday Life</h2>
+<p>Simple, practical and customer-focused water solutions.</p>
+</div>
+
+<div class="features">
+
+<div class="feature">
+<div class="feature-icon">💧</div>
+<h3>Pure Water</h3>
+<p>
+Modern purification and packaged drinking water
+solutions designed for everyday use.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">💰</div>
+<h3>Budget Friendly</h3>
+<p>
+Our pricing strategy focuses on making quality
+water solutions affordable.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🚚</div>
+<h3>Home Delivery</h3>
+<p>
+Get regular 20L water refills delivered directly
+to your home in supported areas.
+</p>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="reviews" style="background:#f8fcfb">
- <div class="container">
-  <div class="section-head"><div><div class="kicker">Customer love</div><h2>What customers say</h2></div></div>
-  <div class="reviews">
-   <div class="review"><div class="stars">★★★★★</div><p>“Clean design, easy ordering and the purifier looks premium in our kitchen.”</p><strong>Rahul S.</strong><small> • Home customer</small></div>
-   <div class="review"><div class="stars">★★★★★</div><p>“The pricing is practical and the product information is very clear.”</p><strong>Priya K.</strong><small> • Home customer</small></div>
-   <div class="review"><div class="stars">★★★★★</div><p>“Bhuvia feels like a modern Indian water brand with a strong service focus.”</p><strong>Amit R.</strong><small> • Business customer</small></div>
-  </div>
- </div>
+
+<!-- REVIEWS -->
+
+<section class="section" id="reviews" style="background:#faf9fc">
+
+<div class="container">
+
+<div class="section-title">
+<span>CUSTOMER LOVE</span>
+<h2>What Customers Say</h2>
+</div>
+
+<div class="reviews">
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>
+"Product design is premium and the ordering
+experience is very simple."
+</p>
+<strong>Rahul S.</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>
+"The pricing is practical and the water delivery
+service is convenient."
+</p>
+<strong>Priya K.</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>
+"Bhuvia feels like a modern Indian water brand
+with a strong service focus."
+</p>
+<strong>Amit R.</strong>
+</div>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- NEWSLETTER -->
 
 <section class="newsletter">
- <div class="container"><h2>Get Bhuvia updates</h2><p>Offers, new products and water-care tips — directly in your inbox.</p>
-  <form class="newsletter-form" onsubmit="subscribe(event)"><input type="email" required placeholder="Enter your email"><button class="btn btn-primary">Subscribe</button></form>
- </div>
+
+<div class="container">
+
+<h2>Stay Connected With Bhuvia</h2>
+
+<p>
+Get product updates, offers and water-care information.
+</p>
+
+<form class="newsletter-form" onsubmit="subscribe(event)">
+
+<input
+type="email"
+required
+placeholder="Enter your email"
+>
+
+<button class="btn btn-primary">
+Subscribe
+</button>
+
+</form>
+
+</div>
+
 </section>
-</main>
+
+
+<!-- FOOTER -->
 
 <footer>
- <div class="container">
-  <div class="footer-grid">
-   <div class="footer-brand"><img src="bhuvia-logo.jpg" alt="Bhuvia"><p>Earth’s Purity, Delivered. Bhuvia brings water purification and drinking water solutions closer to everyday Indian homes and businesses.</p></div>
-   <div><h4>Shop</h4><a href="#products">Water Purifiers</a><a href="#products">Drinking Water</a><a href="#products">20L Jar</a><a href="#products">Accessories</a></div>
-   <div><h4>Support</h4><a href="#why">Why Bhuvia</a><a href="#reviews">Reviews</a><a href="mailto:support@bhuvia.in">Contact Support</a><a href="#home">Back to top</a></div>
-   <div><h4>Business</h4><a href="#products">Dealer / Partner</a><a href="#products">Bulk Orders</a><a href="#products">Home Delivery</a><a href="#products">Service Network</a></div>
-  </div>
-  <div class="copyright"><span>© 2026 Bhuvia. All rights reserved.</span><span>Pure water. Smart living.</span></div>
- </div>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<img src="bhuvia-logo.jpg" class="footer-logo" alt="Bhuvia">
+
+<p>
+Earth's Purity, Delivered.
+Bhuvia brings water purification,
+packaged drinking water and home
+water delivery solutions.
+</p>
+
+</div>
+
+<div>
+
+<h4>Shop</h4>
+
+<a href="#products">RO Purifiers</a>
+<a href="#products">500ml Water</a>
+<a href="#products">1L Water</a>
+<a href="#products">2L Water</a>
+<a href="#products">20L Jar</a>
+
+</div>
+
+<div>
+
+<h4>Services</h4>
+
+<a href="#products">Home Delivery</a>
+<a href="#products">RO Service</a>
+<a href="#products">Installation</a>
+<a href="#products">Maintenance</a>
+
+</div>
+
+<div>
+
+<h4>Company</h4>
+
+<a href="#home">About Bhuvia</a>
+<a href="#why">Why Bhuvia</a>
+<a href="#reviews">Reviews</a>
+<a href="#home">Contact</a>
+
+</div>
+
+</div>
+
+<div class="copyright">
+
+<span>© 2026 Bhuvia. All Rights Reserved.</span>
+
+<span>Earth's Purity, Delivered.</span>
+
+</div>
+
+</div>
+
 </footer>
+
+
+<!-- OVERLAY -->
 
 <div class="overlay" id="overlay" onclick="closeAll()"></div>
 
-<aside class="cart-drawer" id="cartDrawer">
- <div class="cart-head"><h3>Your Cart</h3><button class="icon-btn" onclick="closeCart()">×</button></div>
- <div class="cart-items" id="cartItems"></div>
- <div class="cart-foot"><div class="total"><span>Total</span><span id="cartTotal">₹0</span></div><button class="btn btn-primary" style="width:100%" onclick="checkout()">Proceed to checkout →</button></div>
-</aside>
 
-<div class="modal" id="productModal">
- <div class="modal-inner">
-  <div class="modal-img"><img id="modalImg" src="" alt=""></div>
-  <div class="modal-info"><button class="close" onclick="closeModal()">×</button><div class="kicker">Bhuvia product</div><h2 id="modalTitle"></h2><p id="modalDesc"></p><div class="modal-price" id="modalPrice"></div><div class="specs"><div><span>Category</span><b id="modalCat"></b></div><div><span>Availability</span><b>Available</b></div><div><span>Support</span><b>Bhuvia Service</b></div></div><button class="btn btn-primary" style="width:100%" id="modalAdd">Add to cart</button></div>
- </div>
+<!-- CART -->
+
+<aside class="cart" id="cart">
+
+<div class="cart-head">
+
+<h3>Your Cart</h3>
+
+<button class="close" onclick="closeCart()">×</button>
+
 </div>
 
+<div class="cart-items" id="cartItems"></div>
+
+<div class="cart-footer">
+
+<div class="total">
+
+<span>Total</span>
+
+<span id="cartTotal">₹0</span>
+
+</div>
+
+<button
+class="btn btn-primary"
+style="width:100%"
+onclick="checkout()"
+>
+Proceed to Order →
+</button>
+
+</div>
+
+</aside>
+
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-grid">
+
+<div class="modal-image">
+
+<img id="modalImage" src="" alt="">
+
+</div>
+
+<div class="modal-content">
+
+<button
+class="close"
+style="float:right"
+onclick="closeModal()"
+>
+×
+</button>
+
+<span style="color:var(--orange);font-size:12px;font-weight:800">
+BHUVIА PRODUCT
+</span>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalDescription"></p>
+
+<div class="modal-price" id="modalPrice"></div>
+
+<div class="specs">
+
+<div class="spec">
+<span>Category</span>
+<strong id="modalCategory"></strong>
+</div>
+
+<div class="spec">
+<span>Availability</span>
+<strong>Available</strong>
+</div>
+
+<div class="spec">
+<span>Brand</span>
+<strong>Bhuvia</strong>
+</div>
+
+</div>
+
+<button
+class="btn btn-primary"
+style="width:100%"
+id="modalAdd"
+>
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
 <script>
-const products=[
- {id:1,name:"Bhuvia RO Water Purifier",cat:"RO",price:4999,old:5999,tag:"BEST SELLER",img:"ro product.png",desc:"Smart RO purification with RO / UV / UF and TDS control for modern homes."},
- {id:2,name:"Bhuvia 500ml Drinking Water",cat:"Bottle",price:7,old:10,tag:"POPULAR",img:"ro product.png",desc:"Everyday packaged drinking water for travel, shops and events."},
- {id:3,name:"Bhuvia 1L Drinking Water",cat:"Bottle",price:15,old:20,tag:"VALUE",img:"ro product.png",desc:"Convenient 1 litre drinking water for everyday use."},
- {id:4,name:"Bhuvia 2L Drinking Water",cat:"Bottle",price:20,old:25,tag:"VALUE",img:"ro product.png",desc:"Larger everyday drinking water pack for families and outings."},
- {id:5,name:"Bhuvia 20L Water Jar",cat:"20L",price:180,old:220,tag:"HOME",img:"ro product.png",desc:"20 litre regular water supply solution for homes and offices."},
- {id:6,name:"Bhuvia RO Service Care",cat:"Service",price:499,old:699,tag:"SERVICE",img:"ro product.png",desc:"Professional RO check-up and basic service support."},
- {id:7,name:"Bhuvia Filter Care Kit",cat:"Accessories",price:799,old:999,tag:"CARE",img:"ro product.png",desc:"Water-care accessory pack for regular purifier maintenance."},
- {id:8,name:"Bhuvia Premium RO",cat:"RO",price:6499,old:7499,tag:"PREMIUM",img:"ro product.png",desc:"Premium Bhuvia purification solution for higher daily usage."}
+
+/* PRODUCTS */
+
+const products = [
+
+{
+id:1,
+name:"Bhuvia RO Water Purifier",
+cat:"RO",
+price:4999,
+old:5999,
+tag:"BEST SELLER",
+img:"ro product.png",
+desc:"Bhuvia RO water purifier with advanced purification technology."
+},
+
+{
+id:2,
+name:"Bhuvia Premium Drinking Water 500ml",
+cat:"Bottle",
+price:7,
+old:10,
+tag:"POPULAR",
+img:"bhuvia-500ml.png",
+desc:"500ml Bhuvia packaged drinking water for daily use, travel and events."
+},
+
+{
+id:3,
+name:"Bhuvia Premium Drinking Water 1L",
+cat:"Bottle",
+price:15,
+old:20,
+tag:"VALUE",
+img:"bhuvia-1l.png",
+desc:"1 litre Bhuvia premium packaged drinking water."
+},
+
+{
+id:4,
+name:"Bhuvia Premium Drinking Water 2L",
+cat:"Bottle",
+price:20,
+old:25,
+tag:"VALUE",
+img:"bhuvia-2l.png",
+desc:"2 litre Bhuvia packaged drinking water for families and outings."
+},
+
+{
+id:5,
+name:"Bhuvia 20L Water Jar",
+cat:"20L",
+price:180,
+old:220,
+tag:"NEW CONNECTION",
+img:"bhuvia-20l.png",
+desc:"20L jar new connection ₹180. Regular home refill available at only ₹15."
+},
+
+{
+id:6,
+name:"Bhuvia 20L Home Refill",
+cat:"20L",
+price:15,
+old:20,
+tag:"HOME SERVICE",
+img:"bhuvia-20l.png",
+desc:"Regular 20 litre Bhuvia water refill with home delivery at ₹15."
+},
+
+{
+id:7,
+name:"Bhuvia RO Service",
+cat:"Service",
+price:499,
+old:699,
+tag:"SERVICE",
+img:"ro product.png",
+desc:"Professional Bhuvia RO check-up and service support."
+},
+
+{
+id:8,
+name:"Bhuvia Filter Care Kit",
+cat:"Accessories",
+price:799,
+old:999,
+tag:"CARE",
+img:"ro product.png",
+desc:"Water purifier maintenance accessory kit."
+}
+
 ];
-let cart=JSON.parse(localStorage.getItem("bhuviaCart")||"[]");
-let currentFilter="all";
 
-function money(n){return "₹"+n.toLocaleString("en-IN")}
+
+/* CART */
+
+let cart =
+JSON.parse(localStorage.getItem("bhuviaCart") || "[]");
+
+
+function money(number){
+
+return "₹" + number.toLocaleString("en-IN");
+
+}
+
+
+function saveCart(){
+
+localStorage.setItem(
+"bhuviaCart",
+JSON.stringify(cart)
+);
+
+renderCart();
+
+document.getElementById("cartCount").textContent =
+cart.reduce((total,item)=>total+item.qty,0);
+
+}
+
+
+/* PRODUCT RENDER */
+
 function renderProducts(list=products){
- const grid=document.getElementById("productGrid");
- if(!list.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1">No products found. Try another search.</div>';return}
- grid.innerHTML=list.map(p=>`
- <article class="card">
-  <div class="card-img"><span class="tag">${p.tag}</span><button class="wish" onclick="wish(event)">♡</button><img src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.15'"></div>
-  <div class="card-body"><div class="stars">★★★★★</div><h3>${p.name}</h3><p>${p.desc}</p>
-  <div class="price"><strong>${money(p.price)}</strong><span class="old">${money(p.old)}</span><span class="off">${Math.round((1-p.price/p.old)*100)}% OFF</span></div>
-  <div class="card-bottom"><button class="btn quick" onclick="quickView(${p.id})">Quick view</button><button class="btn btn-primary" onclick="addToCart(${p.id})">Add to cart</button></div></div>
- </article>`).join("");
-}
-function filterProducts(cat,btn){
- currentFilter=cat;
- document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
- if(btn)btn.classList.add("active");
- else document.querySelector(".filter")?.classList.add("active");
- const list=cat==="all"?products:products.filter(p=>p.cat===cat);
- renderProducts(list);
-}
-function searchProducts(q){
- q=q.toLowerCase().trim();
- const list=products.filter(p=>(p.name+" "+p.cat+" "+p.desc).toLowerCase().includes(q));
- renderProducts(list);
-}
-function addToCart(id){
- const p=products.find(x=>x.id===id); if(!p)return;
- const item=cart.find(x=>x.id===id);
- if(item)item.qty++; else cart.push({id,qty:1});
- saveCart(); openCart();
-}
-function saveCart(){localStorage.setItem("bhuviaCart",JSON.stringify(cart));renderCart();document.getElementById("cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0)}
-function renderCart(){
- const el=document.getElementById("cartItems");
- if(!cart.length){el.innerHTML='<div class="empty">Your cart is empty.<br><br><a class="btn btn-outline" href="#products" onclick="closeCart()">Start shopping</a></div>';document.getElementById("cartTotal").textContent="₹0";return}
- el.innerHTML=cart.map(i=>{const p=products.find(x=>x.id===i.id);return `<div class="cart-item"><img src="${p.img}" alt=""><div><h4>${p.name}</h4><small>${money(p.price)}</small><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><b>${i.qty}</b><button onclick="changeQty(${p.id},1)">+</button></div></div><button onclick="removeCart(${p.id})">🗑️</button></div>`}).join("");
- document.getElementById("cartTotal").textContent=money(cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.qty,0));
-}
-function changeQty(id,n){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=n;if(x.qty<=0)cart=cart.filter(i=>i.id!==id);saveCart()}
-function removeCart(id){cart=cart.filter(i=>i.id!==id);saveCart()}
-function openCart(){document.getElementById("cartDrawer").classList.add("open");document.getElementById("overlay").classList.add("show");renderCart()}
-function closeCart(){document.getElementById("cartDrawer").classList.remove("open");document.getElementById("overlay").classList.remove("show")}
-function quickView(id){
- const p=products.find(x=>x.id===id);if(!p)return;
- document.getElementById("modalImg").src=p.img;document.getElementById("modalTitle").textContent=p.name;document.getElementById("modalDesc").textContent=p.desc;document.getElementById("modalPrice").textContent=money(p.price);document.getElementById("modalCat").textContent=p.cat;
- document.getElementById("modalAdd").onclick=()=>{addToCart(id);closeModal()};
- document.getElementById("productModal").classList.add("show");document.getElementById("overlay").classList.add("show");
-}
-function closeModal(){document.getElementById("productModal").classList.remove("show");document.getElementById("overlay").classList.remove("show")}
-function closeAll(){closeCart();closeModal()}
-function wish(e){e.stopPropagation();e.currentTarget.textContent=e.currentTarget.textContent==="♡"?"♥":"♡"}
-function checkout(){
- if(!cart.length){alert("Your cart is empty.");return}
- alert("Checkout is ready for the next step. Payment/order backend can be connected after the frontend is approved.");
-}
-function subscribe(e){e.preventDefault();alert("Thank you! You are subscribed to Bhuvia updates.");e.target.reset()}
-function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth"})}
-renderProducts();saveCart();
-</script>
-</body>
-</html>'''
 
-path = Path("/mnt/data/bhuvia-premium-ecommerce-index.html")
-path.write_text(html, encoding="utf-8")
-print(f"Created: {path}")
-print("This is a complete single-file Bhuvia e-commerce frontend with cart, search, filters, product quick-view, responsive mobile layout, and localStorage cart.")
+const grid =
+document.getElementById("productGrid");
+
+if(!list.length){
+
+grid.innerHTML =
+'<div style="grid-column:1/-1;text-align:center;padding:60px;color:#777">No product found.</div>';
+
+return;
+
+}
+
+grid.innerHTML = list.map(product => {
+
+let discount =
+Math.round((1-product.price/product.old)*100);
+
+return `
+
+<div class="product-card">
+
+<div class="product-image">
+
+<span class="product-tag">
+${product.tag}
+</span>
+
+<img
+src="${product.img}"
+alt="${product.name}"
+>
+
+</div>
+
+<div class="product-info">
+
+<div class="stars">
+★★★★★
+</div>
+
+<h3>
+${product.name}
+</h3>
+
+<p>
+${product.desc}
+</p>
+
+<div class="price-row">
+
+<strong>
+${money(product.price)}
+</strong>
+
+<span class="old-price">
+${money(product.old)}
+</span>
+
+<span class="discount">
+${discount}% OFF
+</span>
+
+</div>
+
+<div class="product-buttons">
+
+<button
+class="view-btn"
+onclick="quickView(${product.id})"
+>
+View
+</button>
+
+<button
+class="add-btn"
+onclick="addToCart(${product.id})"
+>
+Add +
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* FILTER */
+
+function filterProducts(category,button){
+
+document
+.querySelectorAll(".filter")
+.forEach(btn=>btn.classList.remove("active"));
+
+if(button){
+button.classList.add("active");
+}
+
+if(category==="all"){
+
+renderProducts(products);
+
+}else{
+
+renderProducts(
+products.filter(product=>product.cat===category)
+);
+
+}
+
+document
+.getElementById("products")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* SEARCH */
+
+function searchProducts(query){
+
+query=query.toLowerCase().trim();
+
+const result =
+products.filter(product =>
+(
+product.name+
+" "+
+product.cat+
+" "+
+product.desc
+)
+.toLowerCase()
+.includes(query)
+);
+
+renderProducts(result);
+
+}
+
+
+/* ADD CART */
+
+function addToCart(id){
+
+const product =
+products.find(item=>item.id===id);
+
+if(!product)return;
+
+const existing =
+cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.qty++;
+
+}else{
+
+cart.push({
+id:id,
+qty:1
+});
+
+}
+
+saveCart();
+
+openCart();
+
+}
+
+
+/* CART RENDER */
+
+function renderCart(){
+
+const container =
+document.getElementById("cartItems");
+
+if(!cart.length){
+
+container.innerHTML = `
+
+<div style="text-align:center;padding:50px 15px;color:#777">
+
+<h3>Your cart is empty</h3>
+
+<p style="margin:10px 0 20px">
+Add products from Bhuvia Store.
+</p>
+
+<a
+href="#products"
+class="btn btn-primary"
+onclick="closeCart()"
+>
+Start Shopping
+</a>
+
+</div>
+
+`;
+
+document.getElementById("cartTotal").textContent="₹0";
+
+return;
+
+}
+
+
+container.innerHTML = cart.map(item=>{
+
+const product =
+products.find(p=>p.id===item.id);
+
+return `
+
+<div class="cart-item">
+
+<img src="${product.img}">
+
+<div>
+
+<h4>
+${product.name}
+</h4>
+
+<small>
+${money(product.price)}
+</small>
+
+<div class="qty">
+
+<button
+onclick="changeQty(${product.id},-1)"
+>
+−
+</button>
+
+<strong>
+${item.qty}
+</strong>
+
+<button
+onclick="changeQty(${product.id},1)"
+>
++
+</button>
+
+</div>
+
+</div>
+
+<button
+style="border:0;background:none"
+onclick="removeCart(${product.id})"
+>
+🗑️
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+
+let total =
+cart.reduce(
+(sum,item)=>{
+
+const product =
+products.find(p=>p.id===item.id);
+
+return sum + product.price*item.qty;
+
+},
+0
+);
+
+document.getElementById("cartTotal").textContent =
+money(total);
+
+}
+
+
+/* QUANTITY */
+
+function changeQty(id,change){
+
+const item =
+cart.find(x=>x.id===id);
+
+if(!item)return;
+
+item.qty += change;
+
+if(item.qty<=0){
+
+cart =
+cart.filter(x=>x.id!==id);
+
+}
+
+saveCart();
+
+}
+
+
+function removeCart(id){
+
+cart =
+cart.filter(x=>x.id!==id);
+
+saveCart();
+
+}
+
+
+/* CART OPEN */
+
+function openCart(){
+
+document
+.getElementById("cart")
+.classList.add("open");
+
+document
+.getElementById("overlay")
+.classList.add("show");
+
+renderCart();
+
+}
+
+
+function closeCart(){
+
+document
+.getElementById("cart")
+.classList.remove("open");
+
+document
+.getElementById("overlay")
+.classList.remove("show");
+
+}
+
+
+/* PRODUCT VIEW */
+
+function quickView(id){
+
+const product =
+products.find(x=>x.id===id);
+
+if(!product)return;
+
+document.getElementById("modalImage").src =
+product.img;
+
+document.getElementById("modalTitle").textContent =
+product.name;
+
+document.getElementById("modalDescription").textContent =
+product.desc;
+
+document.getElementById("modalPrice").textContent =
+money(product.price);
+
+document.getElementById("modalCategory").textContent =
+product.cat;
+
+document.getElementById("modalAdd").onclick =
+function(){
+
+addToCart(product.id);
+
+closeModal();
+
+};
+
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+document
+.getElementById("overlay")
+.classList.add("show");
+
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+document
+.getElementById("overlay")
+.classList.remove("show");
+
+}
+
+
+function closeAll(){
+
+closeCart();
+
+closeModal();
+
+}
+
+
+/* CHECKOUT */
+
+function checkout(){
+
+if(!cart.length){
+
+alert("Your cart is empty.");
+
+return;
+
+}
+
+alert(
+"Order checkout is ready. Next step can connect this to WhatsApp, payment gateway and customer address/order system."
+);
+
+}
+
+
+/* NEWSLETTER */
+
+function subscribe(event){
+
+event.preventDefault();
+
+alert(
+"Thank you! You are now connected with Bhuvia."
+);
+
+event.target.reset();
+
+}
+
+
+/* START */
+
+renderProducts();
+
+saveCart();
+
+</script>
+
+</body>
+</html>
