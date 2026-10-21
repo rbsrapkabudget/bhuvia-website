@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bhuvia – Pure Water. Better Life.</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#ffffff;
+    color:#123;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#ffffff;
+    border-bottom:1px solid #e8eeee;
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#00a878,#007f68);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:22px;
+}
+
+.logo span{
+    color:#009b78;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+
+.nav-links a{
+    font-size:15px;
+    font-weight:600;
+    color:#253c3a;
+}
+
+.nav-links a:hover{
+    color:#009b78;
+}
+
+.nav-btn{
+    background:#009b78;
+    color:white !important;
+    padding:11px 20px;
+    border-radius:25px;
+}
+
+.hero{
+    background:linear-gradient(135deg,#e9fff8,#ffffff 55%,#e6faf5);
+    min-height:600px;
+    display:flex;
+    align-items:center;
+}
+
+.hero-container{
+    max-width:1200px;
+    margin:auto;
+    width:100%;
+    padding:70px 20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    background:#d9f8ef;
+    color:#008565;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:58px;
+    line-height:1.08;
+    margin-bottom:20px;
+    color:#123c36;
+}
+
+.hero h1 span{
+    color:#009b78;
+}
+
+.hero p{
+    font-size:19px;
+    color:#61716f;
+    max-width:550px;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 25px;
+    border-radius:30px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:#009b78;
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#007d62;
+}
+
+.btn-outline{
+    border:2px solid #009b78;
+    color:#008565;
+}
+
+.hero-product{
+    background:white;
+    border-radius:35px;
+    min-height:440px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 25px 70px rgba(0,120,90,.12);
+    position:relative;
+    overflow:hidden;
+}
+
+.water-circle{
+    width:340px;
+    height:340px;
+    border-radius:50%;
+    background:linear-gradient(145deg,#cffff0,#8ee6d0);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.bottle{
+    width:125px;
+    height:300px;
+    background:linear-gradient(90deg,#ffffff,#dffaf4,#ffffff);
+    border-radius:28px 28px 35px 35px;
+    border:4px solid #c8eee5;
+    position:relative;
+    box-shadow:0 15px 30px rgba(0,80,70,.18);
+}
+
+.bottle-cap{
+    position:absolute;
+    top:-35px;
+    left:28px;
+    width:65px;
+    height:40px;
+    border-radius:10px 10px 4px 4px;
+    background:#009b78;
+}
+
+.bottle-label{
+    position:absolute;
+    top:105px;
+    left:0;
+    width:100%;
+    padding:15px 5px;
+    text-align:center;
+    background:#009b78;
+    color:white;
+    font-weight:800;
+    font-size:22px;
+}
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-heading small{
+    color:#009b78;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.section-heading h2{
+    font-size:40px;
+    color:#173d38;
+    margin:8px 0;
+}
+
+.section-heading p{
+    color:#71817f;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    border:1px solid #e6eeee;
+    border-radius:22px;
+    padding:30px;
+    background:#fff;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 15px 40px rgba(0,120,90,.10);
+}
+
+.card-icon{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    background:#e1f9f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-size:22px;
+    color:#173d38;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#71817f;
+}
+
+.products{
+    background:#f5fcfa;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.product{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    border:1px solid #e6eeee;
+}
+
+.product-image{
+    height:260px;
+    background:linear-gradient(145deg,#e8fff8,#c8f3e8);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.product-placeholder{
+    width:105px;
+    height:210px;
+    border-radius:22px;
+    background:linear-gradient(90deg,#fff,#dffaf4,#fff);
+    border:3px solid #bce8dc;
+    position:relative;
+}
+
+.product-placeholder:after{
+    content:"BHUVIA";
+    position:absolute;
+    top:80px;
+    left:0;
+    right:0;
+    background:#009b78;
+    color:#fff;
+    padding:10px 0;
+    text-align:center;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.product-info{
+    padding:25px;
+}
+
+.product-info h3{
+    color:#173d38;
+    margin-bottom:5px;
+}
+
+.price{
+    color:#009b78;
+    font-size:23px;
+    font-weight:bold;
+    margin:10px 0 15px;
+}
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-box{
+    background:#eafff8;
+    border-radius:30px;
+    padding:50px;
+    text-align:center;
+}
+
+.about-box strong{
+    display:block;
+    font-size:60px;
+    color:#009b78;
+}
+
+.about h2{
+    font-size:40px;
+    color:#173d38;
+    margin-bottom:20px;
+}
+
+.about p{
+    color:#667572;
+    margin-bottom:15px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:25px;
+}
+
+.feature{
+    background:#f5faf9;
+    padding:15px;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+.contact{
+    background:#073f37;
+    color:white;
+}
+
+.contact-container{
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.contact h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.contact p{
+    color:#c6ddd8;
+    margin-bottom:30px;
+}
+
+footer{
+    background:#042b26;
+    color:#aac4bf;
+    text-align:center;
+    padding:25px 20px;
+    font-size:14px;
+}
+
+.mobile-menu{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+@media(max-width:800px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .hero-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .cards,
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+
+    .section-heading h2,
+    .about h2{
+        font-size:32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">💧</div>
+            Bhu<span>via</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact" class="nav-btn">Contact</a>
+        </div>
+
+        <div class="mobile-menu">☰</div>
+
+    </nav>
+</header>
+
+
+<section class="hero" id="home">
+
+    <div class="hero-container">
+
+        <div>
+
+            <div class="badge">PURE WATER • BETTER LIFE</div>
+
+            <h1>
+                Pure Water.<br>
+                <span>Better Life.</span>
+            </h1>
+
+            <p>
+                Welcome to Bhuvia — your trusted partner for
+                quality drinking water, RO solutions and reliable
+                water services.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">
+                    Explore Products
+                </a>
+
+                <a href="#contact" class="btn btn-outline">
+                    Contact Us
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="hero-product">
+
+            <div class="water-circle">
+
+                <div class="bottle">
+
+                    <div class="bottle-cap"></div>
+
+                    <div class="bottle-label">
+                        BHUVIA
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="services">
+
+    <div class="section-heading">
+
+        <small>What We Offer</small>
+
+        <h2>Water Solutions For Everyone</h2>
+
+        <p>
+            Reliable and affordable water solutions for homes,
+            offices and businesses.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">💧</div>
+
+            <h3>RO Water Solutions</h3>
+
+            <p>
+                Quality RO systems designed for safe and
+                clean drinking water at home.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🥤</div>
+
+            <h3>Packaged Drinking Water</h3>
+
+            <p>
+                Bhuvia packaged drinking water for homes,
+                shops, offices and businesses.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🔧</div>
+
+            <h3>RO Service</h3>
+
+            <p>
+                Installation, maintenance and repair services
+                through our service network.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="products" id="products">
+
+    <div class="section">
+
+        <div class="section-heading">
+
+            <small>Our Products</small>
+
+            <h2>Choose Your Water Solution</h2>
+
+            <p>
+                Quality products designed around your needs.
+            </p>
+
+        </div>
+
+
+        <div class="product-grid">
+
+            <div class="product">
+
+                <div class="product-image">
+                    <div class="product-placeholder"></div>
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Bhuvia RO</h3>
+
+                    <p>
+                        Advanced RO purification system
+                        for your home.
+                    </p>
+
+                    <div class="price">
+                        Starting ₹4,999
+                    </div>
+
+                    <a href="#contact" class="btn btn-primary">
+                        Enquire Now
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    <div class="product-placeholder"></div>
+                </div>
+
+                <div class="product-info">
+
+                    <h3>1 Litre Water</h3>
+
+                    <p>
+                        Convenient packaged drinking water
+                        for everyday use.
+                    </p>
+
+                    <div class="price">
+                        From ₹15
+                    </div>
+
+                    <a href="#contact" class="btn btn-primary">
+                        Enquire Now
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="product">
+
+                <div class="product-image">
+                    <div class="product-placeholder"></div>
+                </div>
+
+                <div class="product-info">
+
+                    <h3>20 Litre Water</h3>
+
+                    <p>
+                        Regular water supply for homes,
+                        offices and shops.
+                    </p>
+
+                    <div class="price">
+                        Enquire for Price
+                    </div>
+
+                    <a href="#contact" class="btn btn-primary">
+                        Enquire Now
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="about">
+
+    <div class="about">
+
+        <div class="about-box">
+
+            <strong>BHUVIA</strong>
+
+            <p>
+                Pure water solutions for a healthier
+                and better tomorrow.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <small style="color:#009b78;font-weight:bold;">
+                ABOUT BHUVIA
+            </small>
+
+            <h2>
+                Water You Can Trust
+            </h2>
+
+            <p>
+                Bhuvia is focused on delivering affordable,
+                reliable and quality water solutions.
+            </p>
+
+            <p>
+                From RO systems to packaged drinking water,
+                our goal is to make clean water accessible
+                to every family and business.
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+                    ✓ Quality Focused
+                </div>
+
+                <div class="feature">
+                    ✓ Affordable
+                </div>
+
+                <div class="feature">
+                    ✓ Reliable Service
+                </div>
+
+                <div class="feature">
+                    ✓ Customer First
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="contact" id="contact">
+
+    <div class="contact-container">
+
+        <h2>
+            Need a Water Solution?
+        </h2>
+
+        <p>
+            Contact Bhuvia for products, RO installation,
+            water supply and service enquiries.
+        </p>
+
+        <a
+            href="https://wa.me/919999999999"
+            class="btn btn-primary"
+            target="_blank">
+            WhatsApp Us
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 Bhuvia. All Rights Reserved.
+
+</footer>
+
+
+</body>
+</html>
