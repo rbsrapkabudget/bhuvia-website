@@ -3,1989 +3,1647 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhuvia | Premium Water Purifier</title>
+<title>Bhuvia | Pure Water. Better Life.</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    color:#24204f;
-    background:#f6f2ff;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f7f8fc;
+  color:#17203a;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+:root{
+  --blue:#173b8f;
+  --dark:#111a36;
+  --orange:#f58220;
+  --light:#eef3ff;
+  --border:#e2e5ee;
+  --green:#159447;
 }
 
-button,input,select{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-/* ================= TOP BAR ================= */
-
+/* TOP BAR */
 .topbar{
-    background:#40247d;
-    color:#fff;
-    height:32px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
+  background:var(--blue);
+  color:#fff;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
 }
 
-.topbar span{
-    margin:0 15px;
-}
-
-/* ================= HEADER ================= */
-
+/* HEADER */
 .header{
-    background:#fff;
-    height:76px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+  background:#fff;
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
-
-.header-inner{
-    width:1180px;
-    max-width:94%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.header-main{
+  max-width:1250px;
+  margin:auto;
+  height:76px;
+  display:flex;
+  align-items:center;
+  gap:30px;
+  padding:0 20px;
 }
-
 .logo{
-    display:flex;
-    align-items:center;
+  width:125px;
+  height:48px;
+  object-fit:contain;
 }
-
-.logo img{
-    width:125px;
-    height:auto;
-    max-height:55px;
-    object-fit:contain;
-}
-
 .nav{
-    display:flex;
-    align-items:center;
-    gap:25px;
+  display:flex;
+  gap:24px;
+  align-items:center;
+  flex:1;
 }
-
 .nav a{
-    text-decoration:none;
-    color:#45405e;
-    font-size:14px;
+  font-size:14px;
+  color:#39415d;
+  white-space:nowrap;
 }
-
-.nav a:hover{
-    color:#4b2690;
-}
+.nav a:hover{color:var(--blue)}
 
 .header-actions{
-    display:flex;
-    align-items:center;
-    gap:15px;
+  display:flex;
+  gap:16px;
+  align-items:center;
 }
-
-.header-icon{
-    border:0;
-    background:none;
-    font-size:22px;
-    color:#3f3560;
-    position:relative;
+.icon-btn{
+  border:0;
+  background:none;
+  font-size:22px;
+  position:relative;
 }
-
 .cart-count{
-    position:absolute;
-    right:-8px;
-    top:-8px;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background:#f47b20;
-    color:white;
-    font-size:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  position:absolute;
+  top:-8px;
+  right:-8px;
+  background:var(--orange);
+  color:#fff;
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-/* ================= PRODUCT AREA ================= */
-
-.product-section{
-    width:1180px;
-    max-width:94%;
-    margin:35px auto;
+/* HERO */
+.hero{
+  background:linear-gradient(110deg,#edf2ff,#f8faff);
+}
+.hero-inner{
+  max-width:1250px;
+  min-height:510px;
+  margin:auto;
+  padding:55px 25px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:30px;
+}
+.hero-tag{
+  display:inline-block;
+  background:#dce7ff;
+  color:var(--blue);
+  padding:8px 16px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+.hero h1{
+  font-size:52px;
+  line-height:1.05;
+  color:var(--dark);
+  margin-bottom:18px;
+}
+.hero h1 span{color:var(--blue)}
+.hero p{
+  font-size:17px;
+  line-height:1.7;
+  color:#606980;
+  max-width:550px;
+  margin-bottom:28px;
+}
+.btn{
+  border:0;
+  padding:14px 28px;
+  border-radius:7px;
+  font-weight:bold;
+  font-size:14px;
+}
+.btn-primary{
+  background:var(--orange);
+  color:#fff;
+}
+.btn-primary:hover{background:#df6d0d}
+.btn-outline{
+  background:#fff;
+  color:var(--blue);
+  border:1px solid var(--blue);
+  margin-left:10px;
+}
+.hero-image{
+  height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-image img{
+  max-width:100%;
+  max-height:430px;
+  object-fit:contain;
 }
 
-.product-grid{
-    display:grid;
-    grid-template-columns:56% 44%;
-    gap:22px;
+/* CATEGORY */
+.section{
+  max-width:1250px;
+  margin:auto;
+  padding:65px 20px;
+}
+.section-head{
+  text-align:center;
+  margin-bottom:35px;
+}
+.section-head h2{
+  font-size:31px;
+  margin-bottom:9px;
+}
+.section-head p{
+  color:#737b91;
+  font-size:14px;
+}
+.categories{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
+}
+.category{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:25px 15px;
+  text-align:center;
+  transition:.2s;
+}
+.category:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 30px #17203a14;
+}
+.category-icon{
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  background:#edf3ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 15px;
+  font-size:35px;
+}
+.category h3{font-size:15px}
+.category p{
+  color:#7a8195;
+  font-size:12px;
+  margin-top:5px;
 }
 
-/* LEFT */
-
-.gallery{
-    min-width:0;
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
 }
-
-.main-image-box{
-    background:white;
-    border-radius:12px;
-    min-height:570px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:35px;
-    box-shadow:0 3px 18px rgba(49,28,100,.08);
+.product-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  transition:.25s;
 }
-
-.main-image-box img{
-    width:100%;
-    height:500px;
-    object-fit:contain;
+.product-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 35px #17203a18;
 }
-
-.thumbnails{
-    margin-top:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:12px;
+.product-img{
+  height:260px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
-
-.thumb{
-    width:78px;
-    height:78px;
-    border:1px solid #ddd;
-    border-radius:9px;
-    background:white;
-    overflow:hidden;
-    padding:5px;
+.product-img img{
+  max-width:100%;
+  max-height:230px;
+  object-fit:contain;
 }
-
-.thumb.active{
-    border:2px solid #4c2992;
-}
-
-.thumb img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-}
-
-/* ================= RIGHT PRODUCT INFO ================= */
-
-.product-info{
-    background:#fff;
-    border-radius:12px;
-    padding:27px;
-    box-shadow:0 3px 18px rgba(49,28,100,.08);
-}
-
-.product-title{
-    font-size:25px;
-    line-height:1.3;
-    color:#372278;
-    margin-bottom:12px;
-}
-
-.rating{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom:18px;
-}
-
-.stars{
-    color:#f58220;
-    font-size:19px;
-}
-
-.reviews{
-    font-size:13px;
-    color:#777;
-}
-
-.price-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
-}
-
-.price{
-    font-size:28px;
-    font-weight:bold;
-    color:#222;
-}
-
-.mrp{
-    color:#999;
-    text-decoration:line-through;
-    font-size:15px;
-}
-
 .discount{
-    background:#ffb72d;
-    color:#432300;
-    padding:6px 12px;
-    border-radius:18px;
-    font-size:12px;
-    font-weight:bold;
+  position:absolute;
+  left:12px;
+  top:12px;
+  background:#e93d3d;
+  color:#fff;
+  padding:5px 9px;
+  border-radius:4px;
+  font-size:11px;
+  font-weight:bold;
 }
-
+.wishlist{
+  position:absolute;
+  right:12px;
+  top:12px;
+  border:0;
+  background:#fff;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  box-shadow:0 2px 8px #0001;
+  font-size:18px;
+}
+.product-info{padding:18px}
+.rating{
+  color:#f58220;
+  font-size:13px;
+  margin-bottom:8px;
+}
+.product-info h3{
+  font-size:15px;
+  line-height:1.4;
+  min-height:43px;
+}
+.price{
+  margin-top:12px;
+}
+.sale-price{
+  font-size:20px;
+  font-weight:bold;
+}
+.mrp{
+  color:#999;
+  text-decoration:line-through;
+  font-size:12px;
+  margin-left:7px;
+}
 .tax{
-    color:#777;
-    font-size:12px;
-    margin-top:5px;
-}
-
-/* OFFER */
-
-.offer-box{
-    margin:20px 0;
-    background:#faf7ff;
-    border:1px solid #e8ddff;
-    border-radius:8px;
-    padding:13px;
-}
-
-.offer-title{
-    font-weight:bold;
-    color:#3e237e;
-    margin-bottom:5px;
-}
-
-.offer-text{
-    font-size:13px;
-    color:#555;
-}
-
-/* HIGHLIGHTS */
-
-.highlights{
-    border-top:1px solid #eee;
-    border-bottom:1px solid #eee;
-}
-
-.highlight{
-    padding:14px 4px;
-    border-bottom:1px solid #eee;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:14px;
-}
-
-.highlight:last-child{
-    border-bottom:0;
-}
-
-.highlight strong{
-    color:#3c2970;
-}
-
-/* PINCODE */
-
-.pincode{
-    margin:18px 0;
-}
-
-.pincode-title{
-    font-size:14px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.pincode-row{
-    display:flex;
-    gap:8px;
-}
-
-.pincode input{
-    flex:1;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:7px;
-    outline:none;
-}
-
-.check-btn{
-    border:0;
-    background:#48258b;
-    color:white;
-    padding:0 18px;
-    border-radius:7px;
-    font-weight:bold;
-}
-
-/* QUANTITY */
-
-.quantity-label{
-    font-size:13px;
-    color:#777;
-    margin-bottom:6px;
-}
-
-.quantity{
-    display:flex;
-    align-items:center;
-    width:max-content;
-    border:1px solid #bbb;
-    border-radius:7px;
-    overflow:hidden;
-    margin-bottom:18px;
-}
-
-.quantity button{
-    width:38px;
-    height:38px;
-    border:0;
-    background:white;
-    font-size:19px;
-}
-
-.quantity span{
-    width:40px;
-    text-align:center;
-    font-weight:bold;
-}
-
-/* BUTTONS */
-
-.buy-btn,
-.cart-btn,
-.whatsapp-btn{
-    width:100%;
-    height:48px;
-    border-radius:8px;
-    font-size:15px;
-    font-weight:bold;
-    margin-top:9px;
-}
-
-.buy-btn{
-    background:#f57b20;
-    color:#fff;
-    border:1px solid #f57b20;
-}
-
-.buy-btn:hover{
-    background:#dd6814;
-}
-
-.cart-btn{
-    background:white;
-    color:#432582;
-    border:1px solid #432582;
-}
-
-.cart-btn:hover{
-    background:#f6f0ff;
-}
-
-.whatsapp-btn{
-    background:#1da851;
-    color:#fff;
-    border:0;
-}
-
-/* ================= TRUST ================= */
-
-.trust-row{
-    margin-top:20px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-}
-
-.trust{
-    text-align:center;
-    padding:10px 4px;
-    border:1px solid #eee;
-    border-radius:7px;
-    font-size:11px;
-    color:#555;
-}
-
-.trust-icon{
-    display:block;
-    font-size:20px;
-    margin-bottom:4px;
-}
-
-/* ================= DETAILS ================= */
-
-.details{
-    width:1180px;
-    max-width:94%;
-    margin:30px auto;
-    background:#fff;
-    border-radius:12px;
-    padding:30px;
-}
-
-.tabs{
-    display:flex;
-    border-bottom:1px solid #ddd;
-    margin-bottom:25px;
-}
-
-.tab{
-    padding:14px 25px;
-    background:none;
-    border:0;
-    font-size:15px;
-    color:#777;
-}
-
-.tab.active{
-    color:#3f2381;
-    font-weight:bold;
-    border-bottom:2px solid #f57b20;
-}
-
-.tab-content{
-    display:none;
-}
-
-.tab-content.active{
-    display:block;
-}
-
-.spec-list{
-    list-style:none;
-    max-width:850px;
-}
-
-.spec-list li{
-    padding:11px 0;
-    border-bottom:1px solid #eee;
-    font-size:14px;
-    color:#555;
-}
-
-.spec-list strong{
-    color:#292050;
-}
-
-/* ================= FEATURE SECTIONS ================= */
-
-.feature-section{
-    width:1180px;
-    max-width:94%;
-    margin:40px auto;
-    background:#fff;
-    border-radius:12px;
-    overflow:hidden;
-}
-
-.feature-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:center;
-}
-
-.feature-row.reverse .feature-image{
-    order:2;
-}
-
-.feature-text{
-    padding:55px;
-}
-
-.feature-text h2{
-    font-size:29px;
-    color:#392276;
-    margin-bottom:15px;
-}
-
-.feature-text p{
-    line-height:1.8;
-    color:#666;
-    font-size:15px;
-}
-
-.feature-image{
-    min-height:350px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#fafafa;
-}
-
-.feature-image img{
-    width:100%;
-    height:350px;
-    object-fit:contain;
-}
-
-/* ================= STAGES ================= */
-
-.stages{
-    width:1180px;
-    max-width:94%;
-    margin:40px auto;
-    background:#fff;
-    padding:45px 30px;
-    border-radius:12px;
-    text-align:center;
-}
-
-.stages h2{
-    color:#3b257d;
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-.stages-subtitle{
-    color:#777;
-    margin-bottom:35px;
-}
-
-.stage-grid{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:12px;
-}
-
-.stage{
-    padding:18px 8px;
-    border:1px solid #eee;
-    border-radius:9px;
-}
-
-.stage-number{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#4a288d;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 10px;
-    font-weight:bold;
-}
-
-.stage h4{
-    font-size:12px;
-    color:#3b267c;
-    margin-bottom:5px;
-}
-
-.stage p{
-    font-size:10px;
-    color:#777;
-}
-
-/* ================= BENEFITS ================= */
-
-.benefits{
-    width:1180px;
-    max-width:94%;
-    margin:40px auto;
-}
-
-.benefit-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.benefit{
-    background:white;
-    padding:28px 18px;
-    text-align:center;
-    border-radius:10px;
-    box-shadow:0 2px 12px rgba(0,0,0,.06);
-}
-
-.benefit-icon{
-    font-size:32px;
-    margin-bottom:12px;
-}
-
-.benefit h3{
-    color:#3b267d;
-    font-size:16px;
-    margin-bottom:8px;
-}
-
-.benefit p{
-    font-size:12px;
-    color:#777;
-    line-height:1.6;
-}
-
-/* ================= RELATED ================= */
-
-.related{
-    width:1180px;
-    max-width:94%;
-    margin:55px auto;
-}
-
-.related h2{
-    color:#29204f;
-    font-size:27px;
-    margin-bottom:25px;
-}
-
-.product-cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.card{
-    background:white;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 2px 12px rgba(0,0,0,.06);
-    transition:.2s;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 7px 20px rgba(0,0,0,.1);
-}
-
-.card-image{
-    height:230px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:15px;
-}
-
-.card-image img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-}
-
-.card-body{
-    padding:17px;
-}
-
-.card-title{
-    font-size:14px;
-    line-height:1.4;
-    min-height:40px;
-}
-
-.card-price{
-    margin-top:10px;
-    font-weight:bold;
-    font-size:17px;
-}
-
-.card-mrp{
-    margin-left:6px;
-    font-size:11px;
-    color:#999;
-    text-decoration:line-through;
-}
-
-.card-btn{
-    width:100%;
-    border:1px solid #472587;
-    background:white;
-    color:#472587;
-    border-radius:6px;
-    padding:9px;
-    margin-top:12px;
-}
-
-/* ================= FOOTER ================= */
-
+  font-size:11px;
+  color:#777;
+  margin-top:4px;
+}
+.card-buttons{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+.card-buttons button{
+  flex:1;
+  padding:10px 5px;
+  border-radius:5px;
+  font-size:12px;
+  font-weight:bold;
+}
+.add-cart{
+  background:#fff;
+  color:var(--blue);
+  border:1px solid var(--blue);
+}
+.buy{
+  background:var(--orange);
+  color:#fff;
+  border:1px solid var(--orange);
+}
+
+/* PROMO */
+.promo{
+  background:var(--blue);
+  color:#fff;
+}
+.promo-inner{
+  max-width:1250px;
+  margin:auto;
+  padding:55px 25px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.promo h2{
+  font-size:36px;
+  margin-bottom:15px;
+}
+.promo p{
+  color:#dbe4ff;
+  line-height:1.7;
+  margin-bottom:25px;
+}
+.promo-image{
+  text-align:center;
+}
+.promo-image img{
+  max-width:80%;
+  max-height:390px;
+  object-fit:contain;
+}
+
+/* FEATURES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.feature{
+  background:#fff;
+  border:1px solid var(--border);
+  padding:28px 20px;
+  text-align:center;
+  border-radius:10px;
+}
+.feature-icon{
+  font-size:32px;
+  margin-bottom:12px;
+}
+.feature h3{font-size:15px;margin-bottom:8px}
+.feature p{
+  color:#72798d;
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* WATER DELIVERY */
+.water-banner{
+  background:linear-gradient(100deg,#e8f2ff,#fff);
+  border-radius:15px;
+  padding:45px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:30px;
+}
+.water-banner h2{
+  font-size:34px;
+  margin-bottom:12px;
+}
+.water-banner p{
+  color:#687188;
+  line-height:1.7;
+  margin-bottom:20px;
+}
+.water-images{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  align-items:end;
+}
+.water-images img{
+  width:100px;
+  height:220px;
+  object-fit:contain;
+}
+
+/* REVIEWS */
+.reviews{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.review{
+  background:#fff;
+  border:1px solid var(--border);
+  padding:25px;
+  border-radius:10px;
+}
+.review .stars{color:#f58220;margin-bottom:12px}
+.review p{
+  color:#687188;
+  font-size:13px;
+  line-height:1.7;
+}
+.review strong{
+  display:block;
+  margin-top:15px;
+}
+
+/* FOOTER */
 footer{
-    background:#33206c;
-    color:white;
-    margin-top:70px;
-    padding:45px 0 20px;
+  background:#101832;
+  color:#fff;
 }
-
-.footer-inner{
-    width:1180px;
-    max-width:94%;
-    margin:auto;
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:40px;
+.footer-main{
+  max-width:1250px;
+  margin:auto;
+  padding:55px 20px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:40px;
 }
-
-.footer-logo img{
-    width:125px;
-    background:white;
-    padding:4px;
-    border-radius:5px;
+.footer-logo{
+  width:130px;
+  background:#fff;
+  padding:5px;
+  border-radius:5px;
 }
-
 .footer h3{
-    margin-bottom:15px;
-    font-size:15px;
+  margin-bottom:17px;
+  font-size:15px;
+}
+.footer p,.footer a{
+  color:#b9c0d2;
+  font-size:13px;
+  line-height:2;
+  display:block;
+}
+.footer-bottom{
+  border-top:1px solid #29314b;
+  padding:18px;
+  text-align:center;
+  color:#9ca5bc;
+  font-size:12px;
 }
 
-.footer p,
-.footer a{
-    color:#d9d2ed;
-    font-size:12px;
-    line-height:2;
-    text-decoration:none;
+/* PRODUCT PAGE */
+.page{
+  display:none;
+}
+.product-page{
+  background:#eef0ff;
+  padding:45px 20px 70px;
+}
+.product-detail{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+.gallery{
+  background:#fff;
+  border-radius:12px;
+  padding:30px;
+}
+.main-product-image{
+  height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.main-product-image img{
+  max-width:100%;
+  max-height:470px;
+  object-fit:contain;
+}
+.thumbs{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:20px;
+}
+.thumb{
+  width:75px;
+  height:75px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:#fff;
+  padding:5px;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.detail-box{
+  background:#fff;
+  border-radius:12px;
+  padding:28px;
+}
+.detail-box h1{
+  color:var(--blue);
+  font-size:24px;
+  line-height:1.35;
+}
+.detail-rating{
+  margin:13px 0;
+  color:#f58220;
+}
+.detail-price{
+  font-size:28px;
+  font-weight:bold;
+}
+.old-price{
+  color:#999;
+  text-decoration:line-through;
+  font-size:14px;
+  margin-left:8px;
+}
+.offer{
+  display:inline-block;
+  background:#e8f8ed;
+  color:var(--green);
+  padding:7px 12px;
+  margin:12px 0;
+  font-size:12px;
+  border-radius:5px;
+}
+.emi{
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:7px;
+  margin:15px 0;
+}
+.detail-section{
+  border-top:1px solid #eee;
+  padding:17px 0;
+}
+.detail-section h3{
+  font-size:15px;
+  margin-bottom:12px;
+}
+.detail-section li{
+  margin:8px 0 8px 18px;
+  color:#5e667b;
+  font-size:13px;
+}
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:0;
+  margin:10px 0 18px;
+}
+.quantity button{
+  width:38px;
+  height:38px;
+  background:#fff;
+  border:1px solid #ccc;
+}
+.quantity span{
+  width:45px;
+  height:38px;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.detail-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.detail-buttons button{
+  width:100%;
+  padding:15px;
+  border-radius:7px;
+  font-weight:bold;
+}
+.buy-large{
+  border:0;
+  background:var(--orange);
+  color:#fff;
+}
+.cart-large{
+  border:1px solid var(--blue);
+  background:#fff;
+  color:var(--blue);
+}
+.back{
+  max-width:1250px;
+  margin:0 auto 20px;
+  color:var(--blue);
+  font-size:14px;
+  cursor:pointer;
 }
 
-.copyright{
-    border-top:1px solid rgba(255,255,255,.15);
-    margin-top:35px;
-    padding-top:18px;
-    text-align:center;
-    font-size:11px;
-    color:#c7bee0;
+/* CART */
+.cart-page,.checkout-page,.success-page{
+  display:none;
+  max-width:1100px;
+  margin:auto;
+  padding:50px 20px;
 }
-
-/* ================= CART DRAWER ================= */
-
-.cart-overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:2000;
+.cart-layout{
+  display:grid;
+  grid-template-columns:1.6fr .8fr;
+  gap:25px;
 }
-
-.cart-overlay.active{
-    display:block;
+.cart-box,.summary-box,.checkout-box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:25px;
 }
-
-.cart-drawer{
-    position:absolute;
-    right:0;
-    top:0;
-    height:100%;
-    width:420px;
-    max-width:95%;
-    background:white;
-    padding:25px;
-    overflow-y:auto;
-}
-
-.cart-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #eee;
-    padding-bottom:15px;
-}
-
-.close-cart{
-    border:0;
-    background:none;
-    font-size:25px;
-}
-
 .cart-item{
-    display:flex;
-    gap:12px;
-    padding:18px 0;
-    border-bottom:1px solid #eee;
+  display:grid;
+  grid-template-columns:90px 1fr auto;
+  gap:20px;
+  padding:18px 0;
+  border-bottom:1px solid #eee;
+  align-items:center;
 }
-
 .cart-item img{
-    width:70px;
-    height:70px;
-    object-fit:contain;
+  width:80px;
+  height:80px;
+  object-fit:contain;
+}
+.cart-item h3{font-size:15px}
+.cart-item p{font-size:13px;color:#777;margin-top:7px}
+.remove{
+  color:#d33;
+  border:0;
+  background:none;
+  font-size:12px;
+}
+.summary-box h2{font-size:20px;margin-bottom:20px}
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin:14px 0;
+  font-size:14px;
+}
+.total{
+  border-top:1px solid #ddd;
+  padding-top:15px;
+  font-size:19px;
+  font-weight:bold;
+}
+.coupon{
+  display:flex;
+  gap:8px;
+  margin:20px 0;
+}
+.coupon input{
+  flex:1;
+  padding:11px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+.coupon button{
+  background:var(--blue);
+  color:#fff;
+  border:0;
+  padding:0 15px;
+  border-radius:5px;
 }
 
-.cart-item-info{
-    flex:1;
+/* CHECKOUT */
+.checkout-grid{
+  display:grid;
+  grid-template-columns:1.4fr .8fr;
+  gap:25px;
 }
-
-.cart-item-name{
-    font-size:13px;
-    font-weight:bold;
-}
-
-.cart-item-price{
-    margin-top:7px;
-    font-size:13px;
-}
-
-.cart-total{
-    padding:20px 0;
-    display:flex;
-    justify-content:space-between;
-    font-size:19px;
-    font-weight:bold;
-}
-
-.checkout-btn{
-    width:100%;
-    background:#f57b20;
-    border:0;
-    color:#fff;
-    padding:14px;
-    border-radius:7px;
-    font-weight:bold;
-}
-
-/* ================= CHECKOUT ================= */
-
-.checkout-modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:3000;
-    background:rgba(0,0,0,.55);
-    overflow:auto;
-    padding:30px 15px;
-}
-
-.checkout-modal.active{
-    display:block;
-}
-
-.checkout-box{
-    max-width:850px;
-    margin:auto;
-    background:white;
-    border-radius:12px;
-    padding:30px;
-}
-
-.checkout-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.checkout-close{
-    border:0;
-    background:none;
-    font-size:25px;
-}
-
 .form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
 }
-
-.form-group{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+.field{
+  margin-bottom:15px;
 }
-
-.form-group.full{
-    grid-column:1/-1;
+.field.full{grid-column:1/-1}
+.field label{
+  display:block;
+  font-size:12px;
+  margin-bottom:6px;
+  color:#555;
 }
-
-.form-group label{
-    font-size:12px;
-    color:#555;
+.field input,.field select,.field textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d5d8e0;
+  border-radius:5px;
+  outline:none;
 }
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:6px;
-    outline:none;
+.field textarea{height:80px;resize:vertical}
+.payment{
+  margin-top:20px;
 }
-
-.payment-box{
-    margin-top:25px;
-    padding:18px;
-    background:#faf8ff;
-    border:1px solid #e8def8;
-    border-radius:8px;
-}
-
 .payment-option{
-    margin:10px 0;
+  border:1px solid #ddd;
+  padding:14px;
+  margin:10px 0;
+  border-radius:7px;
 }
+.payment-option input{margin-right:8px}
 
-.place-order{
-    width:100%;
-    margin-top:20px;
-    padding:15px;
-    border:0;
-    background:#f57b20;
-    color:white;
-    border-radius:7px;
-    font-weight:bold;
+/* SUCCESS */
+.success-page{
+  text-align:center;
 }
-
-/* ================= ORDER SUCCESS ================= */
-
-.success{
-    display:none;
-    text-align:center;
-    padding:35px 10px;
-}
-
-.success.active{
-    display:block;
-}
-
 .success-icon{
-    font-size:55px;
+  width:80px;
+  height:80px;
+  background:#e6f7ed;
+  color:#159447;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 20px;
+  font-size:40px;
 }
-
 .order-id{
-    color:#422682;
-    font-weight:bold;
-    margin:15px 0;
+  background:#eef3ff;
+  color:var(--blue);
+  display:inline-block;
+  padding:12px 22px;
+  border-radius:6px;
+  font-weight:bold;
+  margin:20px 0;
 }
 
-.whatsapp-order{
-    display:inline-block;
-    background:#1da851;
-    color:#fff;
-    text-decoration:none;
-    padding:13px 25px;
-    border-radius:7px;
-    margin-top:12px;
-}
-
-/* ================= MOBILE ================= */
+/* MOBILE */
+.mobile-menu{display:none}
 
 @media(max-width:900px){
-
-    .nav{
-        display:none;
-    }
-
-    .product-grid{
-        grid-template-columns:1fr;
-    }
-
-    .main-image-box{
-        min-height:400px;
-    }
-
-    .main-image-box img{
-        height:350px;
-    }
-
-    .feature-row{
-        grid-template-columns:1fr;
-    }
-
-    .feature-row.reverse .feature-image{
-        order:0;
-    }
-
-    .stage-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .benefit-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .product-cards{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .footer-inner{
-        grid-template-columns:1fr 1fr;
-    }
+  .nav{display:none}
+  .mobile-menu{display:block}
+  .hero-inner,
+  .promo-inner,
+  .water-banner,
+  .product-detail,
+  .cart-layout,
+  .checkout-grid{
+    grid-template-columns:1fr;
+  }
+  .categories{grid-template-columns:repeat(3,1fr)}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .reviews{grid-template-columns:1fr}
+  .footer-main{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:40px}
 }
 
 @media(max-width:600px){
-
-    .topbar{
-        font-size:9px;
-    }
-
-    .header{
-        height:65px;
-    }
-
-    .logo img{
-        width:100px;
-    }
-
-    .header-actions{
-        gap:7px;
-    }
-
-    .product-section{
-        margin-top:15px;
-    }
-
-    .product-info{
-        padding:18px;
-    }
-
-    .product-title{
-        font-size:20px;
-    }
-
-    .price{
-        font-size:23px;
-    }
-
-    .main-image-box{
-        min-height:330px;
-        padding:15px;
-    }
-
-    .main-image-box img{
-        height:300px;
-    }
-
-    .thumb{
-        width:58px;
-        height:58px;
-    }
-
-    .details{
-        padding:18px;
-    }
-
-    .tabs{
-        overflow-x:auto;
-    }
-
-    .tab{
-        white-space:nowrap;
-        padding:12px 15px;
-    }
-
-    .feature-text{
-        padding:28px 22px;
-    }
-
-    .feature-text h2{
-        font-size:23px;
-    }
-
-    .feature-image{
-        min-height:260px;
-    }
-
-    .feature-image img{
-        height:260px;
-    }
-
-    .benefit-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .product-cards{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .card-image{
-        height:170px;
-    }
-
-    .card-body{
-        padding:11px;
-    }
-
-    .footer-inner{
-        grid-template-columns:1fr;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-group.full{
-        grid-column:auto;
-    }
+  .topbar{font-size:10px}
+  .header-main{height:65px;padding:0 12px}
+  .logo{width:95px}
+  .header-actions{gap:8px}
+  .categories{grid-template-columns:repeat(2,1fr)}
+  .products{grid-template-columns:1fr 1fr;gap:10px}
+  .product-img{height:190px;padding:10px}
+  .product-img img{max-height:175px}
+  .product-info{padding:12px}
+  .product-info h3{font-size:12px}
+  .sale-price{font-size:16px}
+  .card-buttons{flex-direction:column}
+  .hero-inner{padding:35px 18px}
+  .hero h1{font-size:34px}
+  .hero-image{height:300px}
+  .promo h2,.water-banner h2{font-size:27px}
+  .promo-inner,.water-banner{padding:30px 20px}
+  .features{grid-template-columns:1fr 1fr}
+  .footer-main{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .main-product-image{height:330px}
+  .detail-box{padding:20px}
+  .gallery{padding:15px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- TOP -->
 <div class="topbar">
-    <span>Everything Under Your Budget</span>
-    <span>Free Installation Available</span>
-    <span>Customer Support</span>
+  🚚 Free Delivery on Selected Orders &nbsp; | &nbsp; 100% Quality Water &nbsp; | &nbsp; Bhuvia Support
 </div>
 
 <!-- HEADER -->
 <header class="header">
-    <div class="header-inner">
+  <div class="header-main">
 
-        <a href="#" class="logo">
-            <img src="bhuvia-logo.jpg" alt="Bhuvia">
-        </a>
+    <img src="bhuvia-logo.jpg" class="logo" alt="Bhuvia">
 
-        <nav class="nav">
-            <a href="#products">Water Purifiers</a>
-            <a href="#features">Features</a>
-            <a href="#specifications">Specifications</a>
-            <a href="#related">Products</a>
-            <a href="#footer">Support</a>
-        </nav>
+    <nav class="nav">
+      <a href="#" onclick="showHome()">Home</a>
+      <a href="#products" onclick="showHome()">Water Purifiers</a>
+      <a href="#water" onclick="showHome()">Packaged Water</a>
+      <a href="#why" onclick="showHome()">Why Bhuvia</a>
+      <a href="#reviews" onclick="showHome()">Reviews</a>
+      <a href="#contact" onclick="showHome()">Contact</a>
+    </nav>
 
-        <div class="header-actions">
-
-            <button class="header-icon" onclick="openSearch()">⌕</button>
-
-            <button class="header-icon" onclick="openCart()">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
-
-        </div>
-
+    <div class="header-actions">
+      <button class="icon-btn" onclick="searchProducts()">⌕</button>
+      <button class="icon-btn" onclick="showCart()">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
     </div>
+
+  </div>
 </header>
 
+<!-- ================= HOME PAGE ================= -->
+<main id="homePage">
 
-<!-- PRODUCT -->
-<section class="product-section" id="products">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
 
-<div class="product-grid">
+    <div>
+      <span class="hero-tag">BHUVIA WATER SOLUTIONS</span>
 
-<!-- GALLERY -->
-<div class="gallery">
+      <h1>
+        Pure Water.<br>
+        <span>Better Life.</span>
+      </h1>
 
-    <div class="main-image-box">
-        <img id="mainProductImage" src="ro product.png" alt="Bhuvia RO">
+      <p>
+        Advanced water purification solutions and quality packaged drinking
+        water — designed for your home, office and everyday life.
+      </p>
+
+      <button class="btn btn-primary" onclick="openProduct('ro')">
+        Shop RO Purifiers
+      </button>
+
+      <button class="btn btn-outline" onclick="document.getElementById('water').scrollIntoView()">
+        Order Water
+      </button>
     </div>
 
-    <div class="thumbnails">
-
-        <button class="thumb active" onclick="changeImage('ro product.png',this)">
-            <img src="ro product.png">
-        </button>
-
-        <button class="thumb" onclick="changeImage('water-1l.png',this)">
-            <img src="water-1l.png">
-        </button>
-
-        <button class="thumb" onclick="changeImage('water-500ml.png',this)">
-            <img src="water-500ml.png">
-        </button>
-
-        <button class="thumb" onclick="changeImage('water-2l.png',this)">
-            <img src="water-2l.png">
-        </button>
-
-        <button class="thumb" onclick="changeImage('water-20l.png',this)">
-            <img src="water-20l.png">
-        </button>
-
+    <div class="hero-image">
+      <img src="ro product.png" alt="Bhuvia RO Purifier">
     </div>
 
-</div>
-
-
-<!-- PRODUCT INFORMATION -->
-<div class="product-info">
-
-    <h1 class="product-title">
-        BHUVIA Premium 7-Stage RO + UV + UF Water Purifier
-    </h1>
-
-    <div class="rating">
-        <span class="stars">★★★★★</span>
-        <span class="reviews">4.8 | 24 Reviews</span>
-    </div>
-
-    <div class="price-row">
-        <span class="price">₹4,999</span>
-        <span class="mrp">MRP: ₹5,999</span>
-        <span class="discount">Save 17%</span>
-    </div>
-
-    <div class="tax">
-        Inclusive of applicable taxes
-    </div>
-
-    <div class="offer-box">
-        <div class="offer-title">🎁 Special Bhuvia Offer</div>
-        <div class="offer-text">
-            Free installation + doorstep delivery available on selected locations.
-        </div>
-    </div>
-
-    <div class="highlights">
-
-        <div class="highlight">
-            <span>Purification</span>
-            <strong>7 Stage</strong>
-        </div>
-
-        <div class="highlight">
-            <span>Technology</span>
-            <strong>RO + UV + UF</strong>
-        </div>
-
-        <div class="highlight">
-            <span>Storage</span>
-            <strong>10 Litre</strong>
-        </div>
-
-        <div class="highlight">
-            <span>Warranty</span>
-            <strong>1 Year</strong>
-        </div>
-
-    </div>
-
-    <!-- PINCODE -->
-    <div class="pincode">
-
-        <div class="pincode-title">
-            Check Delivery & Installation Availability
-        </div>
-
-        <div class="pincode-row">
-            <input type="text" id="pincode" maxlength="6" placeholder="Enter Pincode">
-            <button class="check-btn" onclick="checkPincode()">Check</button>
-        </div>
-
-        <div id="pinResult" style="font-size:12px;margin-top:7px;"></div>
-
-    </div>
-
-    <!-- QUANTITY -->
-    <div class="quantity-label">Quantity</div>
-
-    <div class="quantity">
-        <button onclick="changeQty(-1)">−</button>
-        <span id="qty">1</span>
-        <button onclick="changeQty(1)">+</button>
-    </div>
-
-    <button class="buy-btn" onclick="buyNow()">
-        Buy It Now
-    </button>
-
-    <button class="cart-btn" onclick="addToCart()">
-        Add To Cart
-    </button>
-
-    <button class="whatsapp-btn" onclick="whatsappEnquiry()">
-        WhatsApp Enquiry
-    </button>
-
-
-    <div class="trust-row">
-
-        <div class="trust">
-            <span class="trust-icon">🚚</span>
-            Fast Delivery
-        </div>
-
-        <div class="trust">
-            <span class="trust-icon">🛠️</span>
-            Easy Installation
-        </div>
-
-        <div class="trust">
-            <span class="trust-icon">🛡️</span>
-            Warranty Support
-        </div>
-
-    </div>
-
-</div>
-
-</div>
+  </div>
 </section>
 
+<!-- CATEGORY -->
+<section class="section">
+  <div class="section-head">
+    <h2>Shop By Category</h2>
+    <p>Choose the right water solution for your needs</p>
+  </div>
 
-<!-- PRODUCT DETAILS -->
-<section class="details" id="specifications">
+  <div class="categories">
 
-    <div class="tabs">
-
-        <button class="tab active" onclick="openTab('spec')">
-            Specification
-        </button>
-
-        <button class="tab" onclick="openTab('care')">
-            Care Instructions
-        </button>
-
-        <button class="tab" onclick="openTab('faq')">
-            FAQs
-        </button>
-
+    <div class="category" onclick="openProduct('ro')">
+      <div class="category-icon">💧</div>
+      <h3>RO Purifiers</h3>
+      <p>Advanced purification</p>
     </div>
 
+    <div class="category" onclick="openProduct('500ml')">
+      <div class="category-icon">🥤</div>
+      <h3>500 ML Water</h3>
+      <p>For everyday refreshment</p>
+    </div>
 
-    <div id="spec" class="tab-content active">
+    <div class="category" onclick="openProduct('1l')">
+      <div class="category-icon">💦</div>
+      <h3>1 Litre Water</h3>
+      <p>Perfect for travel</p>
+    </div>
 
-        <ul class="spec-list">
+    <div class="category" onclick="openProduct('2l')">
+      <div class="category-icon">🚰</div>
+      <h3>2 Litre Water</h3>
+      <p>Family pack</p>
+    </div>
 
-            <li><strong>Product:</strong> Bhuvia Premium Water Purifier</li>
+    <div class="category" onclick="openProduct('20l')">
+      <div class="category-icon">🪣</div>
+      <h3>20 Litre Jar</h3>
+      <p>Home delivery</p>
+    </div>
 
-            <li><strong>Purification Technology:</strong>
-                RO + UV + UF
-            </li>
+  </div>
+</section>
 
-            <li><strong>Purification Stages:</strong>
-                7 Stage Advanced Purification
-            </li>
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="section-head">
+    <h2>Best Selling Products</h2>
+    <p>Our most popular Bhuvia products</p>
+  </div>
 
-            <li><strong>Storage Capacity:</strong>
-                10 Litre
-            </li>
+  <div class="products" id="productGrid"></div>
+</section>
 
-            <li><strong>RO Membrane:</strong>
-                High Performance RO Membrane
-            </li>
+<!-- RO PROMO -->
+<section class="promo">
+  <div class="promo-inner">
 
-            <li><strong>UV Technology:</strong>
-                Advanced UV Purification
-            </li>
+    <div>
+      <span class="hero-tag">BHUVIA RO</span>
 
-            <li><strong>Installation:</strong>
-                Wall Mount
-            </li>
+      <h2>Advanced Purification For Your Home</h2>
 
-            <li><strong>Suitable For:</strong>
-                Home & Office
-            </li>
+      <p>
+        Experience cleaner and better-tasting drinking water with
+        Bhuvia's advanced purification technology.
+      </p>
 
-            <li><strong>Country of Origin:</strong>
-                India
-            </li>
+      <p>
+        ✓ Multi-stage purification<br>
+        ✓ RO technology<br>
+        ✓ UV / UF purification<br>
+        ✓ Premium design<br>
+        ✓ Home installation support
+      </p>
 
+      <button class="btn btn-primary" onclick="openProduct('ro')">
+        View RO Purifier
+      </button>
+    </div>
+
+    <div class="promo-image">
+      <img src="ro product.png" alt="Bhuvia RO">
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section" id="why">
+  <div class="section-head">
+    <h2>Why Choose Bhuvia?</h2>
+    <p>Quality, affordability and reliable service</p>
+  </div>
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="feature-icon">💧</div>
+      <h3>Advanced Purification</h3>
+      <p>Designed to provide clean and purified drinking water.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🛡️</div>
+      <h3>Quality Focused</h3>
+      <p>Quality-focused products for everyday drinking needs.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🚚</div>
+      <h3>Home Delivery</h3>
+      <p>Convenient water delivery at your doorstep.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">₹</div>
+      <h3>Budget Friendly</h3>
+      <p>Premium water solutions at affordable prices.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WATER -->
+<section class="section" id="water">
+  <div class="water-banner">
+
+    <div>
+      <span class="hero-tag">BHUVIA PACKAGED WATER</span>
+      <h2>Pure Water Delivered To Your Door</h2>
+
+      <p>
+        Order Bhuvia packaged drinking water for home, office,
+        events and daily requirements.
+      </p>
+
+      <button class="btn btn-primary" onclick="openProduct('20l')">
+        Order 20L Water
+      </button>
+    </div>
+
+    <div class="water-images">
+      <img src="water-500ml.png" alt="500ml">
+      <img src="water-1l.png" alt="1L">
+      <img src="water-2l.png" alt="2L">
+      <img src="water-20l.png" alt="20L">
+    </div>
+
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="section-head">
+    <h2>What Our Customers Say</h2>
+    <p>Trusted by customers for quality and service</p>
+  </div>
+
+  <div class="reviews">
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>
+        Very good product. The design looks premium and the water
+        quality is excellent.
+      </p>
+      <strong>Rahul Kumar</strong>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>
+        Good pricing and very convenient home delivery service.
+      </p>
+      <strong>Priya Singh</strong>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>
+        Bhuvia RO looks premium and works very well for our home.
+      </p>
+      <strong>Amit Sharma</strong>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ================= PRODUCT PAGE ================= -->
+<section id="productPage" class="page product-page">
+
+  <div class="back" onclick="showHome()">← Back to Home</div>
+
+  <div class="product-detail">
+
+    <div class="gallery">
+      <div class="main-product-image">
+        <img id="detailImage" src="" alt="">
+      </div>
+
+      <div class="thumbs">
+        <button class="thumb">
+          <img id="thumbImage" src="" alt="">
+        </button>
+      </div>
+    </div>
+
+    <div class="detail-box">
+
+      <h1 id="detailName"></h1>
+
+      <div class="detail-rating">
+        ★★★★★ <span style="color:#777;font-size:12px">(Customer Reviews)</span>
+      </div>
+
+      <div>
+        <span class="detail-price" id="detailPrice"></span>
+        <span class="old-price" id="detailOldPrice"></span>
+      </div>
+
+      <span class="offer" id="detailOffer"></span>
+
+      <div class="emi">
+        <strong>Easy Purchase</strong><br>
+        <small>Cash on Delivery available on eligible orders.</small>
+      </div>
+
+      <div class="detail-section">
+        <h3>Product Features</h3>
+        <ul id="detailFeatures"></ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>Quantity</h3>
+
+        <div class="quantity">
+          <button onclick="changeDetailQty(-1)">−</button>
+          <span id="detailQty">1</span>
+          <button onclick="changeDetailQty(1)">+</button>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h3>Specifications</h3>
+        <ul>
+          <li>Brand: Bhuvia</li>
+          <li>Country of Origin: India</li>
+          <li>Premium quality product</li>
+          <li>Customer support available</li>
         </ul>
+      </div>
 
-    </div>
+      <div class="detail-buttons">
 
-
-    <div id="care" class="tab-content">
-
-        <h3>Care Instructions</h3>
-
-        <br>
-
-        <p style="color:#666;line-height:1.8;">
-            Keep the purifier connected to a clean power supply.
-            Replace filters according to usage and service recommendations.
-            Clean the external surface using a soft dry cloth.
-            Contact Bhuvia support for servicing and filter replacement.
-        </p>
-
-    </div>
-
-
-    <div id="faq" class="tab-content">
-
-        <h3>Frequently Asked Questions</h3>
-
-        <br>
-
-        <p>
-            <strong>Q. Is installation available?</strong>
-        </p>
-
-        <p style="color:#666;margin:7px 0 20px;">
-            Yes, installation can be arranged depending on your location.
-        </p>
-
-        <p>
-            <strong>Q. Does it have RO + UV + UF?</strong>
-        </p>
-
-        <p style="color:#666;margin-top:7px;">
-            Yes, this model uses RO + UV + UF purification technology.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- FEATURE 1 -->
-<section class="feature-section" id="features">
-
-    <div class="feature-row">
-
-        <div class="feature-text">
-
-            <h2>7-Stage Advanced Purification</h2>
-
-            <p>
-                Bhuvia's advanced purification system is designed
-                to provide clean and refreshing drinking water.
-                Multiple purification stages help reduce unwanted
-                impurities and improve overall water quality.
-            </p>
-
-        </div>
-
-        <div class="feature-image">
-            <img src="ro product.png" alt="Bhuvia purification">
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- STAGES -->
-<section class="stages">
-
-    <h2>7 Advanced Purification Stages</h2>
-
-    <p class="stages-subtitle">
-        Multi-stage purification for everyday drinking water
-    </p>
-
-    <div class="stage-grid">
-
-        <div class="stage">
-            <div class="stage-number">01</div>
-            <h4>SEDIMENT</h4>
-            <p>Helps reduce visible particles.</p>
-        </div>
-
-        <div class="stage">
-            <div class="stage-number">02</div>
-            <h4>PRE CARBON</h4>
-            <p>Helps improve taste and odour.</p>
-        </div>
-
-        <div class="stage">
-            <div class="stage-number">03</div>
-            <h4>ANTI SCALE</h4>
-            <p>Helps protect the purification system.</p>
-        </div>
-
-        <div class="stage">
-            <div class="stage-number">04</div>
-            <h4>RO MEMBRANE</h4>
-            <p>Advanced RO purification.</p>
-        </div>
-
-        <div class="stage">
-            <div class="stage-number">05</div>
-            <h4>UV</h4>
-            <p>Additional water purification.</p>
-        </div>
-
-        <div class="stage">
-            <div class="stage-number">06</div>
-            <h4>UF</h4>
-            <p>Fine filtration stage.</p>
-        </div>
-
-        <div class="stage">
-            <div class="stage-number">07</div>
-            <h4>POST CARBON</h4>
-            <p>Helps improve final water taste.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- FEATURE 2 -->
-<section class="feature-section">
-
-    <div class="feature-row reverse">
-
-        <div class="feature-text">
-
-            <h2>Pure Water For Your Family</h2>
-
-            <p>
-                Bhuvia is designed for modern homes that need
-                convenient access to purified drinking water.
-                The compact design makes it suitable for everyday
-                home and office use.
-            </p>
-
-        </div>
-
-        <div class="feature-image">
-            <img src="water-20l.png" alt="Bhuvia water">
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- BENEFITS -->
-<section class="benefits">
-
-    <div class="benefit-grid">
-
-        <div class="benefit">
-            <div class="benefit-icon">💧</div>
-            <h3>Advanced Purification</h3>
-            <p>Multi-stage water purification technology.</p>
-        </div>
-
-        <div class="benefit">
-            <div class="benefit-icon">⚡</div>
-            <h3>Efficient Performance</h3>
-            <p>Designed for convenient everyday usage.</p>
-        </div>
-
-        <div class="benefit">
-            <div class="benefit-icon">🛠️</div>
-            <h3>Service Support</h3>
-            <p>Bhuvia support for installation and servicing.</p>
-        </div>
-
-        <div class="benefit">
-            <div class="benefit-icon">🏠</div>
-            <h3>Home Friendly</h3>
-            <p>Compact design suitable for modern homes.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- RELATED PRODUCTS -->
-<section class="related" id="related">
-
-    <h2>You May Also Like</h2>
-
-    <div class="product-cards">
-
-        <!-- CARD 1 -->
-        <div class="card">
-
-            <div class="card-image">
-                <img src="water-500ml.png">
-            </div>
-
-            <div class="card-body">
-
-                <div class="card-title">
-                    Bhuvia Packaged Drinking Water 500ml
-                </div>
-
-                <div class="card-price">
-                    ₹7
-                </div>
-
-                <button class="card-btn"
-                        onclick="addProductToCart('Bhuvia Water 500ml','water-500ml.png',7)">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- CARD 2 -->
-        <div class="card">
-
-            <div class="card-image">
-                <img src="water-1l.png">
-            </div>
-
-            <div class="card-body">
-
-                <div class="card-title">
-                    Bhuvia Packaged Drinking Water 1 Litre
-                </div>
-
-                <div class="card-price">
-                    ₹15
-                </div>
-
-                <button class="card-btn"
-                        onclick="addProductToCart('Bhuvia Water 1 Litre','water-1l.png',15)">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- CARD 3 -->
-        <div class="card">
-
-            <div class="card-image">
-                <img src="water-2l.png">
-            </div>
-
-            <div class="card-body">
-
-                <div class="card-title">
-                    Bhuvia Packaged Drinking Water 2 Litre
-                </div>
-
-                <div class="card-price">
-                    ₹20
-                </div>
-
-                <button class="card-btn"
-                        onclick="addProductToCart('Bhuvia Water 2 Litre','water-2l.png',20)">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- CARD 4 -->
-        <div class="card">
-
-            <div class="card-image">
-                <img src="water-20l.png">
-            </div>
-
-            <div class="card-body">
-
-                <div class="card-title">
-                    Bhuvia 20 Litre Water Jar
-                </div>
-
-                <div class="card-price">
-                    ₹15
-                </div>
-
-                <button class="card-btn"
-                        onclick="addProductToCart('Bhuvia 20 Litre Water Jar','water-20l.png',15)">
-                    Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- FOOTER -->
-<footer id="footer">
-
-    <div class="footer-inner">
-
-        <div>
-
-            <div class="footer-logo">
-                <img src="bhuvia-logo.jpg">
-            </div>
-
-            <br>
-
-            <p>
-                Bhuvia brings affordable water purification
-                and drinking water solutions for Indian homes
-                and businesses.
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <h3>Products</h3>
-
-            <a href="#products">RO Purifiers</a><br>
-            <a href="#related">500ml Water</a><br>
-            <a href="#related">1 Litre Water</a><br>
-            <a href="#related">2 Litre Water</a><br>
-            <a href="#related">20 Litre Jar</a>
-
-        </div>
-
-
-        <div>
-
-            <h3>Support</h3>
-
-            <a href="#">Installation</a><br>
-            <a href="#">Service</a><br>
-            <a href="#">Warranty</a><br>
-            <a href="#">Contact Us</a>
-
-        </div>
-
-
-        <div>
-
-            <h3>Quick Links</h3>
-
-            <a href="#">About Bhuvia</a><br>
-            <a href="#">Privacy Policy</a><br>
-            <a href="#">Terms & Conditions</a><br>
-            <a href="#">Shipping Policy</a>
-
-        </div>
-
-    </div>
-
-
-    <div class="copyright">
-        © 2026 Bhuvia. All Rights Reserved.
-    </div>
-
-</footer>
-
-
-<!-- CART -->
-<div class="cart-overlay" id="cartOverlay">
-
-    <div class="cart-drawer">
-
-        <div class="cart-header">
-
-            <h2>Your Cart</h2>
-
-            <button class="close-cart" onclick="closeCart()">×</button>
-
-        </div>
-
-        <div id="cartItems"></div>
-
-        <div class="cart-total">
-            <span>Total</span>
-            <span id="cartTotal">₹0</span>
-        </div>
-
-        <button class="checkout-btn" onclick="openCheckout()">
-            Proceed To Checkout
+        <button class="buy-large" onclick="buyCurrentProduct()">
+          Buy It Now
         </button>
 
+        <button class="cart-large" onclick="addCurrentToCart()">
+          Add To Cart
+        </button>
+
+      </div>
+
     </div>
 
-</div>
+  </div>
 
+</section>
 
-<!-- CHECKOUT -->
-<div class="checkout-modal" id="checkoutModal">
+<!-- ================= CART ================= -->
+<section id="cartPage" class="cart-page">
+
+  <div class="back" onclick="showHome()">← Continue Shopping</div>
+
+  <h1 style="margin-bottom:25px">Shopping Cart</h1>
+
+  <div class="cart-layout">
+
+    <div class="cart-box">
+      <div id="cartItems"></div>
+    </div>
+
+    <div class="summary-box">
+
+      <h2>Order Summary</h2>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong id="cartSubtotal">₹0</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Delivery</span>
+        <strong id="cartDelivery">₹0</strong>
+      </div>
+
+      <div class="coupon">
+        <input id="couponInput" placeholder="Coupon code">
+        <button onclick="applyCoupon()">Apply</button>
+      </div>
+
+      <div id="couponMessage" style="font-size:12px"></div>
+
+      <div class="summary-row">
+        <span>Discount</span>
+        <strong id="cartDiscount">₹0</strong>
+      </div>
+
+      <div class="summary-row total">
+        <span>Total</span>
+        <strong id="cartTotal">₹0</strong>
+      </div>
+
+      <button class="btn btn-primary"
+        style="width:100%;margin-top:20px"
+        onclick="showCheckout()">
+        Proceed To Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= CHECKOUT ================= -->
+<section id="checkoutPage" class="checkout-page">
+
+  <div class="back" onclick="showCart()">← Back to Cart</div>
+
+  <h1 style="margin-bottom:25px">Checkout</h1>
+
+  <div class="checkout-grid">
 
     <div class="checkout-box">
 
-        <div class="checkout-head">
+      <h2 style="margin-bottom:20px">Delivery Details</h2>
 
-            <h2>Checkout</h2>
+      <div class="form-grid">
 
-            <button class="checkout-close"
-                    onclick="closeCheckout()">×</button>
-
+        <div class="field">
+          <label>Full Name *</label>
+          <input id="customerName" placeholder="Enter full name">
         </div>
 
-
-        <div id="checkoutForm">
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>Full Name *</label>
-                    <input id="customerName" type="text" placeholder="Full Name">
-                </div>
-
-                <div class="form-group">
-                    <label>Mobile Number *</label>
-                    <input id="customerMobile" type="tel" placeholder="10 Digit Mobile Number">
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input id="customerEmail" type="email" placeholder="Email Address">
-                </div>
-
-                <div class="form-group">
-                    <label>PIN Code *</label>
-                    <input id="customerPin" type="text" maxlength="6" placeholder="PIN Code">
-                </div>
-
-                <div class="form-group full">
-                    <label>House / Flat / Building *</label>
-                    <input id="customerHouse" type="text" placeholder="House / Flat / Building">
-                </div>
-
-                <div class="form-group full">
-                    <label>Street / Area *</label>
-                    <input id="customerArea" type="text" placeholder="Street / Area">
-                </div>
-
-                <div class="form-group">
-                    <label>Landmark</label>
-                    <input id="customerLandmark" type="text" placeholder="Landmark">
-                </div>
-
-                <div class="form-group">
-                    <label>City *</label>
-                    <input id="customerCity" type="text" placeholder="City">
-                </div>
-
-                <div class="form-group">
-                    <label>State *</label>
-                    <select id="customerState">
-
-                        <option value="">Select State</option>
-                        <option>Bihar</option>
-                        <option>Delhi</option>
-                        <option>Uttar Pradesh</option>
-                        <option>West Bengal</option>
-                        <option>Maharashtra</option>
-                        <option>Jharkhand</option>
-                        <option>Haryana</option>
-                        <option>Punjab</option>
-                        <option>Rajasthan</option>
-                        <option>Gujarat</option>
-                        <option>Other</option>
-
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Delivery Instructions</label>
-                    <input id="customerInstruction"
-                           type="text"
-                           placeholder="Any delivery instruction">
-                </div>
-
-            </div>
-
-
-            <div class="payment-box">
-
-                <h3>Payment Method</h3>
-
-                <div class="payment-option">
-                    <label>
-                        <input type="radio"
-                               name="payment"
-                               value="COD"
-                               checked>
-                        Cash on Delivery
-                    </label>
-                </div>
-
-                <div class="payment-option">
-                    <label>
-                        <input type="radio"
-                               name="payment"
-                               value="UPI">
-                        UPI / Online Payment
-                    </label>
-                </div>
-
-            </div>
-
-
-            <button class="place-order"
-                    onclick="placeOrder()">
-                Place Order
-            </button>
-
+        <div class="field">
+          <label>Mobile Number *</label>
+          <input id="customerMobile" maxlength="10" placeholder="10 digit mobile">
         </div>
 
-
-        <div class="success" id="successBox">
-
-            <div class="success-icon">✅</div>
-
-            <h2>Order Confirmed!</h2>
-
-            <p style="color:#777;margin-top:10px;">
-                Thank you for choosing Bhuvia.
-            </p>
-
-            <div class="order-id" id="orderId"></div>
-
-            <p id="successDetails"
-               style="font-size:13px;color:#666;">
-            </p>
-
-            <a href="#"
-               id="whatsappOrder"
-               class="whatsapp-order"
-               target="_blank">
-                Send Order on WhatsApp
-            </a>
-
+        <div class="field">
+          <label>Email</label>
+          <input id="customerEmail" type="email" placeholder="Email address">
         </div>
+
+        <div class="field">
+          <label>PIN Code *</label>
+          <input id="customerPin" maxlength="6" placeholder="PIN code">
+        </div>
+
+        <div class="field full">
+          <label>House / Flat / Building *</label>
+          <input id="customerHouse" placeholder="House / Flat / Building">
+        </div>
+
+        <div class="field full">
+          <label>Street / Area *</label>
+          <input id="customerArea" placeholder="Street / Area / Locality">
+        </div>
+
+        <div class="field">
+          <label>Landmark</label>
+          <input id="customerLandmark" placeholder="Nearby landmark">
+        </div>
+
+        <div class="field">
+          <label>City *</label>
+          <input id="customerCity" placeholder="City">
+        </div>
+
+        <div class="field full">
+          <label>State *</label>
+          <select id="customerState">
+            <option value="">Select State</option>
+            <option>Bihar</option>
+            <option>Delhi</option>
+            <option>Haryana</option>
+            <option>Uttar Pradesh</option>
+            <option>Jharkhand</option>
+            <option>West Bengal</option>
+            <option>Maharashtra</option>
+            <option>Telangana</option>
+            <option>Tamil Nadu</option>
+            <option>Gujarat</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Delivery Instructions</label>
+          <textarea id="customerInstruction"
+            placeholder="Any special delivery instructions?"></textarea>
+        </div>
+
+      </div>
+
+      <div class="payment">
+
+        <h2 style="margin-bottom:15px">Payment Method</h2>
+
+        <label class="payment-option">
+          <input type="radio" name="payment" value="COD" checked>
+          Cash On Delivery
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="payment" value="UPI">
+          UPI / Online Payment
+        </label>
+
+        <small style="color:#777">
+          Online payment gateway can be connected later.
+        </small>
+
+      </div>
 
     </div>
 
-</div>
+    <div class="summary-box">
 
+      <h2>Your Order</h2>
+
+      <div id="checkoutItems"></div>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong id="checkoutSubtotal">₹0</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Delivery</span>
+        <strong id="checkoutDelivery">₹0</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Discount</span>
+        <strong id="checkoutDiscount">₹0</strong>
+      </div>
+
+      <div class="summary-row total">
+        <span>Grand Total</span>
+        <strong id="checkoutTotal">₹0</strong>
+      </div>
+
+      <button class="btn btn-primary"
+        style="width:100%;margin-top:20px"
+        onclick="placeOrder()">
+        Place Order
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= SUCCESS ================= -->
+<section id="successPage" class="success-page">
+
+  <div class="success-icon">✓</div>
+
+  <h1>Order Confirmed!</h1>
+
+  <p style="color:#777;margin-top:10px">
+    Thank you for choosing Bhuvia.
+  </p>
+
+  <div class="order-id" id="orderId"></div>
+
+  <p id="orderDetails"
+     style="color:#666;line-height:1.8"></p>
+
+  <button class="btn btn-primary"
+    style="margin-top:20px"
+    onclick="sendWhatsApp()">
+    Send Order On WhatsApp
+  </button>
+
+  <button class="btn btn-outline"
+    style="margin-top:20px"
+    onclick="showHome()">
+    Continue Shopping
+  </button>
+
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+
+  <div class="footer-main">
+
+    <div>
+      <img src="bhuvia-logo.jpg" class="footer-logo">
+
+      <p style="margin-top:15px">
+        Bhuvia Water Solutions brings quality water purification
+        and packaged drinking water solutions for everyday life.
+      </p>
+    </div>
+
+    <div>
+      <h3>Quick Links</h3>
+      <a href="#" onclick="showHome()">Home</a>
+      <a href="#products" onclick="showHome()">Products</a>
+      <a href="#why" onclick="showHome()">Why Bhuvia</a>
+      <a href="#reviews" onclick="showHome()">Reviews</a>
+    </div>
+
+    <div>
+      <h3>Products</h3>
+      <a href="#" onclick="openProduct('ro')">RO Purifier</a>
+      <a href="#" onclick="openProduct('500ml')">500 ML Water</a>
+      <a href="#" onclick="openProduct('1l')">1 L Water</a>
+      <a href="#" onclick="openProduct('2l')">2 L Water</a>
+      <a href="#" onclick="openProduct('20l')">20 L Water</a>
+    </div>
+
+    <div>
+      <h3>Customer Support</h3>
+      <p>WhatsApp Support</p>
+      <p>Home Delivery</p>
+      <p>Order Assistance</p>
+      <p>Product Support</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Bhuvia Water Solutions. All Rights Reserved.
+  </div>
+
+</footer>
 
 <script>
 
-/* ================= SETTINGS ================= */
+/* ================= PRODUCTS ================= */
 
-/* IMPORTANT:
-   Yahan apna actual Bhuvia WhatsApp number daalna.
-   Example: 919876543210
-*/
-const BHUVIA_WHATSAPP = "919999999999";
+const products = {
 
-
-/* ================= PRODUCT ================= */
-
-const mainProduct = {
-    name:"BHUVIA Premium 7-Stage RO + UV + UF Water Purifier",
+  ro:{
+    id:"ro",
+    name:"Bhuvia Advanced RO Water Purifier",
     price:4999,
-    image:"ro product.png"
+    oldPrice:5999,
+    image:"ro product.png",
+    category:"RO Purifier",
+    offer:"Save ₹1,000",
+    features:[
+      "Advanced multi-stage purification",
+      "RO purification technology",
+      "UV / UF purification support",
+      "Premium modern design",
+      "Home installation support"
+    ]
+  },
+
+  "500ml":{
+    id:"500ml",
+    name:"Bhuvia Packaged Drinking Water 500 ML",
+    price:7,
+    oldPrice:10,
+    image:"water-500ml.png",
+    category:"Packaged Water",
+    offer:"Affordable daily hydration",
+    features:[
+      "500 ML bottle",
+      "Convenient for travel",
+      "Quality packaged drinking water",
+      "Ideal for shops and events"
+    ]
+  },
+
+  "1l":{
+    id:"1l",
+    name:"Bhuvia Packaged Drinking Water 1 Litre",
+    price:15,
+    oldPrice:20,
+    image:"water-1l.png",
+    category:"Packaged Water",
+    offer:"Popular Size",
+    features:[
+      "1 Litre bottle",
+      "Ideal for travel",
+      "Quality packaged drinking water",
+      "Suitable for daily use"
+    ]
+  },
+
+  "2l":{
+    id:"2l",
+    name:"Bhuvia Packaged Drinking Water 2 Litre",
+    price:20,
+    oldPrice:25,
+    image:"water-2l.png",
+    category:"Packaged Water",
+    offer:"Family Pack",
+    features:[
+      "2 Litre bottle",
+      "Suitable for families",
+      "Quality packaged drinking water",
+      "Ideal for longer use"
+    ]
+  },
+
+  "20l":{
+    id:"20l",
+    name:"Bhuvia 20 Litre Drinking Water Jar",
+    price:15,
+    oldPrice:20,
+    image:"water-20l.png",
+    category:"20 Litre Water",
+    offer:"Home Delivery Available",
+    features:[
+      "20 Litre water jar",
+      "Home and office delivery",
+      "Ideal for regular consumption",
+      "Convenient refill service"
+    ]
+  }
+
 };
 
-let quantity = 1;
+let cart = JSON.parse(localStorage.getItem("bhuviaCart") || "[]");
+let currentProduct = null;
+let detailQty = 1;
+let discount = 0;
+let lastOrder = null;
 
-let cart = JSON.parse(localStorage.getItem("bhuviaCart")) || [];
+
+/* ================= HOME PRODUCT CARDS ================= */
+
+function renderProducts(){
+
+  const grid = document.getElementById("productGrid");
+
+  grid.innerHTML = Object.values(products).map(p=>{
+
+    const save = Math.round((1-p.price/p.oldPrice)*100);
+
+    return `
+      <div class="product-card">
+
+        <span class="discount">${save}% OFF</span>
+
+        <button class="wishlist"
+          onclick="wishlist('${p.id}')">♡</button>
+
+        <div class="product-img"
+          onclick="openProduct('${p.id}')">
+          <img src="${p.image}" alt="${p.name}">
+        </div>
+
+        <div class="product-info">
+
+          <div class="rating">★★★★★</div>
+
+          <h3>${p.name}</h3>
+
+          <div class="price">
+            <span class="sale-price">₹${p.price.toLocaleString("en-IN")}</span>
+            <span class="mrp">₹${p.oldPrice.toLocaleString("en-IN")}</span>
+          </div>
+
+          <div class="tax">Inclusive of applicable taxes</div>
+
+          <div class="card-buttons">
+            <button class="add-cart"
+              onclick="addToCart('${p.id}')">
+              Add to Cart
+            </button>
+
+            <button class="buy"
+              onclick="buyNow('${p.id}')">
+              Buy Now
+            </button>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+  }).join("");
+}
 
 
-/* ================= IMAGE ================= */
+/* ================= PAGE SWITCH ================= */
 
-function changeImage(image,button){
+function hideAll(){
 
-    document.getElementById("mainProductImage").src = image;
+  document.getElementById("homePage").style.display="none";
+  document.getElementById("productPage").style.display="none";
+  document.getElementById("cartPage").style.display="none";
+  document.getElementById("checkoutPage").style.display="none";
+  document.getElementById("successPage").style.display="none";
 
-    document.querySelectorAll(".thumb")
-        .forEach(x => x.classList.remove("active"));
+}
 
-    button.classList.add("active");
+function showHome(){
+
+  hideAll();
+
+  document.getElementById("homePage").style.display="block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+function openProduct(id){
+
+  currentProduct = products[id];
+  detailQty = 1;
+
+  hideAll();
+
+  document.getElementById("productPage").style.display="block";
+
+  document.getElementById("detailImage").src=currentProduct.image;
+  document.getElementById("thumbImage").src=currentProduct.image;
+
+  document.getElementById("detailName").textContent=currentProduct.name;
+
+  document.getElementById("detailPrice").textContent=
+    "₹"+currentProduct.price.toLocaleString("en-IN");
+
+  document.getElementById("detailOldPrice").textContent=
+    "₹"+currentProduct.oldPrice.toLocaleString("en-IN");
+
+  document.getElementById("detailOffer").textContent=
+    currentProduct.offer;
+
+  document.getElementById("detailQty").textContent=detailQty;
+
+  document.getElementById("detailFeatures").innerHTML=
+    currentProduct.features.map(x=>`<li>${x}</li>`).join("");
+
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 
 /* ================= QUANTITY ================= */
 
-function changeQty(value){
+function changeDetailQty(amount){
 
-    quantity += value;
+  detailQty += amount;
 
-    if(quantity < 1){
-        quantity = 1;
-    }
+  if(detailQty<1) detailQty=1;
+  if(detailQty>20) detailQty=20;
 
-    if(quantity > 10){
-        quantity = 10;
-    }
-
-    document.getElementById("qty").innerText = quantity;
+  document.getElementById("detailQty").textContent=detailQty;
 }
 
 
@@ -1993,515 +1651,647 @@ function changeQty(value){
 
 function saveCart(){
 
-    localStorage.setItem(
-        "bhuviaCart",
-        JSON.stringify(cart)
-    );
+  localStorage.setItem(
+    "bhuviaCart",
+    JSON.stringify(cart)
+  );
 
-    updateCartCount();
+  updateCartCount();
+
 }
-
 
 function updateCartCount(){
 
-    const total = cart.reduce(
-        (sum,item) => sum + item.qty,
-        0
-    );
+  const count = cart.reduce(
+    (sum,item)=>sum+item.qty,0
+  );
 
-    document.getElementById("cartCount").innerText = total;
+  document.getElementById("cartCount").textContent=count;
+
 }
 
+function addToCart(id,qty=1){
 
-function addToCart(){
+  const product=products[id];
 
-    addProductToCart(
-        mainProduct.name,
-        mainProduct.image,
-        mainProduct.price,
-        quantity
-    );
+  const existing=cart.find(
+    item=>item.id===id
+  );
 
-    openCart();
+  if(existing){
+    existing.qty += qty;
+  }else{
+    cart.push({
+      id:id,
+      qty:qty
+    });
+  }
+
+  saveCart();
+
+  alert(product.name+" added to cart.");
+
 }
 
+function addCurrentToCart(){
 
-function addProductToCart(name,image,price,qty=1){
+  if(!currentProduct)return;
 
-    const existing = cart.find(
-        item => item.name === name
-    );
+  addToCart(
+    currentProduct.id,
+    detailQty
+  );
 
-    if(existing){
+}
 
-        existing.qty += qty;
+function buyNow(id){
 
-    }else{
-
-        cart.push({
-            name:name,
-            image:image,
-            price:price,
-            qty:qty
-        });
-
+  cart=[
+    {
+      id:id,
+      qty:1
     }
+  ];
 
-    saveCart();
+  saveCart();
 
-    alert("Product added to cart.");
+  showCheckout();
+
 }
 
+function buyCurrentProduct(){
 
-function removeFromCart(index){
+  if(!currentProduct)return;
 
-    cart.splice(index,1);
-
-    saveCart();
-
-    renderCart();
-}
-
-
-function cartQty(index,value){
-
-    cart[index].qty += value;
-
-    if(cart[index].qty <= 0){
-
-        cart.splice(index,1);
-
+  cart=[
+    {
+      id:currentProduct.id,
+      qty:detailQty
     }
+  ];
 
-    saveCart();
+  saveCart();
 
-    renderCart();
+  showCheckout();
+
 }
 
+
+/* ================= CART DISPLAY ================= */
+
+function showCart(){
+
+  hideAll();
+
+  document.getElementById("cartPage").style.display="block";
+
+  renderCart();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
 
 function renderCart(){
 
-    const container =
-        document.getElementById("cartItems");
+  const box=document.getElementById("cartItems");
 
-    if(cart.length === 0){
+  if(cart.length===0){
 
-        container.innerHTML = `
-            <div style="text-align:center;padding:50px 10px;color:#777;">
-                <div style="font-size:45px;">🛒</div>
-                <p>Your cart is empty.</p>
-            </div>
-        `;
+    box.innerHTML=`
+      <div style="text-align:center;padding:60px 10px">
+        <div style="font-size:50px">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p style="color:#777;margin:10px">
+          Add some Bhuvia products to continue.
+        </p>
+        <button class="btn btn-primary"
+          onclick="showHome()">
+          Shop Now
+        </button>
+      </div>
+    `;
 
-        document.getElementById("cartTotal").innerText = "₹0";
+    updateTotals();
+    return;
+  }
 
-        return;
-    }
+  box.innerHTML=cart.map(item=>{
 
+    const p=products[item.id];
 
-    let total = 0;
+    return `
+      <div class="cart-item">
 
-    container.innerHTML = cart.map((item,index)=>{
+        <img src="${p.image}" alt="${p.name}">
 
-        const itemTotal =
-            item.price * item.qty;
+        <div>
+          <h3>${p.name}</h3>
+          <p>₹${p.price.toLocaleString("en-IN")} × ${item.qty}</p>
 
-        total += itemTotal;
+          <div class="quantity">
+            <button onclick="changeCartQty('${item.id}',-1)">−</button>
+            <span>${item.qty}</span>
+            <button onclick="changeCartQty('${item.id}',1)">+</button>
+          </div>
 
-        return `
-
-        <div class="cart-item">
-
-            <img src="${item.image}">
-
-            <div class="cart-item-info">
-
-                <div class="cart-item-name">
-                    ${item.name}
-                </div>
-
-                <div class="cart-item-price">
-                    ₹${item.price.toLocaleString("en-IN")}
-                </div>
-
-                <div style="margin-top:8px;display:flex;align-items:center;gap:8px;">
-
-                    <button onclick="cartQty(${index},-1)"
-                            style="border:1px solid #ccc;background:white;width:27px;height:27px;">
-                        −
-                    </button>
-
-                    <span>${item.qty}</span>
-
-                    <button onclick="cartQty(${index},1)"
-                            style="border:1px solid #ccc;background:white;width:27px;height:27px;">
-                        +
-                    </button>
-
-                    <button onclick="removeFromCart(${index})"
-                            style="border:0;background:none;color:#e33;margin-left:8px;">
-                        Remove
-                    </button>
-
-                </div>
-
-            </div>
-
+          <button class="remove"
+            onclick="removeFromCart('${item.id}')">
+            Remove
+          </button>
         </div>
 
-        `;
+        <strong>
+          ₹${(p.price*item.qty).toLocaleString("en-IN")}
+        </strong>
 
-    }).join("");
+      </div>
+    `;
 
+  }).join("");
 
-    document.getElementById("cartTotal").innerText =
-        "₹" + total.toLocaleString("en-IN");
+  updateTotals();
+
+}
+
+function changeCartQty(id,amount){
+
+  const item=cart.find(
+    x=>x.id===id
+  );
+
+  if(!item)return;
+
+  item.qty += amount;
+
+  if(item.qty<=0){
+    cart=cart.filter(x=>x.id!==id);
+  }
+
+  saveCart();
+
+  renderCart();
+
+}
+
+function removeFromCart(id){
+
+  cart=cart.filter(
+    x=>x.id!==id
+  );
+
+  saveCart();
+
+  renderCart();
+
 }
 
 
-function openCart(){
+/* ================= TOTAL ================= */
 
-    renderCart();
+function calculateSubtotal(){
 
-    document
-        .getElementById("cartOverlay")
-        .classList.add("active");
+  return cart.reduce(
+    (sum,item)=>{
+      const p=products[item.id];
+      return sum+(p.price*item.qty);
+    },0
+  );
+
+}
+
+function getDelivery(subtotal){
+
+  if(subtotal===0)return 0;
+
+  return subtotal>=500 ? 0 : 40;
+
+}
+
+function updateTotals(){
+
+  const subtotal=calculateSubtotal();
+
+  const delivery=getDelivery(subtotal);
+
+  const total=
+    Math.max(0,subtotal+delivery-discount);
+
+  document.getElementById("cartSubtotal").textContent=
+    "₹"+subtotal.toLocaleString("en-IN");
+
+  document.getElementById("cartDelivery").textContent=
+    delivery===0 ? "FREE" :
+    "₹"+delivery.toLocaleString("en-IN");
+
+  document.getElementById("cartDiscount").textContent=
+    "₹"+discount.toLocaleString("en-IN");
+
+  document.getElementById("cartTotal").textContent=
+    "₹"+total.toLocaleString("en-IN");
+
 }
 
 
-function closeCart(){
+/* ================= COUPON ================= */
 
-    document
-        .getElementById("cartOverlay")
-        .classList.remove("active");
-}
+function applyCoupon(){
 
+  const code=
+    document.getElementById("couponInput")
+    .value.trim().toUpperCase();
 
-/* ================= BUY NOW ================= */
+  const subtotal=calculateSubtotal();
 
-function buyNow(){
+  if(code==="BHUVIA10"){
 
-    cart = [];
+    discount=Math.round(subtotal*0.10);
 
-    addProductToCart(
-        mainProduct.name,
-        mainProduct.image,
-        mainProduct.price,
-        quantity
-    );
+    document.getElementById("couponMessage").style.color="green";
 
-    openCheckout();
-}
+    document.getElementById("couponMessage").textContent=
+      "Coupon applied: 10% OFF";
 
+  }
+  else if(code==="WELCOME50"){
 
-/* ================= PINCODE ================= */
+    discount=Math.min(50,subtotal);
 
-function checkPincode(){
+    document.getElementById("couponMessage").style.color="green";
 
-    const pin =
-        document.getElementById("pincode").value.trim();
+    document.getElementById("couponMessage").textContent=
+      "Coupon applied: ₹50 OFF";
 
-    const result =
-        document.getElementById("pinResult");
+  }
+  else{
 
-    if(!/^[0-9]{6}$/.test(pin)){
+    discount=0;
 
-        result.style.color = "#d33";
-        result.innerText =
-            "Please enter a valid 6 digit pincode.";
+    document.getElementById("couponMessage").style.color="red";
 
-        return;
-    }
+    document.getElementById("couponMessage").textContent=
+      "Invalid coupon code.";
 
-    result.style.color = "#188a45";
+  }
 
-    result.innerText =
-        "✓ Delivery and installation available. Final confirmation at checkout.";
-}
+  updateTotals();
 
-
-/* ================= TABS ================= */
-
-function openTab(tab){
-
-    document
-        .querySelectorAll(".tab-content")
-        .forEach(x => x.classList.remove("active"));
-
-    document
-        .querySelectorAll(".tab")
-        .forEach(x => x.classList.remove("active"));
-
-    document
-        .getElementById(tab)
-        .classList.add("active");
-
-    event.target.classList.add("active");
-}
-
-
-/* ================= SEARCH ================= */
-
-function openSearch(){
-
-    const search =
-        prompt("What are you looking for?");
-
-    if(!search) return;
-
-    const text = search.toLowerCase();
-
-    if(text.includes("water") ||
-       text.includes("500") ||
-       text.includes("1l") ||
-       text.includes("2l") ||
-       text.includes("20l")){
-
-        document
-            .getElementById("related")
-            .scrollIntoView({
-                behavior:"smooth"
-            });
-
-    }else{
-
-        alert(
-            "Search feature is ready. Product catalogue can be expanded here."
-        );
-
-    }
-}
-
-
-/* ================= WHATSAPP ================= */
-
-function whatsappEnquiry(){
-
-    const message =
-        `Hello Bhuvia,%0A%0A` +
-        `I am interested in:%0A` +
-        `${mainProduct.name}%0A` +
-        `Price: ₹${mainProduct.price}%0A` +
-        `Quantity: ${quantity}%0A%0A` +
-        `Please share details for delivery and installation.`;
-
-    window.open(
-        `https://wa.me/${BHUVIA_WHATSAPP}?text=${message}`,
-        "_blank"
-    );
 }
 
 
 /* ================= CHECKOUT ================= */
 
-function openCheckout(){
+function showCheckout(){
 
-    if(cart.length === 0){
+  if(cart.length===0){
 
-        alert("Your cart is empty.");
+    alert("Please add a product to cart first.");
+    showHome();
+    return;
 
-        return;
-    }
+  }
 
-    closeCart();
+  hideAll();
 
-    document
-        .getElementById("checkoutModal")
-        .classList.add("active");
+  document.getElementById("checkoutPage").style.display="block";
+
+  renderCheckout();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+function renderCheckout(){
+
+  const box=
+    document.getElementById("checkoutItems");
+
+  box.innerHTML=cart.map(item=>{
+
+    const p=products[item.id];
+
+    return `
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        gap:10px;
+        padding:10px 0;
+        border-bottom:1px solid #eee;
+        font-size:13px">
+
+        <span>
+          ${p.name}<br>
+          <small>Qty: ${item.qty}</small>
+        </span>
+
+        <strong>
+          ₹${(p.price*item.qty).toLocaleString("en-IN")}
+        </strong>
+
+      </div>
+    `;
+
+  }).join("");
+
+  const subtotal=calculateSubtotal();
+  const delivery=getDelivery(subtotal);
+  const total=
+    Math.max(0,subtotal+delivery-discount);
+
+  document.getElementById("checkoutSubtotal").textContent=
+    "₹"+subtotal.toLocaleString("en-IN");
+
+  document.getElementById("checkoutDelivery").textContent=
+    delivery===0 ? "FREE" :
+    "₹"+delivery.toLocaleString("en-IN");
+
+  document.getElementById("checkoutDiscount").textContent=
+    "₹"+discount.toLocaleString("en-IN");
+
+  document.getElementById("checkoutTotal").textContent=
+    "₹"+total.toLocaleString("en-IN");
+
 }
 
 
-function closeCheckout(){
-
-    document
-        .getElementById("checkoutModal")
-        .classList.remove("active");
-}
-
-
-/* ================= ORDER ================= */
+/* ================= PLACE ORDER ================= */
 
 function placeOrder(){
 
-    const name =
-        document.getElementById("customerName").value.trim();
+  const name=
+    document.getElementById("customerName").value.trim();
 
-    const mobile =
-        document.getElementById("customerMobile").value.trim();
+  const mobile=
+    document.getElementById("customerMobile").value.trim();
 
-    const pin =
-        document.getElementById("customerPin").value.trim();
+  const pin=
+    document.getElementById("customerPin").value.trim();
 
-    const house =
-        document.getElementById("customerHouse").value.trim();
+  const house=
+    document.getElementById("customerHouse").value.trim();
 
-    const area =
-        document.getElementById("customerArea").value.trim();
+  const area=
+    document.getElementById("customerArea").value.trim();
 
-    const city =
-        document.getElementById("customerCity").value.trim();
+  const city=
+    document.getElementById("customerCity").value.trim();
 
-    const state =
-        document.getElementById("customerState").value;
+  const state=
+    document.getElementById("customerState").value;
 
-    if(!name ||
-       !mobile ||
-       !pin ||
-       !house ||
-       !area ||
-       !city ||
-       !state){
+  if(!name ||
+     !mobile ||
+     !pin ||
+     !house ||
+     !area ||
+     !city ||
+     !state){
 
-        alert("Please fill all required fields.");
+    alert("Please fill all required delivery details.");
+    return;
 
-        return;
-    }
+  }
 
+  if(!/^[0-9]{10}$/.test(mobile)){
 
-    if(!/^[0-9]{10}$/.test(mobile)){
+    alert("Please enter a valid 10 digit mobile number.");
+    return;
 
-        alert("Please enter a valid 10 digit mobile number.");
+  }
 
-        return;
-    }
+  if(!/^[0-9]{6}$/.test(pin)){
 
+    alert("Please enter a valid 6 digit PIN code.");
+    return;
 
-    if(!/^[0-9]{6}$/.test(pin)){
+  }
 
-        alert("Please enter a valid 6 digit PIN code.");
+  const payment=
+    document.querySelector(
+      'input[name="payment"]:checked'
+    ).value;
 
-        return;
-    }
+  const subtotal=calculateSubtotal();
+  const delivery=getDelivery(subtotal);
+  const total=
+    Math.max(0,subtotal+delivery-discount);
 
+  const orderId=
+    "BHUVIA-"+Date.now().toString().slice(-8);
 
-    const payment =
-        document.querySelector(
-            'input[name="payment"]:checked'
-        ).value;
+  lastOrder={
 
+    orderId:orderId,
 
-    const orderId =
-        "BHUVIA" +
-        Date.now().toString().slice(-8);
+    date:new Date().toLocaleString("en-IN"),
 
+    customer:{
+      name:name,
+      mobile:mobile,
+      email:document.getElementById("customerEmail").value.trim(),
+      house:house,
+      area:area,
+      landmark:document.getElementById("customerLandmark").value.trim(),
+      city:city,
+      state:state,
+      pin:pin,
+      instruction:document.getElementById("customerInstruction").value.trim()
+    },
 
-    let total = 0;
+    items:cart.map(item=>{
 
-    let orderText = "";
+      const p=products[item.id];
 
-    cart.forEach(item=>{
+      return {
+        name:p.name,
+        qty:item.qty,
+        price:p.price
+      };
 
-        total += item.price * item.qty;
+    }),
 
-        orderText +=
-            `${item.name} x ${item.qty} = ₹${item.price * item.qty}%0A`;
+    subtotal:subtotal,
+    delivery:delivery,
+    discount:discount,
+    total:total,
+    payment:payment
 
-    });
+  };
 
-
-    const delivery =
-        total >= 500 ? 0 : 40;
-
-    const grandTotal =
-        total + delivery;
-
-
-    const email =
-        document.getElementById("customerEmail").value.trim();
-
-    const landmark =
-        document.getElementById("customerLandmark").value.trim();
-
-    const instruction =
-        document.getElementById("customerInstruction").value.trim();
-
-
-    const address =
-        `${house}, ${area}, ${landmark}, ${city}, ${state} - ${pin}`;
-
-
-    const whatsappMessage =
-
-        `*BHUVIA ORDER*%0A%0A` +
-
-        `Order ID: ${orderId}%0A` +
-
-        `Customer: ${name}%0A` +
-
-        `Mobile: ${mobile}%0A` +
-
-        `Email: ${email || "N/A"}%0A%0A` +
-
-        `*Products:*%0A` +
-
-        orderText +
-
-        `%0ASubtotal: ₹${total}%0A` +
-
-        `Delivery: ${delivery === 0 ? "FREE" : "₹" + delivery}%0A` +
-
-        `*Grand Total: ₹${grandTotal}*%0A%0A` +
-
-        `*Delivery Address:*%0A` +
-
-        `${address}%0A%0A` +
-
-        `Payment: ${payment}%0A` +
-
-        `Instructions: ${instruction || "None"}`;
-
-
-    document
-        .getElementById("checkoutForm")
-        .style.display = "none";
-
-
-    document
-        .getElementById("successBox")
-        .classList.add("active");
-
-
-    document
-        .getElementById("orderId")
-        .innerText =
-        "Order ID: " + orderId;
-
-
-    document
-        .getElementById("successDetails")
-        .innerText =
-        `Total ₹${grandTotal.toLocaleString("en-IN")} | Payment: ${payment}`;
-
-
-    document
-        .getElementById("whatsappOrder")
-        .href =
-        `https://wa.me/${BHUVIA_WHATSAPP}?text=${whatsappMessage}`;
-
-
-    localStorage.setItem(
-        "bhuviaLastOrder",
-        JSON.stringify({
-            orderId:orderId,
-            name:name,
-            mobile:mobile,
-            address:address,
-            total:grandTotal,
-            payment:payment,
-            date:new Date().toLocaleString("en-IN")
-        })
-    );
-
-
-    cart = [];
-
-    saveCart();
+  localStorage.setItem(
+    "bhuviaLastOrder",
+    JSON.stringify(lastOrder)
+  );
+
+  document.getElementById("orderId").textContent=
+    "Order ID: "+orderId;
+
+  document.getElementById("orderDetails").innerHTML=
+    `
+      <strong>${name}</strong><br>
+      ${house}, ${area}<br>
+      ${city}, ${state} - ${pin}<br>
+      Mobile: ${mobile}<br><br>
+      <strong>Total: ₹${total.toLocaleString("en-IN")}</strong><br>
+      Payment: ${payment}
+    `;
+
+  cart=[];
+  discount=0;
+
+  saveCart();
+
+  hideAll();
+
+  document.getElementById("successPage").style.display="block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
 
-/* ================= INITIAL ================= */
+/* ================= WHATSAPP ================= */
 
+/*
+  IMPORTANT:
+  Replace 919999999999 with your actual
+  Bhuvia WhatsApp number.
+*/
+
+const BHUVIA_WHATSAPP="919999999999";
+
+function sendWhatsApp(){
+
+  if(!lastOrder){
+
+    lastOrder=
+      JSON.parse(
+        localStorage.getItem("bhuviaLastOrder") || "null"
+      );
+
+  }
+
+  if(!lastOrder)return;
+
+  let message=
+`*BHUVIA ORDER*
+
+Order ID: ${lastOrder.orderId}
+
+Customer:
+${lastOrder.customer.name}
+
+Mobile:
+${lastOrder.customer.mobile}
+
+Address:
+${lastOrder.customer.house},
+${lastOrder.customer.area},
+${lastOrder.customer.city},
+${lastOrder.customer.state} - ${lastOrder.customer.pin}
+
+Products:
+`;
+
+  lastOrder.items.forEach(item=>{
+
+    message +=
+`${item.name}
+Qty: ${item.qty}
+Price: ₹${item.price*item.qty}
+
+`;
+
+  });
+
+  message +=
+`Subtotal: ₹${lastOrder.subtotal}
+Delivery: ${lastOrder.delivery===0?"FREE":"₹"+lastOrder.delivery}
+Discount: ₹${lastOrder.discount}
+*Grand Total: ₹${lastOrder.total}*
+
+Payment: ${lastOrder.payment}`;
+
+  const url=
+    "https://wa.me/"+
+    BHUVIA_WHATSAPP+
+    "?text="+
+    encodeURIComponent(message);
+
+  window.open(url,"_blank");
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchProducts(){
+
+  const search=
+    prompt("Search Bhuvia products:");
+
+  if(!search)return;
+
+  const text=search.toLowerCase();
+
+  const found=
+    Object.values(products).find(
+      p=>p.name.toLowerCase().includes(text)
+    );
+
+  if(found){
+
+    openProduct(found.id);
+
+  }else{
+
+    alert("Product not found. Please try RO, 500ml, 1L, 2L or 20L.");
+
+  }
+
+}
+
+
+/* ================= WISHLIST ================= */
+
+function wishlist(id){
+
+  let wishlist=
+    JSON.parse(
+      localStorage.getItem("bhuviaWishlist") || "[]"
+    );
+
+  if(!wishlist.includes(id)){
+
+    wishlist.push(id);
+
+    localStorage.setItem(
+      "bhuviaWishlist",
+      JSON.stringify(wishlist)
+    );
+
+    alert("Product added to wishlist.");
+
+  }else{
+
+    alert("Product already in wishlist.");
+
+  }
+
+}
+
+
+/* ================= START ================= */
+
+renderProducts();
 updateCartCount();
 
 </script>
