@@ -1,149 +1,74 @@
 from pathlib import Path
 import re
 
-# Read the previously provided pasted code from the mounted conversation attachment if available.
-candidates = [
-    Path("/mnt/data/Pasted text(2).txt"),
-    Path("/mnt/data/Pasted_text(2).txt"),
-]
-src = next((p for p in candidates if p.exists()), None)
+src = Path("/mnt/data/Pasted text(2).txt")
+text = src.read_text(encoding="utf-8", errors="ignore")
 
-if src is None:
-    # Fallback: create a clean, self-contained ecommerce page.
-    code = r'''<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bhuvia — Everything Under Your Budget</title>
-<style>
-:root{--brand:#0b8a58;--dark:#10251d;--muted:#66736e;--line:#e7eeeb;--bg:#f7faf8;--white:#fff;--danger:#c0392b}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--dark)}
-a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}
-.top{background:var(--dark);color:#fff;text-align:center;padding:8px;font-size:13px}.wrap{max-width:1180px;margin:auto;padding:0 18px}
-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}.head{height:72px;display:flex;align-items:center;gap:18px}
-.logo{height:44px;width:auto;object-fit:contain}.search{flex:1;display:flex;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}.search input{flex:1;border:0;padding:13px;outline:0}.search button{border:0;background:var(--brand);color:#fff;padding:0 18px}
-.actions{display:flex;gap:9px}.iconbtn{position:relative;width:46px;height:46px;border:1px solid var(--line);background:#fff;border-radius:12px}.badge{position:absolute;right:-5px;top:-6px;background:#e74c3c;color:#fff;border-radius:99px;min-width:19px;height:19px;font-size:11px;display:grid;place-items:center}
-nav{border-top:1px solid var(--line);background:#fff}.nav{display:flex;gap:25px;height:45px;align-items:center;font-size:14px;font-weight:700}.nav a:hover{color:var(--brand)}
-.hero{padding:46px 0;background:linear-gradient(135deg,#e9f8f1,#fff)}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}.hero h1{font-size:48px;line-height:1.05;margin:0 0 15px}.hero p{font-size:17px;color:var(--muted);line-height:1.6}.btn{border:0;border-radius:10px;padding:13px 18px;font-weight:700;display:inline-block}.primary{background:var(--brand);color:#fff}.outline{background:#fff;border:1px solid var(--line)}.hero-card{background:#fff;border-radius:25px;padding:25px;text-align:center;box-shadow:0 15px 45px #164a3414}.hero-card img{max-width:100%;height:300px;object-fit:contain}
-section{padding:48px 0}.section-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.section-title h2{margin:0;font-size:28px}.muted{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}.card-img{height:230px;background:#fff;display:grid;place-items:center;padding:18px}.card-img img{width:100%;height:100%;object-fit:contain}.card-body{padding:17px}.card h3{margin:0 0 8px;font-size:17px}.price{font-size:21px;font-weight:800}.old{text-decoration:line-through;color:#9aa5a1;font-size:13px;margin-left:7px}.off{color:var(--brand);font-size:12px;font-weight:700;margin-left:5px}.row{display:flex;gap:8px;align-items:center}.card .btn{width:100%;margin-top:12px;text-align:center}
-.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.benefit{background:#fff;border:1px solid var(--line);padding:20px;border-radius:14px}.benefit b{display:block;margin-bottom:5px}
-footer{background:var(--dark);color:#fff;padding:45px 0}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}.footer-grid p,.footer-grid a{color:#cbd8d3;font-size:14px;line-height:1.8}
-.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:100}.overlay.show{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(480px,100%);background:#fff;display:flex;flex-direction:column}.drawer-head{padding:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.drawer-body{padding:18px;overflow:auto;flex:1}.drawer-foot{padding:18px;border-top:1px solid var(--line)}
-.cart-item{display:grid;grid-template-columns:70px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.cart-item img{width:70px;height:70px;object-fit:contain;border:1px solid var(--line);border-radius:10px}.qty{display:flex;align-items:center;border:1px solid var(--line);width:max-content;border-radius:8px;overflow:hidden}.qty button{border:0;background:#f5f7f6;width:30px;height:30px}.qty span{width:32px;text-align:center}
-.modal{position:absolute;inset:4% auto auto 50%;transform:translateX(-50%);width:min(1050px,94%);max-height:92%;overflow:auto;background:#fff;border-radius:18px}.modal-head{padding:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.close{border:0;background:#f1f4f2;border-radius:8px;width:36px;height:36px}.product-detail{display:grid;grid-template-columns:1fr 1fr;gap:35px;padding:28px}.gallery-main{height:430px;border:1px solid var(--line);border-radius:16px;display:grid;place-items:center}.gallery-main img{max-width:90%;max-height:90%;object-fit:contain}.detail h1{font-size:32px;margin:0 0 10px}.detail .bigprice{font-size:30px;font-weight:800}.features{padding-left:20px;line-height:1.9}.tabs{display:flex;border-bottom:1px solid var(--line);gap:5px;padding:0 28px}.tab{border:0;background:transparent;padding:14px 15px;font-weight:700}.tab.active{color:var(--brand);border-bottom:2px solid var(--brand)}.tabcontent{padding:22px 28px;line-height:1.7}
-.form{padding:25px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:9px;padding:12px;outline:0}.payment{display:flex;gap:10px;flex-wrap:wrap}.pay{border:1px solid var(--line);padding:12px 15px;border-radius:10px}.pay.active{border-color:var(--brand);background:#effaf5}
-.success{text-align:center;padding:55px 25px}.check{width:72px;height:72px;border-radius:50%;background:#e6f7ef;color:var(--brand);display:grid;place-items:center;font-size:38px;margin:auto}.order-id{font-size:25px;font-weight:800;margin:20px 0;color:var(--brand)}
-@media(max-width:800px){.head{height:auto;padding:12px 0;flex-wrap:wrap}.logo{height:38px}.search{order:3;flex-basis:100%}.hero-grid,.product-detail{grid-template-columns:1fr}.hero h1{font-size:36px}.grid{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.nav{overflow:auto;white-space:nowrap}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
-@media(max-width:500px){.grid{grid-template-columns:1fr 1fr;gap:10px}.card-img{height:170px}.card-body{padding:12px}.hero{padding:30px 0}.hero-card img{height:220px}.benefits,.footer-grid{grid-template-columns:1fr}.product-detail{padding:18px}.gallery-main{height:300px}.detail h1{font-size:25px}}
-</style>
-</head>
-<body>
-<div class="top">Free delivery on orders ₹500+ • Bhuvia — Everything Under Your Budget</div>
-<header>
-<div class="wrap head">
-<a href="#"><img class="logo" src="bhuvia-logo.jpg" alt="Bhuvia"></a>
-<div class="search"><input id="searchInput" placeholder="Search RO, 500ml, 1L, 2L, 20L..." oninput="searchProducts()"><button>Search</button></div>
-<div class="actions"><button class="iconbtn" onclick="openWishlist()">♡<span class="badge" id="wishCount">0</span></button><button class="iconbtn" onclick="openCart()">🛒<span class="badge" id="cartCount">0</span></button></div>
-</div>
-<nav><div class="wrap nav"><a href="#home">Home</a><a href="#products">Products</a><a href="#water">Packaged Water</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
-</header>
+start = text.find("<!DOCTYPE html>")
+end = text.rfind("</html>'''")
+if start < 0 or end < 0:
+    raise RuntimeError("Original Bhuvia HTML source not found.")
 
-<main id="home">
-<section class="hero"><div class="wrap hero-grid"><div><div class="muted">PURE • SMART • BUDGET FRIENDLY</div><h1>Pure Water.<br>Smart Budget.</h1><p>Reliable Bhuvia RO and packaged drinking water solutions for your home, shop and daily needs.</p><a class="btn primary" href="#products">SHOP NOW</a></div><div class="hero-card"><img src="ro product.png" alt="Bhuvia RO" onerror="this.style.opacity=.2"><b>Bhuvia RO Purifier</b><div class="price">₹4,999 <span class="old">₹5,999</span></div></div></div></section>
+html = text[start:end+7]
 
-<section><div class="wrap"><div class="benefits"><div class="benefit">✓ <b>Quality Focused</b><span class="muted">Clean water solutions</span></div><div class="benefit">✓ <b>Budget Friendly</b><span class="muted">Value pricing</span></div><div class="benefit">✓ <b>Home Delivery</b><span class="muted">Convenient ordering</span></div><div class="benefit">✓ <b>Support</b><span class="muted">Service assistance</span></div></div></div></section>
+# Keep the original website/design intact and only strengthen the cart click/open behavior.
+html = html.replace(
+    '<button class="icon-btn" onclick="openCart()" title="Cart">🛒<span id="cartCount" class="badge">0</span></button>',
+    '<button type="button" id="cartButton" class="icon-btn" onclick="openCart();return false;" title="Cart">🛒<span id="cartCount" class="badge">0</span></button>'
+)
 
-<section id="products"><div class="wrap"><div class="section-title"><h2>Featured Products</h2><span class="muted">Choose your Bhuvia product</span></div><div class="grid" id="productGrid"></div></div></section>
+# Make the visible state explicit so the cart cannot remain hidden because of a CSS/inline-style conflict.
+html = html.replace(
+    '.overlay.show{display:block}',
+    '.overlay.show{display:block!important;visibility:visible!important;opacity:1!important}'
+)
 
-<section id="water"><div class="wrap"><div class="section-title"><h2>Packaged Drinking Water</h2><span class="muted">500ml • 1L • 2L • 20L</span></div><div class="grid" id="waterGrid"></div></div></section>
-
-<section id="about"><div class="wrap"><div class="section-title"><h2>Why Bhuvia?</h2></div><p class="muted" style="max-width:800px;line-height:1.8">Bhuvia is built around a simple promise — dependable water products and services at a price that fits your budget. Order online, choose your quantity, enter your delivery details and place your order easily.</p></div></section>
-</main>
-
-<footer id="contact"><div class="wrap footer-grid"><div><h2>Bhuvia</h2><p>Everything Under Your Budget.</p></div><div><b>Quick Links</b><p><a href="#products">Products</a><br><a href="#water">Water</a><br><a href="#about">About</a></p></div><div><b>Support</b><p>Order assistance<br>Delivery support<br>WhatsApp orders</p></div><div><b>Contact</b><p>WhatsApp: +91 92116 22274</p></div></div></footer>
-
-<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()"><div class="drawer"><div class="drawer-head"><b>Your Cart</b><button class="close" onclick="closeCart()">×</button></div><div class="drawer-body" id="cartBody"></div><div class="drawer-foot" id="cartFoot"></div></div></div>
-
-<div class="overlay" id="productOverlay" onclick="if(event.target===this)closeProduct()"><div class="modal"><div class="modal-head"><b>Product Details</b><button class="close" onclick="closeProduct()">×</button></div><div id="productContent"></div></div></div>
-
-<div class="overlay" id="checkoutOverlay" onclick="if(event.target===this)closeCheckout()"><div class="modal"><div class="modal-head"><b>Checkout</b><button class="close" onclick="closeCheckout()">×</button></div><div id="checkoutContent"></div></div></div>
-
-<script>
-const WHATSAPP="919211622274";
-const products=[
-{id:"ro",name:"Bhuvia RO Water Purifier",price:4999,old:5999,img:"ro product.png",cat:"RO",stock:20,desc:"Bhuvia home RO water purifier with installation support.",features:["Home RO purification","Budget-friendly price","Installation support","Service assistance"]},
-{id:"500",name:"Bhuvia Packaged Drinking Water 500ml",price:7,old:10,img:"water-500ml.png",cat:"Water",stock:1000,desc:"500ml packaged drinking water for daily and travel use.",features:["500ml bottle","Shop & event friendly","Easy to carry","Fresh packaged water"]},
-{id:"1l",name:"Bhuvia Packaged Drinking Water 1L",price:15,old:20,img:"water-1l.png",cat:"Water",stock:1000,desc:"1 litre packaged drinking water.",features:["1 litre bottle","Daily use","Easy to carry","Fresh packaged water"]},
-{id:"2l",name:"Bhuvia Packaged Drinking Water 2L",price:20,old:25,img:"water-2l.png",cat:"Water",stock:1000,desc:"2 litre packaged drinking water.",features:["2 litre bottle","Family/travel use","Easy to carry","Fresh packaged water"]},
-{id:"20l",name:"Bhuvia 20 Litre Water Jar",price:15,old:20,img:"water-20l.png",cat:"Water",stock:1000,desc:"20 litre water jar refill.",features:["20 litre jar","Home & office supply","Delivery support","Regular refill model"]}
-];
-let cart=JSON.parse(localStorage.getItem("bhuviaCart")||"[]");
-let wishlist=JSON.parse(localStorage.getItem("bhuviaWishlist")||"[]");
-let checkoutItems=[];
-let coupon=0;
-
-function money(n){return "₹"+Number(n).toLocaleString("en-IN")}
-function save(){localStorage.setItem("bhuviaCart",JSON.stringify(cart));localStorage.setItem("bhuviaWishlist",JSON.stringify(wishlist));updateCounts()}
-function updateCounts(){document.getElementById("cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);document.getElementById("wishCount").textContent=wishlist.length}
-function renderProducts(){
-const a=document.getElementById("productGrid"),w=document.getElementById("waterGrid");
-a.innerHTML="";w.innerHTML="";
-products.forEach(p=>{const html=`<div class="card product-card" data-name="${p.name.toLowerCase()}"><div class="card-img"><img src="${p.img}" alt="${p.name}" onerror="this.style.opacity=.15"></div><div class="card-body"><h3>${p.name}</h3><div><span class="price">${money(p.price)}</span><span class="old">${money(p.old)}</span><span class="off">${Math.round((1-p.price/p.old)*100)}% OFF</span></div><div class="muted" style="font-size:12px;margin-top:5px">In stock: ${p.stock}</div><button class="btn outline" onclick="openProduct('${p.id}')">VIEW DETAILS</button><button class="btn primary" onclick="addToCart('${p.id}',1)">ADD TO CART</button></div></div>`; (p.id==="ro"?a:w).insertAdjacentHTML("beforeend",html)})
+html = html.replace(
+'''function openCart(){
+  renderCart();
+  document.getElementById("cartOverlay").classList.add("show");
+  document.body.style.overflow="hidden";
 }
-function searchProducts(){const q=(document.getElementById("searchInput").value||"").toLowerCase().trim();document.querySelectorAll(".product-card").forEach(c=>c.style.display=!q||c.dataset.name.includes(q)?"":"none")}
-function addToCart(id,qty=1){const p=products.find(x=>x.id===id);if(!p)return;let x=cart.find(x=>x.id===id);if(x)x.qty=Math.min(p.stock,x.qty+qty);else cart.push({id,qty:Math.min(p.stock,qty)});save();openCart()}
-function changeQty(id,d){const x=cart.find(x=>x.id===id),p=products.find(x=>x.id===id);if(!x)return;x.qty+=d;if(x.qty<=0)cart=cart.filter(i=>i.id!==id);else x.qty=Math.min(p.stock,x.qty);save();renderCart()}
-function removeItem(id){cart=cart.filter(x=>x.id!==id);save();renderCart()}
-function openCart(){renderCart();document.getElementById("cartOverlay").classList.add("show")}
-function closeCart(){document.getElementById("cartOverlay").classList.remove("show")}
-function cartTotals(items=cart){let subtotal=items.reduce((s,x)=>s+(products.find(p=>p.id===x.id).price*x.qty),0);let discount=coupon?Math.min(coupon,subtotal):0;let delivery=subtotal-discount>=500?0:40;return{subtotal,discount,delivery,total:subtotal-discount+delivery}}
-function renderCart(){
-const body=document.getElementById("cartBody"),foot=document.getElementById("cartFoot");
-if(!cart.length){body.innerHTML="<div style='text-align:center;padding:60px 10px'><h3>Your cart is empty</h3><p class='muted'>Add products to continue.</p><button class='btn primary' onclick='closeCart();document.getElementById(\"products\").scrollIntoView()'>SHOP PRODUCTS</button></div>";foot.innerHTML="";return}
-body.innerHTML=cart.map(x=>{let p=products.find(p=>p.id===x.id);return `<div class="cart-item"><img src="${p.img}"><div><b>${p.name}</b><div class="muted">${money(p.price)} × ${x.qty}</div><div class="qty"><button onclick="changeQty('${p.id}',-1)">−</button><span>${x.qty}</span><button onclick="changeQty('${p.id}',1)">+</button></div><button style="border:0;background:none;color:#c0392b;padding:7px 0" onclick="removeItem('${p.id}')">Remove</button></div><b>${money(p.price*x.qty)}</b></div>`}).join("");
-let t=cartTotals();foot.innerHTML=`<div style="display:flex;justify-content:space-between"><span>Subtotal</span><b>${money(t.subtotal)}</b></div><div style="display:flex;justify-content:space-between;margin:8px 0"><span>Delivery</span><b>${t.delivery?money(t.delivery):"FREE"}</b></div><div style="display:flex;justify-content:space-between;font-size:20px;margin:12px 0"><b>Total</b><b>${money(t.total)}</b></div><div style="display:flex;gap:8px"><input id="couponInput" placeholder="Coupon code" style="flex:1;padding:11px;border:1px solid var(--line);border-radius:8px"><button class="btn outline" onclick="applyCoupon()">Apply</button></div><button class="btn primary" style="width:100%;margin-top:10px" onclick="startCheckout()">PROCEED TO CHECKOUT</button>`
+function closeCart(){
+  document.getElementById("cartOverlay").classList.remove("show");
+  document.body.style.overflow="";
+}''',
+'''function openCart(){
+  const overlay=document.getElementById("cartOverlay");
+  renderCart();
+  overlay.classList.add("show");
+  overlay.style.display="block";
+  overlay.style.visibility="visible";
+  overlay.style.opacity="1";
+  document.body.style.overflow="hidden";
 }
-function applyCoupon(){const v=(document.getElementById("couponInput").value||"").toUpperCase();if(v==="WELCOME50"){coupon=50;alert("₹50 coupon applied");renderCart()}else if(v==="BHUVIA10"){let t=cartTotals();coupon=Math.round(t.subtotal*.1);alert("10% coupon applied");renderCart()}else alert("Invalid coupon")}
-function openProduct(id){
-const p=products.find(x=>x.id===id);if(!p)return;
-document.getElementById("productContent").innerHTML=`<div class="product-detail"><div><div class="gallery-main"><img src="${p.img}" alt="${p.name}"></div></div><div class="detail"><div class="muted">${p.cat}</div><h1>${p.name}</h1><div><span class="bigprice">${money(p.price)}</span> <span class="old">${money(p.old)}</span></div><p class="muted">${p.desc}</p><ul class="features">${p.features.map(x=>"<li>"+x+"</li>").join("")}</ul><p><b>Stock:</b> ${p.stock}</p><div class="row"><button class="btn outline" onclick="addToCart('${p.id}',1)">ADD TO CART</button><button class="btn primary" onclick="buyNow('${p.id}')">BUY NOW</button></div><a class="btn outline" style="margin-top:10px;width:100%;text-align:center" target="_blank" href="${whatsappProduct(p,1)}">ORDER ON WHATSAPP</a></div></div><div class="tabs"><button class="tab active" onclick="showTab('spec',this)">Specifications</button><button class="tab" onclick="showTab('care',this)">Care</button><button class="tab" onclick="showTab('faq',this)">FAQs</button></div><div id="tab-spec" class="tabcontent"><b>Product:</b> ${p.name}<br><b>Category:</b> ${p.cat}<br><b>Availability:</b> In Stock<br><b>Price:</b> ${money(p.price)}</div><div id="tab-care" class="tabcontent" style="display:none">Store packaged water properly. For RO, follow installation and filter/service guidance provided with the product.</div><div id="tab-faq" class="tabcontent" style="display:none"><b>Do you deliver?</b><br>Yes, delivery details are confirmed during checkout.<br><br><b>Can I pay COD?</b><br>Yes, COD is available as a frontend order option.</div>`;
-document.getElementById("productOverlay").classList.add("show")
-}
-function closeProduct(){document.getElementById("productOverlay").classList.remove("show")}
-function showTab(id,btn){document.querySelectorAll(".tabcontent").forEach(x=>x.style.display="none");document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.getElementById("tab-"+id).style.display="block";btn.classList.add("active")}
-function buyNow(id){closeProduct();cart=[];addToCart(id,1);startCheckout()}
-function openWishlist(){if(!wishlist.length){alert("Wishlist is empty");return}alert("Wishlist: "+wishlist.map(id=>products.find(p=>p.id===id)?.name).join(", "))}
-function whatsappProduct(p,qty){const text=`Hello Bhuvia, I want to order:\n${p.name}\nQuantity: ${qty}\nPrice: ${money(p.price*qty)}\nPlease confirm availability and delivery.`;return "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(text)}
-function startCheckout(){if(!cart.length)return;checkoutItems=JSON.parse(JSON.stringify(cart));closeCart();renderCheckoutForm();document.getElementById("checkoutOverlay").classList.add("show")}
-function closeCheckout(){document.getElementById("checkoutOverlay").classList.remove("show")}
-function renderCheckoutForm(){
-const t=cartTotals(checkoutItems);
-document.getElementById("checkoutContent").innerHTML=`<form class="form" onsubmit="placeOrder(event)"><div class="form-grid"><div class="field"><label>Full Name *</label><input id="name" required></div><div class="field"><label>Mobile *</label><input id="mobile" required pattern="[0-9]{10}" maxlength="10"></div><div class="field"><label>Email</label><input id="email" type="email"></div><div class="field"><label>House / Flat No. *</label><input id="house" required></div><div class="field"><label>Street / Area *</label><input id="area" required></div><div class="field"><label>Landmark</label><input id="landmark"></div><div class="field"><label>City *</label><input id="city" required></div><div class="field"><label>State *</label><input id="state" value="Bihar" required></div><div class="field"><label>PIN Code *</label><input id="pin" required pattern="[0-9]{6}" maxlength="6"></div><div class="field full"><label>Delivery Instructions</label><textarea id="instructions" rows="3" placeholder="Any delivery instructions"></textarea></div><div class="field full"><label>Payment Method *</label><div class="payment"><label class="pay active"><input type="radio" name="payment" value="COD" checked> Cash on Delivery</label><label class="pay"><input type="radio" name="payment" value="UPI"> UPI / Online</label></div></div></div><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><h3>Order Summary</h3>${checkoutItems.map(x=>{let p=products.find(p=>p.id===x.id);return `<div style="display:flex;justify-content:space-between;margin:8px 0"><span>${p.name} × ${x.qty}</span><b>${money(p.price*x.qty)}</b></div>`}).join("")}<div style="display:flex;justify-content:space-between;margin-top:14px"><span>Delivery</span><b>${t.delivery?money(t.delivery):"FREE"}</b></div><div style="display:flex;justify-content:space-between;font-size:20px;margin-top:10px"><b>Grand Total</b><b>${money(t.total)}</b></div><button class="btn primary" style="width:100%;margin-top:20px">PLACE ORDER</button><p class="muted" style="font-size:12px">UPI selection is currently a frontend order option. A real payment gateway requires backend/payment integration.</p></form>`
-}
-function placeOrder(e){e.preventDefault();const mobile=document.getElementById("mobile").value;if(!/^[0-9]{10}$/.test(mobile)){alert("Please enter a valid 10 digit mobile number");return}const order={id:"BHV"+Date.now().toString().slice(-8),date:new Date().toLocaleString("en-IN"),name:document.getElementById("name").value,mobile,email:document.getElementById("email").value,house:document.getElementById("house").value,area:document.getElementById("area").value,landmark:document.getElementById("landmark").value,city:document.getElementById("city").value,state:document.getElementById("state").value,pin:document.getElementById("pin").value,instructions:document.getElementById("instructions").value,payment:document.querySelector('input[name="payment"]:checked').value,items:checkoutItems,totals:cartTotals(checkoutItems)};showSuccess(order);cart=[];coupon=0;save()}
-function showSuccess(order){const itemText=order.items.map(x=>{const p=products.find(p=>p.id===x.id);return `${p.name} x ${x.qty}`}).join("\n");const address=`${order.house}, ${order.area}${order.landmark?", "+order.landmark:""}, ${order.city}, ${order.state} - ${order.pin}`;const msg=`BHUVIA ORDER\nOrder ID: ${order.id}\nDate: ${order.date}\n\nCustomer: ${order.name}\nMobile: ${order.mobile}\n\nProducts:\n${itemText}\n\nAddress: ${address}\nPayment: ${order.payment}\nTotal: ${money(order.totals.total)}`;const wa="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);document.getElementById("checkoutContent").innerHTML=`<div class="success"><div class="check">✓</div><h2>Order Placed Successfully!</h2><p class="muted">Thank you, ${order.name}. Your Bhuvia order has been created.</p><div class="order-id">${order.id}</div><p class="muted">Order Date: ${order.date}<br>Payment: ${order.payment}<br>Total: ${money(order.totals.total)}</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px"><a class="btn primary" href="${wa}" target="_blank">SEND ORDER ON WHATSAPP</a><button class="btn outline" onclick="closeCheckout();document.getElementById('products').scrollIntoView()">CONTINUE SHOPPING</button></div></div>`}
-renderProducts();updateCounts();
-</script>
-</body>
-</html>'''
-    out = Path("/mnt/data/Bhuvia_Clean_Ecommerce_index.html")
-    out.write_text(code, encoding="utf-8")
-else:
-    text = src.read_text(encoding="utf-8", errors="ignore")
-    # The pasted source is a Python generator containing an HTML triple-quoted string.
-    # Extract the HTML payload between the first html marker and the closing triple quote.
-    start = text.find("<!DOCTYPE html>")
-    end = text.rfind("</html>'''")
-    if start >= 0 and end >= 0:
-        clean = text[start:end+7]
-    else:
-        # If the mounted paste is already clean HTML, use it directly.
-        clean = text
-    out = Path("/mnt/data/Bhuvia_Clean_Ecommerce_index.html")
-    out.write_text(clean, encoding="utf-8")
+function closeCart(){
+  const overlay=document.getElementById("cartOverlay");
+  overlay.classList.remove("show");
+  overlay.style.display="none";
+  overlay.style.visibility="";
+  overlay.style.opacity="";
+  document.body.style.overflow="";
+}'''
+)
 
-print(f"Created clean file: {out}")
+# Add a direct event listener as a second, reliable path for the cart button.
+marker = 'renderProducts();\n'
+if marker in html and 'document.getElementById("cartButton").addEventListener' not in html:
+    html = html.replace(
+        marker,
+        marker + '''document.getElementById("cartButton").addEventListener("click",function(e){
+  e.preventDefault();
+  e.stopPropagation();
+  openCart();
+});\n''',
+        1
+    )
+
+out = Path("/mnt/data/Bhuvia_ORIGINAL_DESIGN_CART_FIXED.html")
+out.write_text(html, encoding="utf-8")
+
+print(f"Created: {out}")
 print(f"Size: {out.stat().st_size:,} bytes")
-print(f"Lines: {len(out.read_text(encoding='utf-8').splitlines()):,}")
+print(f"Lines: {len(html.splitlines()):,}")
+print("Original design/content preserved; only cart-open behavior was strengthened.")
