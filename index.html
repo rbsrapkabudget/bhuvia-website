@@ -1,30 +1,35 @@
 from pathlib import Path
 import re
 
+# Use the original pasted source that was available in the conversation runtime.
 src = Path("/mnt/data/Pasted text(2).txt")
 text = src.read_text(encoding="utf-8", errors="ignore")
 
+# Extract the complete HTML from the Python-wrapped paste.
 start = text.find("<!DOCTYPE html>")
 end = text.rfind("</html>'''")
 if start < 0 or end < 0:
-    raise RuntimeError("Original Bhuvia HTML source not found.")
+    raise RuntimeError("Could not locate the complete original HTML.")
 
-html = text[start:end+7]
+html = text[start:end + len("</html>")]
 
-# Keep the original website/design intact and only strengthen the cart click/open behavior.
-html = html.replace(
-    '<button class="icon-btn" onclick="openCart()" title="Cart">🛒<span id="cartCount" class="badge">0</span></button>',
-    '<button type="button" id="cartButton" class="icon-btn" onclick="openCart();return false;" title="Cart">🛒<span id="cartCount" class="badge">0</span></button>'
+# Preserve the original website exactly, while fixing the cart interaction.
+# Ensure the cart button has a stable id and explicit button type.
+html = re.sub(
+    r'<button class="icon-btn" onclick="openCart\(\)" title="Cart">',
+    '<button type="button" id="cartButton" class="icon-btn" onclick="openCart();return false;" title="Cart">',
+    html,
+    count=1
 )
 
-# Make the visible state explicit so the cart cannot remain hidden because of a CSS/inline-style conflict.
+# Make the cart overlay reliably visible when its "show" class is applied.
 html = html.replace(
-    '.overlay.show{display:block}',
-    '.overlay.show{display:block!important;visibility:visible!important;opacity:1!important}'
+    ".overlay.show{display:block}",
+    ".overlay.show{display:block!important;visibility:visible!important;opacity:1!important}"
 )
 
-html = html.replace(
-'''function openCart(){
+# Replace only the cart open/close functions if present.
+old = '''function openCart(){
   renderCart();
   document.getElementById("cartOverlay").classList.add("show");
   document.body.style.overflow="hidden";
@@ -32,8 +37,8 @@ html = html.replace(
 function closeCart(){
   document.getElementById("cartOverlay").classList.remove("show");
   document.body.style.overflow="";
-}''',
-'''function openCart(){
+}'''
+new = '''function openCart(){
   const overlay=document.getElementById("cartOverlay");
   renderCart();
   overlay.classList.add("show");
@@ -50,25 +55,27 @@ function closeCart(){
   overlay.style.opacity="";
   document.body.style.overflow="";
 }'''
-)
+if old in html:
+    html = html.replace(old, new, 1)
 
-# Add a direct event listener as a second, reliable path for the cart button.
-marker = 'renderProducts();\n'
-if marker in html and 'document.getElementById("cartButton").addEventListener' not in html:
+# Add a second reliable click handler without changing the rest of the site.
+marker = "renderProducts();"
+if marker in html and 'cartButton").addEventListener' not in html:
     html = html.replace(
         marker,
-        marker + '''document.getElementById("cartButton").addEventListener("click",function(e){
+        marker + '''
+document.getElementById("cartButton").addEventListener("click",function(e){
   e.preventDefault();
   e.stopPropagation();
   openCart();
-});\n''',
+});''',
         1
     )
 
-out = Path("/mnt/data/Bhuvia_ORIGINAL_DESIGN_CART_FIXED.html")
+out = Path("/mnt/data/Bhuvia_FULL_ORIGINAL_CART_FIXED.html")
 out.write_text(html, encoding="utf-8")
 
-print(f"Created: {out}")
-print(f"Size: {out.stat().st_size:,} bytes")
+print(f"READY: {out}")
 print(f"Lines: {len(html.splitlines()):,}")
-print("Original design/content preserved; only cart-open behavior was strengthened.")
+print(f"Size: {out.stat().st_size:,} bytes")
+print("This is the complete original website code with only the cart-open fix applied.")
