@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bhuvia Admin Panel</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.login{min-height:100vh;display:grid;place-items:center;background:#eef5ff;padding:20px}
+.loginbox,.panel,.stat{background:#fff;border-radius:16px;box-shadow:0 6px 24px #0001}.loginbox{width:min(420px,100%);padding:30px}
+input,textarea,select{width:100%;padding:11px;border:1px solid #d9dee8;border-radius:9px;margin:6px 0 12px}textarea{min-height:90px}
+.primary{background:#111827;color:#fff;border:0;padding:11px 16px;border-radius:9px;font-weight:700}.secondary{background:#eef2f7;border:0;padding:10px 13px;border-radius:9px}.danger{background:#fee2e2;color:#991b1b;border:0;padding:9px 12px;border-radius:9px}
+.app{display:none}.side{position:fixed;inset:0 auto 0 0;width:235px;background:#111827;color:#fff;padding:22px 13px}.brand{font-size:25px;font-weight:900;padding:0 10px 22px}.nav button{display:block;width:100%;text-align:left;background:transparent;color:#d1d5db;border:0;padding:12px;border-radius:9px;margin:3px 0}.nav button.active,.nav button:hover{background:#fff;color:#111827}.logout{position:absolute;bottom:18px;left:13px;right:13px;padding:11px;border:0;border-radius:9px}
+.main{margin-left:235px;padding:25px}.top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:20px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.stat{padding:20px}.stat b{display:block;font-size:26px;margin-top:8px}.panel{padding:20px;margin-bottom:18px}.toolbar,.actions{display:flex;gap:8px;flex-wrap:wrap}.toolbar input{max-width:300px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{padding:11px;border-bottom:1px solid #eee;text-align:left}.thumb{width:60px;height:60px;object-fit:cover;border-radius:8px}.badge{padding:5px 9px;border-radius:99px;background:#ffedd5;font-size:12px}.green{background:#dcfce7}.red{background:#fee2e2}.modal{display:none;position:fixed;inset:0;background:#0008;padding:20px;z-index:20}.modalbox{background:#fff;width:min(650px,100%);margin:30px auto;padding:22px;border-radius:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.muted{color:#667085}.error{color:#b91c1c}.success{color:#166534}
+@media(max-width:800px){.side{width:70px}.brand{font-size:0}.brand:after{content:'B';font-size:25px}.nav span{display:none}.main{margin-left:70px;padding:15px}.cards{grid-template-columns:1fr 1fr}.top{align-items:flex-start;flex-direction:column}}
+@media(max-width:550px){.cards,.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="login" class="login"><div class="loginbox">
+<h1>💧 Bhuvia Admin</h1><p class="muted">Website orders, products, banners, coupons, customers & settings.</p>
+<div id="msg"></div>
+<label>Admin Email</label><input id="email" type="email" placeholder="admin@email.com">
+<label>Password</label><input id="password" type="password" placeholder="Password">
+<button class="primary" style="width:100%" id="loginBtn">Login</button>
+</div></div>
+
+<div id="app" class="app">
+<aside class="side"><div class="brand">Bhuvia</div><div class="nav">
+<button class="active" data-page="dashboard">📊 <span>Dashboard</span></button>
+<button data-page="orders">🛒 <span>Orders</span></button>
+<button data-page="products">📦 <span>Products</span></button>
+<button data-page="banners">🖼️ <span>Banners</span></button>
+<button data-page="coupons">🏷️ <span>Coupons</span></button>
+<button data-page="customers">👥 <span>Customers</span></button>
+<button data-page="settings">⚙️ <span>Settings</span></button>
+</div><button class="logout" id="logout">↪ Logout</button></aside>
+<main class="main"><div class="top"><div><h1 id="title">Dashboard</h1><div class="muted">Bhuvia — Everything Under Your Budget</div></div><button class="secondary" id="refresh">↻ Refresh</button></div><div id="content"></div></main>
+</div>
+
+<div id="modal" class="modal"><div class="modalbox"><div style="display:flex;justify-content:space-between"><h2 id="mtitle"></h2><button class="secondary" id="close">×</button></div><div id="mbody"></div></div></div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import {getFirestore,collection,getDocs,addDoc,doc,setDoc,deleteDoc,getDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyD9CEQCkDmYglA6iDm31iOwfqP3fL_RFwg",
+authDomain:"bhuviaro-d2a11.firebaseapp.com",
+projectId:"bhuviaro-d2a11",
+storageBucket:"bhuviaro-d2a11.firebasestorage.app",
+messagingSenderId:"368846580360",
+appId:"1:368846580360:web:a92c7b073dda6e3bee8d3d",
+measurementId:"G-1NC7LVHCD8"
+};
+const fb=initializeApp(firebaseConfig),auth=getAuth(fb),db=getFirestore(fb);
+let page="dashboard",cache={orders:[],products:[],banners:[],coupons:[],customers:[]};
+const $=id=>document.getElementById(id),money=n=>"₹"+Number(n||0).toLocaleString("en-IN"),esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+async function all(c){let s=await getDocs(collection(db,c));return s.docs.map(d=>({id:d.id,...d.data()}))}
+async function load(){for(const c of Object.keys(cache))cache[c]=await all(c)}
+function msg(t,c=""){ $("msg").innerHTML=`<p class="${c}">${esc(t)}</p>` }
+$("loginBtn").onclick=async()=>{try{msg("Signing in...");await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);msg("")}catch(e){msg(e.message,"error")}};
+$("logout").onclick=()=>signOut(auth);
+onAuthStateChanged(auth,async u=>{if(u){$("login").style.display="none";$("app").style.display="block";await load();render()}else{$("login").style.display="grid";$("app").style.display="none"}});
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");page=b.dataset.page;render()});
+$("refresh").onclick=async()=>{await load();render()};$("close").onclick=()=>$("modal").style.display="none";
+
+function render(){ $("title").textContent=page[0].toUpperCase()+page.slice(1);({dashboard,orders,products,banners,coupons,customers,settings})[page](); }
+function dashboard(){let sales=cache.orders.reduce((a,x)=>a+Number(x.total||x.grandTotal||0),0),pending=cache.orders.filter(x=>(x.status||"Pending")==="Pending").length;
+$("content").innerHTML=`<div class="cards"><div class="stat">🛒 Orders<b>${cache.orders.length}</b></div><div class="stat">💰 Sales<b>${money(sales)}</b></div><div class="stat">⏳ Pending<b>${pending}</b></div><div class="stat">📦 Products<b>${cache.products.length}</b></div></div><div class="panel"><h2>Quick Actions</h2><div class="actions"><button class="primary" onclick="window.go('orders')">Orders</button><button class="secondary" onclick="window.product()">+ Product</button><button class="secondary" onclick="window.banner()">+ Banner</button><button class="secondary" onclick="window.coupon()">+ Coupon</button></div></div>`}
+window.go=p=>{page=p;document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===p));render()};
+function orders(){let a=cache.orders; $("content").innerHTML=`<div class="panel"><div class="toolbar"><input id="search" placeholder="Search order/customer/mobile"><select id="filter"><option value="">All Status</option><option>Pending</option><option>Confirmed</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></div><div id="ot">${orderTable(a)}</div></div>`;$("search").oninput=filter;$("filter").onchange=filter}
+function filter(){let q=$("search").value.toLowerCase(),s=$("filter").value;let a=cache.orders.filter(x=>(!s||x.status===s)&&JSON.stringify(x).toLowerCase().includes(q));$("ot").innerHTML=orderTable(a)}
+function orderTable(a){if(!a.length)return"<p class='muted'>No orders yet.</p>";return`<div class="tablewrap"><table class="table"><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th><th>Action</th></tr>${a.map(x=>`<tr><td>${esc(x.orderId||x.id)}</td><td>${esc(x.customerName||x.name)}<br>${esc(x.mobile||x.phone)}</td><td>${money(x.total||x.grandTotal)}</td><td><span class="badge">${esc(x.status||"Pending")}</span></td><td><button class="secondary" onclick='window.viewOrder(${JSON.stringify(x)})'>View</button></td></tr>`).join("")}</table></div>`}
+window.viewOrder=x=>{open("Order "+(x.orderId||x.id),`<p><b>Customer:</b> ${esc(x.customerName||x.name)}<br><b>Mobile:</b> ${esc(x.mobile||x.phone)}<br><b>Address:</b> ${esc(x.address||x.fullAddress||"")}<br><b>Total:</b> ${money(x.total||x.grandTotal)}</p><label>Status</label><select id="os"><option>Pending</option><option>Confirmed</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select><br><button class="primary" id="saveos">Save Status</button>`);$("os").value=x.status||"Pending";$("saveos").onclick=async()=>{await setDoc(doc(db,"orders",x.id),{status:$("os").value,updatedAt:serverTimestamp()},{merge:true});$("modal").style.display="none";await load();render()}};
+
+function products(){ $("content").innerHTML=`<div class="panel"><button class="primary" onclick="window.product()">+ Add Product</button><div class="tablewrap" style="margin-top:15px"><table class="table"><tr><th>Image</th><th>Name</th><th>Price/MRP</th><th>Stock</th><th>Actions</th></tr>${cache.products.map(x=>`<tr><td>${x.image?`<img class="thumb" src="${esc(x.image)}">`:""}</td><td><b>${esc(x.name)}</b><br>${esc(x.category)}</td><td>${money(x.price)} / ${money(x.mrp)}</td><td>${esc(x.stock)}</td><td><button class="secondary" onclick='window.product(${JSON.stringify(x)})'>Edit</button> <button class="danger" onclick="window.del('products','${x.id}')">Delete</button></td></tr>`).join("")}</table></div></div>`}
+window.product=x=>{x=x||{};open(x.id?"Edit Product":"Add Product",`<div class="grid"><div><label>Name</label><input id="pn" value="${esc(x.name)}"></div><div><label>Category</label><input id="pc" value="${esc(x.category||"Water Purifier")}"></div><div><label>Price</label><input id="pp" type="number" value="${x.price??""}"></div><div><label>MRP</label><input id="pm" type="number" value="${x.mrp??""}"></div><div><label>Stock</label><input id="ps" type="number" value="${x.stock??0}"></div><div><label>Image URL</label><input id="pi" value="${esc(x.image)}"></div></div><label>Short Description</label><textarea id="pd">${esc(x.shortDescription)}</textarea><label>Full Details</label><textarea id="pdetail">${esc(x.details)}</textarea><button class="primary" id="savep">Save Product</button>`);$("savep").onclick=async()=>{let d={name:$("pn").value,category:$("pc").value,price:+$("pp").value,mrp:+$("pm").value,stock:+$("ps").value,image:$("pi").value,shortDescription:$("pd").value,details:$("pdetail").value,updatedAt:serverTimestamp()};x.id?await setDoc(doc(db,"products",x.id),d,{merge:true}):await addDoc(collection(db,"products"),{...d,createdAt:serverTimestamp()});$("modal").style.display="none";await load();render()}};
+
+function banners(){$("content").innerHTML=`<div class="panel"><button class="primary" onclick="window.banner()">+ Add Banner</button><div class="tablewrap" style="margin-top:15px"><table class="table"><tr><th>Banner</th><th>Title</th><th>Link</th><th>Status</th><th>Actions</th></tr>${cache.banners.map(x=>`<tr><td>${x.image?`<img class="thumb" src="${esc(x.image)}">`:""}</td><td>${esc(x.title)}</td><td>${esc(x.link)}</td><td>${x.active!==false?"Active":"Hidden"}</td><td><button class="secondary" onclick='window.banner(${JSON.stringify(x)})'>Edit</button> <button class="danger" onclick="window.del('banners','${x.id}')">Delete</button></td></tr>`).join("")}</table></div></div>`}
+window.banner=x=>{x=x||{};open(x.id?"Edit Banner":"Add Banner",`<label>Title</label><input id="bt" value="${esc(x.title)}"><label>Image URL</label><input id="bi" value="${esc(x.image)}"><label>Link URL</label><input id="bl" value="${esc(x.link)}"><label>Display Order</label><input id="bo" type="number" value="${x.order??0}"><label>Status</label><select id="ba"><option value="true">Active</option><option value="false">Hidden</option></select><button class="primary" id="saveb">Save Banner</button>`);$("ba").value=String(x.active!==false);$("saveb").onclick=async()=>{let d={title:$("bt").value,image:$("bi").value,link:$("bl").value,order:+$("bo").value,active:$("ba").value==="true",updatedAt:serverTimestamp()};x.id?await setDoc(doc(db,"banners",x.id),d,{merge:true}):await addDoc(collection(db,"banners"),{...d,createdAt:serverTimestamp()});$("modal").style.display="none";await load();render()}};
+
+function coupons(){$("content").innerHTML=`<div class="panel"><button class="primary" onclick="window.coupon()">+ Add Coupon</button><div class="tablewrap" style="margin-top:15px"><table class="table"><tr><th>Code</th><th>Type</th><th>Value</th><th>Min Order</th><th>Status</th><th>Actions</th></tr>${cache.coupons.map(x=>`<tr><td><b>${esc(x.code)}</b></td><td>${esc(x.type)}</td><td>${x.type==="percent"?x.value+"%":money(x.value)}</td><td>${money(x.minOrder)}</td><td>${x.active!==false?"Active":"Hidden"}</td><td><button class="secondary" onclick='window.coupon(${JSON.stringify(x)})'>Edit</button> <button class="danger" onclick="window.del('coupons','${x.id}')">Delete</button></td></tr>`).join("")}</table></div></div>`}
+window.coupon=x=>{x=x||{};open(x.id?"Edit Coupon":"Add Coupon",`<label>Coupon Code</label><input id="cc" value="${esc(x.code)}"><label>Type</label><select id="ct"><option value="percent">Percentage</option><option value="fixed">Fixed</option></select><label>Value</label><input id="cv" type="number" value="${x.value??""}"><label>Minimum Order</label><input id="cm" type="number" value="${x.minOrder??0}"><label>Status</label><select id="ca"><option value="true">Active</option><option value="false">Hidden</option></select><button class="primary" id="savec">Save Coupon</button>`);$("ct").value=x.type||"percent";$("ca").value=String(x.active!==false);$("savec").onclick=async()=>{let d={code:$("cc").value.toUpperCase(),type:$("ct").value,value:+$("cv").value,minOrder:+$("cm").value,active:$("ca").value==="true",updatedAt:serverTimestamp()};x.id?await setDoc(doc(db,"coupons",x.id),d,{merge:true}):await addDoc(collection(db,"coupons"),{...d,createdAt:serverTimestamp()});$("modal").style.display="none";await load();render()}};
+
+function customers(){$("content").innerHTML=`<div class="panel"><div class="tablewrap"><table class="table"><tr><th>Name</th><th>Mobile</th><th>Email</th><th>City</th><th>Orders</th></tr>${cache.customers.map(x=>`<tr><td>${esc(x.name||x.customerName)}</td><td>${esc(x.mobile||x.phone)}</td><td>${esc(x.email)}</td><td>${esc(x.city)}</td><td>${esc(x.orderCount||0)}</td></tr>`).join("")}</table></div></div>`}
+async function settings(){let s=await getDoc(doc(db,"settings","store")),x=s.exists()?s.data():{};$("content").innerHTML=`<div class="panel"><h2>Website Settings</h2><div class="grid"><div><label>Store Name</label><input id="sn" value="${esc(x.storeName||"Bhuvia")}"></div><div><label>WhatsApp</label><input id="sw" value="${esc(x.whatsapp||"919211622274")}"></div><div><label>Free Delivery Above</label><input id="sf" type="number" value="${x.freeDeliveryAbove??500}"></div><div><label>Delivery Charge</label><input id="sd" type="number" value="${x.deliveryCharge??40}"></div></div><label>Description</label><textarea id="sx">${esc(x.description||"Bhuvia — Everything Under Your Budget")}</textarea><button class="primary" id="saves">Save Settings</button></div>`;$("saves").onclick=async()=>{await setDoc(doc(db,"settings","store"),{storeName:$("sn").value,whatsapp:$("sw").value,freeDeliveryAbove:+$("sf").value,deliveryCharge:+$("sd").value,description:$("sx").value,updatedAt:serverTimestamp()},{merge:true});alert("Settings saved")}}
+window.del=async(c,id)=>{if(confirm("Delete this item?")){await deleteDoc(doc(db,c,id));await load();render()}};
+function open(t,b){$("mtitle").textContent=t;$("mbody").innerHTML=b;$("modal").style.display="block"}
+</script>
+</body>
+</html>
